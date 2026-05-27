@@ -3,36 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Bludot</title>
+    <title>Bludot Marketplace</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
+        }
+
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .container {
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar Layout */
+        header {
+            background-color: var(--bg-card);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .cart-icon-btn {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 18px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--text-muted);
+        }
+
+        .cart-count {
+            background-color: var(--accent);
+            color: var(--bg-main);
+            font-weight: bold;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* Hero Banner */
+        .hero {
             text-align: center;
-            border: 2px solid #38bdf8;
-            padding: 30px;
-            border-radius: 12px;
-            background-color: #1e293b;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 60px 20px;
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
         }
-        h1 {
-            color: #38bdf8;
+
+        .hero h1 {
+            font-size: 42px;
             margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+        }
+
+        /* Products Grid Grid */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #334155;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .add-btn {
+            background-color: var(--accent);
+            color: var(--bg-main);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .add-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Shopping Cart Sliding Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: var(--bg-card);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 15px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .cart-item-details h4 {
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-details p {
+            color: var(--accent);
+            font-size: 14px;
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: var(--accent);
+            color: var(--bg-main);
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        @media (max-width: 450px) {
+            .cart-drawer {
+                width: 100%;
+                right: -100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Bludot is Online!</h1>
-        <p>Welcome to my custom website project.</p>
+
+    <header>
+        <a href="#" class="logo">Bludot.</a>
+        <button class="cart-icon-btn" onclick="toggleCart()">
+            🛒 Cart <span class="cart-count" id="cartCount">0</span>
+        </button>
+    </header>
+
+    <section class="hero">
+        <h1>Premium Tech & Hardware</h1>
+        <p>Explore high-performance gear built for projects that matter.</p>
+    </section>
+
+    <main class="main-container">
+        <div class="products-grid" id="productGrid">
+            </div>
+    </main>
+
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        
+        <div class="cart-items-container" id="cartItems">
+            </div>
+
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="triggerCheckout()">Proceed to Checkout</button>
+        </div>
     </div>
+
+    <script>
+        // High-quality, context-ready open source imagery from Unsplash
+        const products = [
+            {
+                id: 1,
+                title: "Pro Development Board",
+                desc: "High-speed processing unit equipped with dynamic pins, built-in antenna profiles, and optimal power efficiency loops.",
+                price: 29.99,
+                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 2,
+                title: "Wireless Protocol Module",
+                desc: "Long range RF telemetry setup utilizing active custom frequency-hopping logic for low-latency transmission pipelines.",
+                price: 18.50,
+                image: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 3,
+                title: "Micro Core Brushless Motor",
+                desc: "High RPM micro-category propulsion assembly built for extreme weight-to-thrust efficiency profiles.",
+                price: 24.00,
+                image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=500&q=80"
+            },
+            {
+                id: 4,
+                title: "OLED Graphical Module",
+                desc: "Crisp high-contrast dashboard display interface featuring seamless pixel grouping layouts and responsive dark styling.",
+                price: 12.99,
+                image: "https://images.unsplash.com/photo-1517055720413-77a13543dd1a?auto=format&fit=crop&w=500&q=80"
+            }
+        ];
+
+        let cart = [];
+
+        // Build product catalog items onto the screen layout layout
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.title}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-desc">${product.desc}</p>
+                        <div class="product-meta">
+                            <span class="product-price">$${product.price.toFixed(2)}</span>
+                            <button class="add-btn" onclick="addToCart(${product.id})">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Drawer sliding toggle controller
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+        }
+
+        // Add to basket function logic
+        function addToCart(productId) {
+            const targetProduct = products.find(p => p.id === productId);
+            cart.push(targetProduct);
+            updateCartUI();
+        }
+
+        // Remove item logic loop
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        // Refresh elements in the layout panels
+        function updateCartUI() {
+            // Counter Badge updating
+            document.getElementById('cartCount').innerText = cart.length;
+
+            // List items generation loop
+            const listContainer = document.getElementById('cartItems');
+            if(cart.length === 0) {
+                listContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center; margin-top: 40px;">Your cart is empty.</p>';
+            } else {
+                listContainer.innerHTML = cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <h4>${item.title}</h4>
+                            <p>$${item.price.toFixed(2)}</p>
+                        </div>
+                        <button class="remove-item-btn" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `).join('');
+            }
+
+            // Price Summary tally matching calculation logic
+            const overallCost = cart.reduce((total, item) => total + item.price, 0);
+            document.getElementById('cartTotal').innerText = `$${overallCost.toFixed(2)}`;
+        }
+
+        // Simulated action checkout response
+        function triggerCheckout() {
+            if(cart.length === 0) {
+                alert("Your cart is empty! Add some components first.");
+                return;
+            }
+            alert("Checkout complete! (This is a static frontend display module. To handle processing, you can integrate payment windows like Stripe or bKash APIs).");
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Initial setup initialization runtime trigger
+        renderProducts();
+    </script>
 </body>
 </html>
