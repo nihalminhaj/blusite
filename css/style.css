@@ -1,1 +1,268 @@
+/* Global reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
+}
+:root {
+  --primary: #007bff;
+  --bg: #ffffff;
+  --text: #333333;
+  --card-bg: #f9f9f9;
+}
+.dark {
+  --bg: #121212;
+  --text: #f1f1f1;
+  --card-bg: #1e1e1e;
+}
+container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 1rem;
+}
+header {
+  background: var(--primary);
+  color: #fff;
+  padding: 1rem 0;
+}
+.site-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: box-shadow 0.3s;
+}
+.site-header.scrolled {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+}
+.nav {
+  display: flex;
+}
+.nav.open {
+  display: block;
+}
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+.nav a:hover {
+  color: #e2e2e2;
+}
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
+/* hero section */
+.hero {
+  background: url('https://picsum.photos/1200/600?blur=2') center/cover no-repeat;
+  color: #fff;
+  padding: 8rem 0 4rem;
+  text-align: center;
+  margin-top: 80px; /* to offset fixed header */
+}
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero-sub {
+  font-size: 1.2rem;
+}
+
+section {
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: var(--primary);
+  color: #fff;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* scroll to top button */
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  transition: background 0.2s;
+}
+.scroll-top:hover {
+  background: #0056b3;
+}
+.social a {
+  color: #fff;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+.social a:hover {
+  color: #e2e2e2;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    background: var(--primary);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+  }
+  .nav.open {
+    display: block;
+  }
+  .nav-list {
+    flex-direction: column;
+    padding: 1rem 0;
+  }
+  .nav-toggle {
+    display: block;
+  }
+  .footer-content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+section {
+  padding: 2rem 0;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+.card img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+}
+
+/* offset for anchor scrolling */
+[id] {
+  scroll-margin-top: 90px;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+/* Language toggle & theme toggle */
+.switches {
+  display: flex;
+  gap: 1rem;
+}
+.toggle-btn {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #fff;
+  color: #333;
+}
+/* hero adjustments */
+.hero {
+  background-attachment: fixed;
+}
+
+/* animations */
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+/* responsive grid for cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 1rem;
+}
+
+/* newsletter */
+.newsletter {
+  background: var(--card-bg);
+  padding: 3rem 0;
+  text-align: center;
+}
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.newsletter-form input[type="email"] {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 250px;
+}
+.newsletter-form button {
+  padding: 0.5rem 1.5rem;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.newsletter-form button:hover {
+  background: #0056b3;
+}
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: var(--primary);
+  color: #fff;
+}
