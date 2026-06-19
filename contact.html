@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — BLUdot</title>
+  <meta name="description" content="Get in touch with BLUdot — for collaborations, video editing inquiries, or just to say hello.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="facts.html">Facts & Tips</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="https://youtube.com/@BLUdot" target="_blank" class="nav-yt"><i class="fab fa-youtube"></i> YouTube</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ═══ PAGE HERO ═══ -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-eyebrow">
+        <div class="ph-line"></div>
+        <span class="section-lbl" style="margin:0">Get in Touch</span>
+      </div>
+      <h1>Let's <span class="gradient-text">connect</span></h1>
+      <p>Whether you have a project in mind, a collab idea, or just want to say hello — the inbox is open. Response within 24 hours.</p>
+    </div>
+  </div>
+
+  <!-- ═══ CONTACT MAIN ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: Info -->
+        <div class="reveal">
+          <h3 style="font-family:var(--f-disp);font-size:1.25rem;font-weight:700;margin-bottom:1.5rem">Contact info</h3>
+          <div class="contact-info-cards">
+            <div class="ci-card">
+              <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:hello@bludot.com">hello@bludot.com</a>
+              </div>
+            </div>
+            <div class="ci-card">
+              <div class="ci-icon" style="background:rgba(255,0,0,.1);color:#ff5555"><i class="fab fa-youtube"></i></div>
+              <div>
+                <h4>YouTube Channel</h4>
+                <a href="https://youtube.com/@BLUdot" target="_blank">youtube.com/@BLUdot</a>
+              </div>
+            </div>
+            <div class="ci-card">
+              <div class="ci-icon" style="background:rgba(34,211,238,.1);color:var(--cyan)"><i class="fas fa-clock"></i></div>
+              <div>
+                <h4>Response Time</h4>
+                <p>Usually within 24 hours</p>
+              </div>
+            </div>
+            <div class="ci-card">
+              <div class="ci-icon" style="background:rgba(52,211,153,.1);color:var(--green)"><i class="fas fa-check-circle"></i></div>
+              <div>
+                <h4>Availability</h4>
+                <p>Open for new projects</p>
+              </div>
+            </div>
+          </div>
+
+          <h4 style="font-family:var(--f-disp);font-size:.85rem;font-weight:600;color:var(--gray);margin-bottom:1rem;letter-spacing:.08em;text-transform:uppercase">Follow on Socials</h4>
+          <div class="social-links">
+            <a href="https://youtube.com/@BLUdot" target="_blank" class="soc-btn"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="#" class="soc-btn"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#" class="soc-btn"><i class="fab fa-twitter"></i> Twitter</a>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal" data-delay="2">
+          <div class="contact-form">
+            <p class="form-title">Send a message</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" placeholder="e.g. Alex Rahman" id="fname">
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="you@email.com" id="femail">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Subject / Project Type</label>
+              <select id="fsubject">
+                <option value="">— Select a topic —</option>
+                <option>Video Editing — YouTube</option>
+                <option>Video Editing — Cinematic</option>
+                <option>Video Editing — Promo/Ad</option>
+                <option>Content Collaboration</option>
+                <option>Business Inquiry</option>
+                <option>Just saying hello!</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Your Message</label>
+              <textarea placeholder="Tell me about your project — what do you need, timeline, and any reference material..." id="fmessage"></textarea>
+            </div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="sendForm()">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <p style="font-size:.78rem;color:var(--gray);margin-top:1rem;text-align:center">
+              I read every message and reply personally. No bots. 🤝
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="section" style="background:var(--bg2);padding-top:0">
+    <div class="container" style="padding-top:80px">
+      <span class="section-lbl">Quick Answers</span>
+      <h2 class="section-title">Frequently asked <span>questions</span></h2>
+      <div class="faq-grid" id="faqGrid">
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>What's your editing turnaround time?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>For standard YouTube videos (5–15 min), turnaround is typically 3–5 business days. For longer cinematic projects or promos, it's 7–14 days depending on complexity. Rush delivery is available — mention it in your message.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>What formats do you deliver in?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>I deliver in H.264 or H.265 MP4 for web/YouTube, ProRes for professional workflows, and any custom format you need. Standard resolutions: 1080p, 4K. Frame rates: 24fps, 30fps, 60fps.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Do you do revisions?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>Yes — all packages include at least 2 rounds of revisions. Additional revisions can be added. I aim to get it right the first time by discussing your vision thoroughly before starting.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Can you work with my raw footage?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>Absolutely. Send me your raw footage via Google Drive, WeTransfer, or Dropbox. I work with formats from most cameras — DSLR, mirrorless, action cams, and smartphone footage. The more organized your files, the faster the edit.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Do you create content for the BLUdot YouTube channel?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>Yes! BLUdot on YouTube is my channel where I post facts, tips, and creative content. The editing skills I offer clients are the same ones you see in my YouTube videos — that's the portfolio.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>What's the best way to reach you quickly?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-a">
+            <p>The contact form here is best for project inquiries. For quick questions, DM on Instagram or Twitter. I try to respond to all messages within 24 hours — usually faster. If it's urgent, say so in your message!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.3rem">
+        <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+      </a>
+      <p>Facts that surprise. Tips that stick. Edits that move people. This is BLUdot.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="facts.html">Facts & Tips</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="portfolio.html">YouTube Editing</a>
+      <a href="portfolio.html">Cinematic Edits</a>
+      <a href="portfolio.html">Promos & Ads</a>
+      <a href="contact.html">Get a Quote</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="#"><i class="fab fa-twitter"></i> Twitter / X</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2024 BLUdot. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

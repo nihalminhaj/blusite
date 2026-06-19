@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facts & Tips — BLUdot</title>
+  <meta name="description" content="Fascinating facts and practical tips from science, tech, history, space and everyday life.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="facts.html" class="active">Facts & Tips</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://youtube.com/@BLUdot" target="_blank" class="nav-yt"><i class="fab fa-youtube"></i> YouTube</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ═══ PAGE HERO ═══ -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-eyebrow">
+        <div class="ph-line"></div>
+        <span class="section-lbl" style="margin:0">Knowledge Base</span>
+      </div>
+      <h1>Facts & <span class="gradient-text">Tips</span></h1>
+      <p>Bite-sized knowledge drops, practical life tips, and mind-blowing facts from across the universe — curated by BLUdot.</p>
+    </div>
+  </div>
+
+  <!-- ═══ FACT OF THE DAY ═══ -->
+  <section class="section-sm" style="background:var(--bg2)">
+    <div class="container">
+      <div class="fotd-box">
+        <p class="fotd-label"><i class="fas fa-star"></i> &nbsp;Fact of the Day</p>
+        <p class="fotd-text" id="fotdText">A group of flamingos is called a "flamboyance." These birds can only eat with their heads upside down, and their pink color comes entirely from the carotenoid pigments in the algae and shrimp they consume.</p>
+        <div class="fotd-actions">
+          <button class="btn btn-cyan" onclick="newFotd()"><i class="fas fa-dice"></i> New Random Fact</button>
+          <button class="btn btn-outline" onclick="shareFact()"><i class="fas fa-share-alt"></i> Share</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FACTS GRID ═══ -->
+  <section class="section">
+    <div class="container">
+      <span class="section-lbl">Browse Facts</span>
+      <h2 class="section-title" style="margin-bottom:1.75rem">Explore by <span>category</span></h2>
+
+      <div class="filter-bar" id="factFilters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="science">🔬 Science</button>
+        <button class="filter-btn" data-filter="space">🛸 Space</button>
+        <button class="filter-btn" data-filter="tech">💻 Tech</button>
+        <button class="filter-btn" data-filter="history">🏛️ History</button>
+        <button class="filter-btn" data-filter="body">🧠 Human Body</button>
+        <button class="filter-btn" data-filter="nature">🌿 Nature</button>
+      </div>
+
+      <div class="facts-grid-full" id="factsGrid">
+
+        <div class="fact-card reveal" data-cat="science">
+          <p class="fact-num">001</p>
+          <span class="tag tag-cyan">Science</span>
+          <h3>Hot water can freeze faster than cold water</h3>
+          <p>Known as the Mpemba effect, hot water can sometimes freeze faster than cold water under the same conditions. Scientists still debate exactly why this happens — it may involve evaporation, dissolved gases, or hydrogen bond behavior.</p>
+          <div class="fact-footer">
+            <span class="tag tag-cyan">Science</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+        <div class="fact-card reveal" data-delay="1" data-cat="space">
+          <p class="fact-num">002</p>
+          <span class="tag tag-blue">Space</span>
+          <h3>A day on Venus is longer than its year</h3>
+          <p>Venus rotates so slowly on its axis that a single day (243 Earth days) is actually longer than its full orbit around the Sun (225 Earth days). And to make it stranger — it spins backwards compared to most planets.</p>
+          <div class="fact-footer">
+            <span class="tag tag-blue">Space</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+        <div class="fact-card reveal" data-delay="2" data-cat="body">
+          <p class="fact-num">003</p>
+          <span class="tag tag-purple">Human Body</span>
+          <h3>Your skeleton is completely replaced every 10 years</h3>
+          <p>Old bone cells are constantly broken down and replaced by new ones. By the time you're in your mid-twenties, you have an entirely different skeleton than you had at 15 — yet most people never notice the process happening.</p>
+          <div class="fact-footer">
+            <span class="tag tag-purple">Human Body</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+        <div class="fact-card reveal" data-delay="1" data-cat="tech">
+          <p class="fact-num">004</p>
+          <span class="tag tag-blue">Tech</span>
+          <h3>The first computer bug was a real insect</h3>
+          <p>In 1947, Grace Hopper's team found an actual moth stuck in a relay of the Harvard Mark II computer. They taped it into the logbook with the note "first actual case of bug being found." The term "debugging" was born from this real event.</p>
+          <div class="fact-footer">
+            <span class="tag tag-blue">Tech</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+        <div class="fact-card reveal" data-delay="2" data-cat="history">
+          <p class="fact-num">005</p>
+          <span class="tag tag-yellow">History</span>
+          <h3>Cleopatra lived closer to the Moon landing than to the pyramids</h3>
+          <p>Cleopatra lived around 30 BCE — about 2,500 years after the Great Pyramid was built (2560 BCE). The Moon landing was in 1969, only ~2,000 years after Cleopatra. The pyramids are far more ancient than most people realize.</p>
+          <div class="fact-footer">
+            <span class="tag tag-yellow">History</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+        <div class="fact-card reveal" data-delay="3" data-cat="nature">
+          <p class="fact-num">006</p>
+          <span class="tag tag-green">Nature</span>
+          <h3>Trees can communicate and share nutrients</h3>
+          <p>Through a network of underground fungal threads called the "Wood Wide Web," trees share sugars, water, and chemical signals with each other. Parent trees have been shown to send more carbon to their seedlings through this network.</p>
+          <div class="fact-footer">
+            <span class="tag tag-green">Nature</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+        <div class="fact-card reveal" data-cat="space">
+          <p class="fact-num">007</p>
+          <span class="tag tag-blue">Space</span>
+          <h3>There are more stars than grains of sand on Earth</h3>
+          <p>The observable universe contains roughly 2 trillion galaxies, each with hundreds of billions of stars. The estimated total — around 10²⁴ stars — far exceeds the ~7.5×10¹⁸ grains of sand on all of Earth's beaches and deserts combined.</p>
+          <div class="fact-footer">
+            <span class="tag tag-blue">Space</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+        <div class="fact-card reveal" data-delay="1" data-cat="science">
+          <p class="fact-num">008</p>
+          <span class="tag tag-cyan">Science</span>
+          <h3>Water can boil and freeze at the same time</h3>
+          <p>At a specific temperature and pressure called the "triple point," water exists simultaneously as solid, liquid, and gas. For pure water this is at 0.01°C and 611.7 Pascals — a real physical phenomenon called phase coexistence.</p>
+          <div class="fact-footer">
+            <span class="tag tag-cyan">Science</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+        <div class="fact-card reveal" data-delay="2" data-cat="tech">
+          <p class="fact-num">009</p>
+          <span class="tag tag-blue">Tech</span>
+          <h3>The internet weighs about 50 grams</h3>
+          <p>All the data on the internet — every photo, video, email, and website — is stored as electrons. The total mass of those electrons in motion across global servers has been estimated at roughly 50 grams. Data is physically real, just incredibly light.</p>
+          <div class="fact-footer">
+            <span class="tag tag-blue">Tech</span>
+            <button class="fact-share" onclick="copyFact(this)"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TIPS ACCORDION ═══ -->
+  <section class="section tips-section">
+    <div class="container">
+      <span class="section-lbl">Practical Advice</span>
+      <h2 class="section-title">Tips that <span>actually work</span></h2>
+      <p class="section-sub" style="margin-bottom:2.5rem">Tested, curated, and BLUdot-approved. Click any tip to expand.</p>
+      <div class="tips-grid" id="tipsGrid">
+
+        <div class="tip-item">
+          <div class="tip-header" onclick="toggleTip(this)">
+            <div class="tip-header-left">
+              <div class="tip-icon"><i class="fas fa-moon"></i></div>
+              <h4>The 2-minute sleep trick</h4>
+            </div>
+            <i class="fas fa-chevron-down tip-chevron"></i>
+          </div>
+          <div class="tip-body">
+            <p>Military sleep method: relax your face muscles, drop your shoulders, exhale and relax your chest, relax your legs, then spend 10 seconds clearing your mind by imagining a calm scene. 96% of people who practiced this for 6 weeks fell asleep within 2 minutes.</p>
+          </div>
+        </div>
+
+        <div class="tip-item">
+          <div class="tip-header" onclick="toggleTip(this)">
+            <div class="tip-header-left">
+              <div class="tip-icon"><i class="fas fa-brain"></i></div>
+              <h4>Remember anything using the story method</h4>
+            </div>
+            <i class="fas fa-chevron-down tip-chevron"></i>
+          </div>
+          <div class="tip-body">
+            <p>Your brain remembers narratives far better than lists. To memorize a sequence, link each item into an absurd, vivid story — the more ridiculous, the better. This technique (called the Method of Loci) is used by world memory champions to memorize thousands of numbers.</p>
+          </div>
+        </div>
+
+        <div class="tip-item">
+          <div class="tip-header" onclick="toggleTip(this)">
+            <div class="tip-header-left">
+              <div class="tip-icon"><i class="fas fa-clock"></i></div>
+              <h4>Beat procrastination with the 2-minute rule</h4>
+            </div>
+            <i class="fas fa-chevron-down tip-chevron"></i>
+          </div>
+          <div class="tip-body">
+            <p>If a task takes less than 2 minutes, do it immediately. For bigger tasks, commit to just 2 minutes of starting — because starting is always the hardest part. Once you begin, your brain enters a state where stopping feels harder than continuing.</p>
+          </div>
+        </div>
+
+        <div class="tip-item">
+          <div class="tip-header" onclick="toggleTip(this)">
+            <div class="tip-header-left">
+              <div class="tip-icon"><i class="fas fa-eye"></i></div>
+              <h4>Reduce eye strain from screens</h4>
+            </div>
+            <i class="fas fa-chevron-down tip-chevron"></i>
+          </div>
+          <div class="tip-body">
+            <p>Follow the 20-20-20 rule: every 20 minutes, look at something 20 feet away for 20 seconds. This resets your eye's focusing muscles and dramatically reduces fatigue. Also, position your screen so the top is at eye level — not above it.</p>
+          </div>
+        </div>
+
+        <div class="tip-item">
+          <div class="tip-header" onclick="toggleTip(this)">
+            <div class="tip-header-left">
+              <div class="tip-icon"><i class="fas fa-bolt"></i></div>
+              <h4>Learn anything faster with the Feynman method</h4>
+            </div>
+            <i class="fas fa-chevron-down tip-chevron"></i>
+          </div>
+          <div class="tip-body">
+            <p>Pick a concept, explain it as if teaching a 12-year-old, identify the gaps in your explanation, go back to the source, and simplify again. Named after physicist Richard Feynman, this forces genuine understanding rather than surface memorization.</p>
+          </div>
+        </div>
+
+        <div class="tip-item">
+          <div class="tip-header" onclick="toggleTip(this)">
+            <div class="tip-header-left">
+              <div class="tip-icon"><i class="fas fa-leaf"></i></div>
+              <h4>Instant stress relief in 4 seconds</h4>
+            </div>
+            <i class="fas fa-chevron-down tip-chevron"></i>
+          </div>
+          <div class="tip-body">
+            <p>Box breathing: inhale for 4 seconds, hold for 4, exhale for 4, hold for 4. Repeat 4 times. This is the exact technique used by Navy SEALs before high-stress operations. It activates the parasympathetic nervous system and lowers cortisol within minutes.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.3rem">
+        <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+      </a>
+      <p>Facts that surprise. Tips that stick. Edits that move people. This is BLUdot.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="facts.html">Facts & Tips</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <a href="facts.html">Science</a>
+      <a href="facts.html">Technology</a>
+      <a href="facts.html">History</a>
+      <a href="facts.html">Life Tips</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="#"><i class="fab fa-twitter"></i> Twitter / X</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2024 BLUdot. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

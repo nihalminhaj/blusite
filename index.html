@@ -1,433 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bludot Marketplace</title>
-    <style>
-        :root {
-            --bg-main: #0f172a;
-            --bg-card: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-hover: #0284c7;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Navbar Layout */
-        header {
-            background-color: var(--bg-card);
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .cart-icon-btn {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 18px;
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1px solid var(--text-muted);
-        }
-
-        .cart-count {
-            background-color: var(--accent);
-            color: var(--bg-main);
-            font-weight: bold;
-            font-size: 12px;
-            padding: 2px 6px;
-            border-radius: 50%;
-        }
-
-        /* Hero Banner */
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-main) 100%);
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 18px;
-        }
-
-        /* Products Grid Grid */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            width: 100%;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background-color: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background-color: #334155;
-        }
-
-        .product-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-title {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .product-desc {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 15px;
-            line-height: 1.4;
-            flex-grow: 1;
-        }
-
-        .product-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: auto;
-        }
-
-        .product-price {
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--accent);
-        }
-
-        .add-btn {
-            background-color: var(--accent);
-            color: var(--bg-main);
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .add-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        /* Shopping Cart Sliding Drawer */
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 400px;
-            height: 100%;
-            background-color: var(--bg-card);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            z-index: 1000;
-            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            padding: 30px;
-        }
-
-        .cart-drawer.open {
-            right: 0;
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 15px;
-        }
-
-        .close-cart {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .cart-items-container {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #334155;
-        }
-
-        .cart-item-details h4 {
-            font-size: 15px;
-            margin-bottom: 4px;
-        }
-
-        .cart-item-details p {
-            color: var(--accent);
-            font-size: 14px;
-        }
-
-        .remove-item-btn {
-            background: none;
-            border: none;
-            color: #ef4444;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        .cart-footer {
-            border-top: 1px solid #334155;
-            padding-top: 20px;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background-color: var(--accent);
-            color: var(--bg-main);
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .checkout-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        @media (max-width: 450px) {
-            .cart-drawer {
-                width: 100%;
-                right: -100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLUdot — Facts. Tips. Insights.</title>
+  <meta name="description" content="BLUdot — Your daily dose of fascinating facts, life tips, and creative video editing.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo">Bludot.</a>
-        <button class="cart-icon-btn" onclick="toggleCart()">
-            🛒 Cart <span class="cart-count" id="cartCount">0</span>
-        </button>
-    </header>
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="facts.html">Facts & Tips</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://youtube.com/@BLUdot" target="_blank" class="nav-yt"><i class="fab fa-youtube"></i> YouTube</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-    <section class="hero">
-        <h1>Premium Tech & Hardware</h1>
-        <p>Explore high-performance gear built for projects that matter.</p>
-    </section>
+<div class="page-wrap">
 
-    <main class="main-container">
-        <div class="products-grid" id="productGrid">
-            </div>
-    </main>
-
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header">
-            <h3>Your Shopping Cart</h3>
-            <button class="close-cart" onclick="toggleCart()">×</button>
-        </div>
-        
-        <div class="cart-items-container" id="cartItems">
-            </div>
-
-        <div class="cart-footer">
-            <div class="total-row">
-                <span>Total:</span>
-                <span id="cartTotal">$0.00</span>
-            </div>
-            <button class="checkout-btn" onclick="triggerCheckout()">Proceed to Checkout</button>
-        </div>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <canvas id="particles"></canvas>
     </div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="dot-live"></span>
+          Creating on YouTube weekly
+        </div>
+        <h1 class="hero-title">
+          Where <span class="gradient-text">curiosity</span><br>meets <span class="gradient-text">creativity</span>
+        </h1>
+        <p class="hero-sub">Facts that surprise. Tips that stick. Videos that move people. Welcome to BLUdot — your daily dose of knowledge and visual craft.</p>
+        <div class="hero-btns">
+          <a href="facts.html" class="btn btn-primary"><i class="fas fa-bolt"></i> Explore Facts</a>
+          <a href="portfolio.html" class="btn btn-outline"><i class="fas fa-film"></i> View Portfolio</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-val"><span id="c1">0</span><em>+</em></div>
+            <p>Facts Shared</p>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <div class="stat-val"><span id="c2">0</span><em>+</em></div>
+            <p>Tips & Tricks</p>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <div class="stat-val"><span id="c3">0</span><em>+</em></div>
+            <p>Projects Edited</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="float-card">
+          <div class="fc-icon"><i class="fas fa-brain"></i></div>
+          <p class="fc-lbl">Did You Know?</p>
+          <p class="fc-text">Honey never spoils — archaeologists found 3,000-year-old honey in Egyptian tombs still perfectly edible.</p>
+          <div class="fc-tag"><span class="tag tag-cyan">Science</span></div>
+        </div>
+        <div class="float-card c2">
+          <div class="fc-icon"><i class="fas fa-film"></i></div>
+          <p class="fc-lbl">Latest Edit</p>
+          <p class="fc-text">Cinematic color grade + motion graphics reel — available for your project.</p>
+          <div class="fc-tag"><span class="tag tag-purple">Portfolio</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-mouse"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
 
-    <script>
-        // High-quality, context-ready open source imagery from Unsplash
-        const products = [
-            {
-                id: 1,
-                title: "Pro Development Board",
-                desc: "High-speed processing unit equipped with dynamic pins, built-in antenna profiles, and optimal power efficiency loops.",
-                price: 29.99,
-                image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80"
-            },
-            {
-                id: 2,
-                title: "Wireless Protocol Module",
-                desc: "Long range RF telemetry setup utilizing active custom frequency-hopping logic for low-latency transmission pipelines.",
-                price: 18.50,
-                image: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&w=500&q=80"
-            },
-            {
-                id: 3,
-                title: "Micro Core Brushless Motor",
-                desc: "High RPM micro-category propulsion assembly built for extreme weight-to-thrust efficiency profiles.",
-                price: 24.00,
-                image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=500&q=80"
-            },
-            {
-                id: 4,
-                title: "OLED Graphical Module",
-                desc: "Crisp high-contrast dashboard display interface featuring seamless pixel grouping layouts and responsive dark styling.",
-                price: 12.99,
-                image: "https://images.unsplash.com/photo-1517055720413-77a13543dd1a?auto=format&fit=crop&w=500&q=80"
-            }
-        ];
+  <!-- ═══ ABOUT ═══ -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <span class="section-lbl">About BLUdot</span>
+          <h2 class="section-title">More than just a<br><span>YouTube channel</span></h2>
+          <p class="section-sub">BLUdot is a creative space where mind-blowing facts, practical tips, and stunning video edits collide. Built for the curious and the creative.</p>
+          <div class="about-features">
+            <div class="about-feat">
+              <div class="af-icon"><i class="fas fa-lightbulb"></i></div>
+              <div>
+                <h4>Fascinating Facts</h4>
+                <p>Bite-sized knowledge drops from science, history, tech, and beyond that'll leave you amazed.</p>
+              </div>
+            </div>
+            <div class="about-feat">
+              <div class="af-icon p"><i class="fas fa-tools"></i></div>
+              <div>
+                <h4>Useful Tips</h4>
+                <p>Practical advice for everyday life, creativity, and levelling up your workflow.</p>
+              </div>
+            </div>
+            <div class="about-feat">
+              <div class="af-icon c"><i class="fas fa-film"></i></div>
+              <div>
+                <h4>Video Editing</h4>
+                <p>Professional editing work — cinematic, YouTube, promos. The kind that gets noticed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal" data-delay="2">
+          <div class="cat-grid">
+            <a href="facts.html?cat=science" class="cat-item">
+              <i class="fas fa-flask"></i><p>Science</p>
+            </a>
+            <a href="facts.html?cat=tech" class="cat-item">
+              <i class="fas fa-microchip"></i><p>Technology</p>
+            </a>
+            <a href="facts.html?cat=space" class="cat-item">
+              <i class="fas fa-satellite"></i><p>Space</p>
+            </a>
+            <a href="facts.html?cat=history" class="cat-item">
+              <i class="fas fa-landmark"></i><p>History</p>
+            </a>
+            <a href="facts.html?cat=tips" class="cat-item">
+              <i class="fas fa-heart"></i><p>Life Tips</p>
+            </a>
+            <a href="facts.html?cat=random" class="cat-item">
+              <i class="fas fa-random"></i><p>Random</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        let cart = [];
+  <!-- ═══ FACTS PREVIEW ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-hd">
+        <div>
+          <span class="section-lbl">Latest Facts</span>
+          <h2 class="section-title">Hover to <span>discover</span></h2>
+        </div>
+        <a href="facts.html" class="btn btn-ghost">All Facts <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="flip-grid">
+        <div class="flip-card reveal" data-delay="1">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="ff-icon"><i class="fas fa-satellite"></i></div>
+              <span class="tag tag-blue">Space</span>
+              <h3>Space is completely silent</h3>
+              <p class="ff-hint">Hover to reveal the fact →</p>
+            </div>
+            <div class="flip-back">
+              <span class="tag tag-blue">Space</span>
+              <p>In space there's no medium for sound waves to travel through. Every explosion, engine, and shockwave you see in sci-fi movies would be completely, perfectly silent in reality.</p>
+              <a href="facts.html" class="btn btn-outline">More Facts</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card reveal" data-delay="2">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="ff-icon" style="background:rgba(34,211,238,.12);color:var(--cyan)"><i class="fas fa-water"></i></div>
+              <span class="tag tag-cyan">Ocean</span>
+              <h3>95% of oceans unexplored</h3>
+              <p class="ff-hint">Hover to reveal the fact →</p>
+            </div>
+            <div class="flip-back">
+              <span class="tag tag-cyan">Ocean</span>
+              <p>Over 95% of Earth's oceans remain completely unexplored. We know more about the surface of Mars than we do about the deep ocean — which may still hold creatures we've never encountered.</p>
+              <a href="facts.html" class="btn btn-outline">More Facts</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card reveal" data-delay="3">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="ff-icon" style="background:rgba(139,92,246,.12);color:var(--purple)"><i class="fas fa-brain"></i></div>
+              <span class="tag tag-purple">Human Body</span>
+              <h3>Your brain generates electricity</h3>
+              <p class="ff-hint">Hover to reveal the fact →</p>
+            </div>
+            <div class="flip-back">
+              <span class="tag tag-purple">Human Body</span>
+              <p>The human brain generates around 20 watts of electricity — enough to power a dim light bulb. Every thought you have is a literal electrical impulse firing across 86 billion neurons.</p>
+              <a href="facts.html" class="btn btn-outline">More Facts</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Build product catalog items onto the screen layout layout
-        function renderProducts() {
-            const grid = document.getElementById('productGrid');
-            grid.innerHTML = products.map(product => `
-                <div class="product-card">
-                    <img src="${product.image}" alt="${product.title}" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">${product.title}</h3>
-                        <p class="product-desc">${product.desc}</p>
-                        <div class="product-meta">
-                            <span class="product-price">$${product.price.toFixed(2)}</span>
-                            <button class="add-btn" onclick="addToCart(${product.id})">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
+  <!-- ═══ PORTFOLIO PREVIEW ═══ -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="section-hd">
+        <div>
+          <span class="section-lbl">Video Editing</span>
+          <h2 class="section-title">The <span>reel</span> deal</h2>
+          <p class="section-sub" style="margin-top:.5rem">Professional editing work — cinematic, YouTube, promos & more.</p>
+        </div>
+        <a href="portfolio.html" class="btn btn-ghost">Full Portfolio <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="port-prev-grid">
+        <div class="port-prev-item reveal" data-delay="1">
+          <div class="port-thumb t1">
+            <i class="fas fa-film"></i>
+            <div class="port-overlay">
+              <div class="play-btn"><i class="fas fa-play"></i></div>
+              <span class="tag tag-blue">Cinematic</span>
+            </div>
+          </div>
+          <div class="port-info">
+            <h4>Cinematic Reel 2024</h4>
+            <p>Color graded shortfilm showcase</p>
+          </div>
+        </div>
+        <div class="port-prev-item reveal" data-delay="2">
+          <div class="port-thumb t2">
+            <i class="fab fa-youtube"></i>
+            <div class="port-overlay">
+              <div class="play-btn"><i class="fas fa-play"></i></div>
+              <span class="tag tag-purple">YouTube</span>
+            </div>
+          </div>
+          <div class="port-info">
+            <h4>BLUdot Intro Pack</h4>
+            <p>Motion graphics & transitions</p>
+          </div>
+        </div>
+        <div class="port-prev-item reveal" data-delay="3">
+          <div class="port-thumb t3">
+            <i class="fas fa-ad"></i>
+            <div class="port-overlay">
+              <div class="play-btn"><i class="fas fa-play"></i></div>
+              <span class="tag tag-green">Promo</span>
+            </div>
+          </div>
+          <div class="port-info">
+            <h4>Product Promo Edit</h4>
+            <p>Fast-paced brand video</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // Drawer sliding toggle controller
-        function toggleCart() {
-            document.getElementById('cartDrawer').classList.toggle('open');
-        }
+  <!-- ═══ YT CTA ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="yt-cta-box reveal">
+        <div class="yt-icon"><i class="fab fa-youtube"></i></div>
+        <h2>Join the <span class="gradient-text">BLUdot</span> community</h2>
+        <p>New facts, tips, and creative videos drop every week. Hit subscribe and never miss a knowledge bomb.</p>
+        <a href="https://youtube.com/@BLUdot" target="_blank" class="btn btn-yt btn-primary">
+          <i class="fab fa-youtube"></i> Subscribe Now
+        </a>
+      </div>
+    </div>
+  </section>
 
-        // Add to basket function logic
-        function addToCart(productId) {
-            const targetProduct = products.find(p => p.id === productId);
-            cart.push(targetProduct);
-            updateCartUI();
-        }
+</div><!-- end page-wrap -->
 
-        // Remove item logic loop
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.3rem">
+        <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+      </a>
+      <p>Facts that surprise. Tips that stick. Edits that move people. This is BLUdot.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="facts.html">Facts & Tips</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <a href="facts.html">Science</a>
+      <a href="facts.html">Technology</a>
+      <a href="facts.html">History</a>
+      <a href="facts.html">Life Tips</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="#"><i class="fab fa-twitter"></i> Twitter / X</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2024 BLUdot. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</footer>
 
-        // Refresh elements in the layout panels
-        function updateCartUI() {
-            // Counter Badge updating
-            document.getElementById('cartCount').innerText = cart.length;
-
-            // List items generation loop
-            const listContainer = document.getElementById('cartItems');
-            if(cart.length === 0) {
-                listContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center; margin-top: 40px;">Your cart is empty.</p>';
-            } else {
-                listContainer.innerHTML = cart.map((item, index) => `
-                    <div class="cart-item">
-                        <div class="cart-item-details">
-                            <h4>${item.title}</h4>
-                            <p>$${item.price.toFixed(2)}</p>
-                        </div>
-                        <button class="remove-item-btn" onclick="removeFromCart(${index})">Remove</button>
-                    </div>
-                `).join('');
-            }
-
-            // Price Summary tally matching calculation logic
-            const overallCost = cart.reduce((total, item) => total + item.price, 0);
-            document.getElementById('cartTotal').innerText = `$${overallCost.toFixed(2)}`;
-        }
-
-        // Simulated action checkout response
-        function triggerCheckout() {
-            if(cart.length === 0) {
-                alert("Your cart is empty! Add some components first.");
-                return;
-            }
-            alert("Checkout complete! (This is a static frontend display module. To handle processing, you can integrate payment windows like Stripe or bKash APIs).");
-            cart = [];
-            updateCartUI();
-            toggleCart();
-        }
-
-        // Initial setup initialization runtime trigger
-        renderProducts();
-    </script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — BLUdot Video Editing</title>
+  <meta name="description" content="Professional video editing portfolio — cinematic, YouTube, promos, and motion graphics by BLUdot.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="facts.html">Facts & Tips</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://youtube.com/@BLUdot" target="_blank" class="nav-yt"><i class="fab fa-youtube"></i> YouTube</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ═══ PAGE HERO ═══ -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-eyebrow">
+        <div class="ph-line"></div>
+        <span class="section-lbl" style="margin:0">Video Editor</span>
+      </div>
+      <h1>Creative <span class="gradient-text">Portfolio</span></h1>
+      <p>Every frame intentional. Every cut purposeful. Cinematic edits, YouTube content, brand promos — built to move people and tell stories that stick.</p>
+    </div>
+  </div>
+
+  <!-- ═══ FILMSTRIP ═══ -->
+  <div class="filmstrip">
+    <div class="filmstrip-track" id="filmstrip">
+      <div class="strip-frame"><i class="fas fa-film"></i></div>
+      <div class="strip-frame t1"><i class="fas fa-video"></i></div>
+      <div class="strip-frame t2"><i class="fas fa-magic"></i></div>
+      <div class="strip-frame t3"><i class="fas fa-star"></i></div>
+      <div class="strip-frame t4"><i class="fas fa-film"></i></div>
+      <div class="strip-frame t5"><i class="fas fa-play"></i></div>
+      <div class="strip-frame t6"><i class="fas fa-video"></i></div>
+      <div class="strip-frame t1"><i class="fas fa-cut"></i></div>
+      <div class="strip-frame t2"><i class="fas fa-film"></i></div>
+      <div class="strip-frame t3"><i class="fas fa-magic"></i></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="strip-frame"><i class="fas fa-film"></i></div>
+      <div class="strip-frame t1"><i class="fas fa-video"></i></div>
+      <div class="strip-frame t2"><i class="fas fa-magic"></i></div>
+      <div class="strip-frame t3"><i class="fas fa-star"></i></div>
+      <div class="strip-frame t4"><i class="fas fa-film"></i></div>
+      <div class="strip-frame t5"><i class="fas fa-play"></i></div>
+      <div class="strip-frame t6"><i class="fas fa-video"></i></div>
+      <div class="strip-frame t1"><i class="fas fa-cut"></i></div>
+      <div class="strip-frame t2"><i class="fas fa-film"></i></div>
+      <div class="strip-frame t3"><i class="fas fa-magic"></i></div>
+    </div>
+  </div>
+
+  <!-- ═══ SKILLS ═══ -->
+  <section class="section">
+    <div class="container">
+      <span class="section-lbl">Toolkit</span>
+      <h2 class="section-title" style="margin-bottom:.5rem">Built with the <span>right tools</span></h2>
+      <p class="section-sub" style="margin-bottom:2.5rem">Professional software, creative techniques, frame-perfect execution.</p>
+      <div class="skills-grid">
+        <div class="skill-item reveal" data-delay="1">
+          <div class="skill-icon">🎬</div>
+          <h4>Premiere Pro</h4>
+          <p>Primary editing suite</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+        </div>
+        <div class="skill-item reveal" data-delay="2">
+          <div class="skill-icon">✨</div>
+          <h4>After Effects</h4>
+          <p>Motion graphics & VFX</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-item reveal" data-delay="3">
+          <div class="skill-icon">🎨</div>
+          <h4>DaVinci Resolve</h4>
+          <p>Color grading</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+        </div>
+        <div class="skill-item reveal" data-delay="4">
+          <div class="skill-icon">🖼️</div>
+          <h4>Photoshop</h4>
+          <p>Thumbnails & graphics</p>
+          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PORTFOLIO GRID ═══ -->
+  <section class="section" style="background:var(--bg2);padding-top:0">
+    <div class="container">
+      <div class="section-hd" style="padding-top:100px">
+        <div>
+          <span class="section-lbl">Work</span>
+          <h2 class="section-title">Selected <span>projects</span></h2>
+        </div>
+      </div>
+
+      <div class="port-filter" id="portFilters">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="cinematic">🎬 Cinematic</button>
+        <button class="filter-btn" data-filter="youtube">▶️ YouTube</button>
+        <button class="filter-btn" data-filter="promo">📣 Promo</button>
+        <button class="filter-btn" data-filter="motion">✨ Motion</button>
+      </div>
+
+      <div class="port-grid-full" id="portGrid">
+
+        <div class="port-card featured reveal" data-cat="cinematic">
+          <div class="port-card-thumb t1">
+            <span class="port-thumb-icon"><i class="fas fa-film"></i></span>
+            <div class="port-card-overlay">
+              <div class="port-play"><i class="fas fa-play"></i></div>
+              <span style="font-size:.8rem;color:rgba(255,255,255,.7)">Video coming soon</span>
+            </div>
+          </div>
+          <div class="port-card-info">
+            <h4>Cinematic Showreel 2024</h4>
+            <p>A full showreel showcasing cinematic color grading, seamless transitions, and storytelling through visual pacing. Shot on DSLR and edited to professional broadcast standard.</p>
+            <div class="port-meta">
+              <span class="tag tag-blue">Cinematic</span>
+              <span class="tag tag-cyan">Color Grade</span>
+              <span class="tag tag-purple">Premiere Pro</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="port-card reveal" data-delay="1" data-cat="youtube">
+          <div class="port-card-thumb t2">
+            <span class="port-thumb-icon"><i class="fab fa-youtube"></i></span>
+            <div class="port-card-overlay">
+              <div class="port-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="port-card-info">
+            <h4>BLUdot Intro & Branding</h4>
+            <p>Motion-graphics logo animation, lower thirds, and full YouTube channel branding package.</p>
+            <div class="port-meta">
+              <span class="tag tag-purple">YouTube</span>
+              <span class="tag tag-pink">Motion</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="port-card reveal" data-delay="2" data-cat="promo">
+          <div class="port-card-thumb t3">
+            <span class="port-thumb-icon"><i class="fas fa-ad"></i></span>
+            <div class="port-card-overlay">
+              <div class="port-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="port-card-info">
+            <h4>Product Launch Promo</h4>
+            <p>High-energy 30-second promotional edit with dynamic cuts, sound design, and kinetic typography.</p>
+            <div class="port-meta">
+              <span class="tag tag-green">Promo</span>
+              <span class="tag tag-cyan">Sound Design</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="port-card reveal" data-cat="motion">
+          <div class="port-card-thumb t4">
+            <span class="port-thumb-icon"><i class="fas fa-magic"></i></span>
+            <div class="port-card-overlay">
+              <div class="port-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="port-card-info">
+            <h4>Kinetic Typography Pack</h4>
+            <p>Animated text sequences for social media, YouTube intros, and brand storytelling campaigns.</p>
+            <div class="port-meta">
+              <span class="tag tag-pink">Motion</span>
+              <span class="tag tag-purple">After Effects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="port-card reveal" data-delay="1" data-cat="cinematic">
+          <div class="port-card-thumb t5">
+            <span class="port-thumb-icon"><i class="fas fa-camera"></i></span>
+            <div class="port-card-overlay">
+              <div class="port-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="port-card-info">
+            <h4>Short Documentary Edit</h4>
+            <p>Documentary-style edit with interview cutaways, archival footage, and atmospheric sound design.</p>
+            <div class="port-meta">
+              <span class="tag tag-blue">Cinematic</span>
+              <span class="tag tag-yellow">Documentary</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="port-card reveal" data-delay="2" data-cat="youtube">
+          <div class="port-card-thumb t6">
+            <span class="port-thumb-icon"><i class="fas fa-chart-line"></i></span>
+            <div class="port-card-overlay">
+              <div class="port-play"><i class="fas fa-play"></i></div>
+            </div>
+          </div>
+          <div class="port-card-info">
+            <h4>Educational Explainer Series</h4>
+            <p>Fast-paced educational content with animated infographics and text overlays for BLUdot's fact series.</p>
+            <div class="port-meta">
+              <span class="tag tag-purple">YouTube</span>
+              <span class="tag tag-green">Infographic</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section">
+    <div class="container">
+      <span class="section-lbl">What I Offer</span>
+      <h2 class="section-title">Editing <span>services</span></h2>
+      <p class="section-sub" style="margin-bottom:2.5rem">From raw footage to finished film — here's how I can help your project.</p>
+      <div class="services-grid">
+        <div class="service-card reveal" data-delay="1">
+          <div class="service-icon"><i class="fas fa-film"></i></div>
+          <h3>YouTube Editing</h3>
+          <p>Full video editing for YouTube creators — cuts, pacing, titles, music sync, and thumbnail design.</p>
+          <ul class="service-list">
+            <li>Full video assembly & pacing</li>
+            <li>Lower thirds & text overlays</li>
+            <li>Color correction</li>
+            <li>Music & SFX sync</li>
+            <li>Custom thumbnail design</li>
+          </ul>
+        </div>
+        <div class="service-card featured-svc reveal" data-delay="2">
+          <div class="service-icon" style="background:rgba(139,92,246,.15);color:var(--purple)"><i class="fas fa-magic"></i></div>
+          <h3>Cinematic Edit</h3>
+          <p>Premium cinematic editing with professional color grade, motion graphics, and storytelling structure.</p>
+          <ul class="service-list">
+            <li>Full cinematic grade (LUTs)</li>
+            <li>Sound design & mixing</li>
+            <li>Motion graphics & VFX</li>
+            <li>Multi-camera sync</li>
+            <li>Delivery in 4K / 1080p</li>
+          </ul>
+        </div>
+        <div class="service-card reveal" data-delay="3">
+          <div class="service-icon" style="background:rgba(34,211,238,.1);color:var(--cyan)"><i class="fas fa-ad"></i></div>
+          <h3>Promos & Ads</h3>
+          <p>Short-form branded content for social media, ads, and product launches that stop the scroll.</p>
+          <ul class="service-list">
+            <li>30/60-second promos</li>
+            <li>Instagram & TikTok formats</li>
+            <li>Kinetic typography</li>
+            <li>Brand color grading</li>
+            <li>Fast turnaround</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HIRE CTA ═══ -->
+  <section class="section-sm" style="background:var(--bg2)">
+    <div class="container">
+      <div class="hire-cta reveal">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(79,142,247,.1),transparent 60%)"></div>
+        <h2>Let's make something <span class="gradient-text">great</span></h2>
+        <p>Got a project? Drop a brief and let's build something that actually moves people. Response within 24 hours.</p>
+        <div class="hire-btns">
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send a Brief</a>
+          <a href="https://youtube.com/@BLUdot" target="_blank" class="btn btn-outline"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.3rem">
+        <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+      </a>
+      <p>Facts that surprise. Tips that stick. Edits that move people. This is BLUdot.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="facts.html">Facts & Tips</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="portfolio.html">YouTube Editing</a>
+      <a href="portfolio.html">Cinematic Edits</a>
+      <a href="portfolio.html">Promos & Ads</a>
+      <a href="contact.html">Get a Quote</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="#"><i class="fab fa-twitter"></i> Twitter / X</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2024 BLUdot. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
