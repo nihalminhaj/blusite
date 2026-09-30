@@ -63,8 +63,11 @@
   // Friendly PUBG Weapon Name Lookup
   function formatPubgWeapon(raw) {
     if (!raw) return 'Unknown';
-    const clean = raw.replace(/^Weap/, '').replace(/^Proj/, '').replace(/_C(_0)?$/, '').replace(/^Item_/, '');
+    let clean = raw.replace(/^Item_/, '').replace(/^Weapon_/, '').replace(/^Weap/, '').replace(/^Proj/, '').replace(/_C(_0)?$/, '');
+    clean = clean.replace(/^Weapon_/, '');
     const map = {
+      'IntegratedRepair': 'Repair Kit',
+      'IntegratedRepairKit': 'Repair Kit',
       'HK416': 'M416',
       'BerylM762': 'Beryl M762',
       'AK47': 'AKM',
@@ -655,20 +658,72 @@
   // Parse Armor, Helmet, and Backpack gear tiers
   function parseGearItem(itemId) {
     if (!itemId) return null;
-    const clean = itemId.replace(/^Item_/, '');
-    if (clean.includes('Head')) {
-      const lv = clean.includes('Lv3') ? 3 : (clean.includes('Lv2') ? 2 : 1);
-      return { type: 'helmet', level: lv, name: `Helmet Lv.${lv}` };
+    const clean = String(itemId).replace(/^Item_/, '');
+    if (clean.includes('Head') || clean.includes('Helmet')) {
+      let lv = 1;
+      if (clean.includes('Lv3') || clean.includes('Level3') || clean.includes('_03') || clean.includes('Head_G')) lv = 3;
+      else if (clean.includes('Lv2') || clean.includes('Level2') || clean.includes('_02') || clean.includes('Head_F')) lv = 2;
+      return { type: 'helmet', level: lv, name: `Lvl ${lv}` };
     }
-    if (clean.includes('Armor')) {
-      const lv = clean.includes('Lv3') ? 3 : (clean.includes('Lv2') ? 2 : 1);
-      return { type: 'vest', level: lv, name: `Vest Lv.${lv}` };
+    if (clean.includes('Armor') || clean.includes('Vest')) {
+      let lv = 1;
+      if (clean.includes('Lv3') || clean.includes('Level3') || clean.includes('Armor_C') || clean.includes('_01_Lv3')) lv = 3;
+      else if (clean.includes('Lv2') || clean.includes('Level2') || clean.includes('Armor_D') || clean.includes('_01_Lv2')) lv = 2;
+      return { type: 'vest', level: lv, name: `Lvl ${lv}` };
     }
-    if (clean.includes('Back')) {
-      const lv = clean.includes('Lv3') ? 3 : (clean.includes('Lv2') ? 2 : 1);
-      return { type: 'backpack', level: lv, name: `Backpack Lv.${lv}` };
+    if (clean.includes('Back') || clean.includes('Backpack') || clean.includes('Bag') || clean.includes('JammerPack')) {
+      let lv = 1;
+      if (clean.includes('Lv3') || clean.includes('Level3') || clean.includes('Back_F') || clean.includes('_F_01')) lv = 3;
+      else if (clean.includes('Lv2') || clean.includes('Level2') || clean.includes('Back_C') || clean.includes('Jammer') || clean.includes('_C_01')) lv = 2;
+      return { type: 'backpack', level: lv, name: `Lvl ${lv}` };
     }
     return null;
+  }
+
+  function getPlayerGearAtTime(p, currentTime) {
+    if (!p) return { helmet: null, vest: null, backpack: null };
+    if (p.jumpTime && currentTime < p.jumpTime) {
+      return { helmet: null, vest: null, backpack: null };
+    }
+    if (!p.gearHistory || p.gearHistory.length === 0) {
+      return p.gear || { helmet: null, vest: null, backpack: null };
+    }
+    const current = { helmet: null, vest: null, backpack: null };
+    for (const ev of p.gearHistory) {
+      if (ev.t > currentTime) break;
+      if (ev.action === 'equip') {
+        current[ev.type] = { level: ev.level, name: ev.name };
+      } else if (ev.action === 'drop') {
+        if (current[ev.type] && current[ev.type].level === ev.level) {
+          current[ev.type] = null;
+        }
+      }
+    }
+    return current;
+  }
+
+  function getPlayerWeaponsAtTime(p, currentTime) {
+    if (!p) return [];
+    if (p.jumpTime && currentTime < p.jumpTime) {
+      return [];
+    }
+    if (!p.weaponHistory || p.weaponHistory.length === 0) {
+      return p.weapons || [];
+    }
+    const curWeapons = [];
+    for (const ev of p.weaponHistory) {
+      if (ev.t > currentTime) break;
+      if (ev.action === 'pickup') {
+        if (!curWeapons.includes(ev.name)) {
+          curWeapons.push(ev.name);
+          if (curWeapons.length > 3) curWeapons.shift();
+        }
+      } else if (ev.action === 'drop') {
+        const idx = curWeapons.indexOf(ev.name);
+        if (idx !== -1) curWeapons.splice(idx, 1);
+      }
+    }
+    return curWeapons;
   }
 
   // Parse Telemetry JSON from Krafton CDN
@@ -700,7 +755,9 @@
             killer: null,
             jumpTime: null,
             gear: { helmet: null, vest: null, backpack: null },
+            gearHistory: [],
             weapons: [],
+            weaponHistory: [],
             boost: 0,
             boostEvents: [],
             damageDealt: 0,
@@ -778,7 +835,9 @@
             killer: null,
             jumpTime: null,
             gear: { helmet: null, vest: null, backpack: null },
+            gearHistory: [],
             weapons: [],
+            weaponHistory: [],
             boost: 0,
             boostEvents: [],
             damageDealt: 0,
@@ -821,27 +880,85 @@
       }
 
       // Equipment, Weapon loadout, and Boost telemetry
-      if (e._T === 'LogItemEquip' && e.character && e.item) {
+      const isLootOrEquip = (
+        e._T === 'LogItemEquip' ||
+        e._T === 'LogItemPickup' ||
+        e._T === 'LogItemPickupFromLootBox' ||
+        e._T === 'LogItemPickupFromCarepackage'
+      );
+      if (isLootOrEquip && e.character && e.item) {
         const name = e.character.name;
         if (players[name]) {
+          let itemT = e.elapsedTime;
+          if (itemT === undefined && e._D && startTime) {
+            itemT = Math.max(0, (new Date(e._D).getTime() - startTime) / 1000);
+          }
+          itemT = itemT || 0;
+
           const gear = parseGearItem(e.item.itemId);
           if (gear) {
             players[name].gear[gear.type] = gear;
-          } else if (e.item.category === 'Weapon') {
+            if (!players[name].gearHistory) players[name].gearHistory = [];
+            players[name].gearHistory.push({
+              t: itemT,
+              type: gear.type,
+              level: gear.level,
+              name: gear.name,
+              action: 'equip'
+            });
+          } else if (e.item.category === 'Weapon' || (e.item.itemId && (e.item.itemId.includes('Weapon_') || e.item.itemId.includes('Weap')))) {
             const wName = formatPubgWeapon(e.item.itemId);
-            if (!players[name].weapons.includes(wName)) {
+            if (wName && wName !== 'Unknown' && !players[name].weapons.includes(wName)) {
               players[name].weapons.push(wName);
               if (players[name].weapons.length > 3) players[name].weapons.shift();
+              if (!players[name].weaponHistory) players[name].weaponHistory = [];
+              players[name].weaponHistory.push({
+                t: itemT,
+                name: wName,
+                action: 'pickup'
+              });
             }
           }
         }
       }
-      if (e._T === 'LogItemUnequip' && e.character && e.item) {
+
+      const isDropOrUnequip = (e._T === 'LogItemUnequip' || e._T === 'LogItemDrop');
+      if (isDropOrUnequip && e.character && e.item) {
         const name = e.character.name;
         if (players[name]) {
+          let itemT = e.elapsedTime;
+          if (itemT === undefined && e._D && startTime) {
+            itemT = Math.max(0, (new Date(e._D).getTime() - startTime) / 1000);
+          }
+          itemT = itemT || 0;
+
           const gear = parseGearItem(e.item.itemId);
-          if (gear && players[name].gear[gear.type] && players[name].gear[gear.type].level === gear.level) {
-            players[name].gear[gear.type] = null;
+          if (gear) {
+            if (players[name].gear[gear.type] && players[name].gear[gear.type].level === gear.level) {
+              players[name].gear[gear.type] = null;
+            }
+            if (!players[name].gearHistory) players[name].gearHistory = [];
+            players[name].gearHistory.push({
+              t: itemT,
+              type: gear.type,
+              level: gear.level,
+              name: gear.name,
+              action: 'drop'
+            });
+          } else {
+            const wName = formatPubgWeapon(e.item.itemId);
+            if (wName) {
+              const wIdx = players[name].weapons.indexOf(wName);
+              if (wIdx !== -1) {
+                players[name].weapons.splice(wIdx, 1);
+              }
+              if (!players[name].weaponHistory) players[name].weaponHistory = [];
+              players[name].weaponHistory.push({
+                t: itemT,
+                name: wName,
+                action: 'drop'
+              });
+            }
           }
         }
       }
@@ -1775,6 +1892,10 @@
         const t = parseFloat(el.getAttribute('data-t'));
         if (!isNaN(t)) {
           state.currentTime = t;
+          const slider = document.getElementById('replay-scrub-slider');
+          if (slider) slider.value = t;
+          const curTimeEl = document.getElementById('replay-current-time');
+          if (curTimeEl) curTimeEl.textContent = formatTime(t);
           renderReplayFrame(t);
         }
       });
@@ -1914,30 +2035,32 @@
     const boostBarEl = document.getElementById('dossier-boost-bar');
     if (boostBarEl) boostBarEl.style.width = `${currentBoost}%`;
 
-    // Equipment
+    // Equipment at currentTime
+    const currentGear = getPlayerGearAtTime(p, currentTime);
     const helmetEl = document.getElementById('dossier-helmet');
     if (helmetEl) {
-      helmetEl.textContent = p.gear?.helmet?.name || 'None';
-      helmetEl.className = p.gear?.helmet ? `gear-name lv-${p.gear.helmet.level}` : 'gear-name';
+      helmetEl.textContent = currentGear.helmet?.name || 'None';
+      helmetEl.className = currentGear.helmet ? `gear-name lv-${currentGear.helmet.level}` : 'gear-name';
     }
 
     const vestEl = document.getElementById('dossier-vest');
     if (vestEl) {
-      vestEl.textContent = p.gear?.vest?.name || 'None';
-      vestEl.className = p.gear?.vest ? `gear-name lv-${p.gear.vest.level}` : 'gear-name';
+      vestEl.textContent = currentGear.vest?.name || 'None';
+      vestEl.className = currentGear.vest ? `gear-name lv-${currentGear.vest.level}` : 'gear-name';
     }
 
     const backpackEl = document.getElementById('dossier-backpack');
     if (backpackEl) {
-      backpackEl.textContent = p.gear?.backpack?.name || 'None';
-      backpackEl.className = p.gear?.backpack ? `gear-name lv-${p.gear.backpack.level}` : 'gear-name';
+      backpackEl.textContent = currentGear.backpack?.name || 'None';
+      backpackEl.className = currentGear.backpack ? `gear-name lv-${currentGear.backpack.level}` : 'gear-name';
     }
 
-    // Weapons
+    // Weapons at currentTime
+    const currentWeapons = getPlayerWeaponsAtTime(p, currentTime);
     const weaponsEl = document.getElementById('dossier-weapons-list');
     if (weaponsEl) {
-      if (p.weapons && p.weapons.length > 0) {
-        weaponsEl.innerHTML = p.weapons.map(w => `<span class="weapon-chip">${w}</span>`).join('');
+      if (currentWeapons.length > 0) {
+        weaponsEl.innerHTML = currentWeapons.map(w => `<span class="weapon-chip">${w}</span>`).join('');
       } else {
         weaponsEl.innerHTML = '<span class="empty-weapon-text">Standard Loadout</span>';
       }
@@ -4412,6 +4535,65 @@
       exitBtn.addEventListener('click', () => {
         exitReplayMode(true);
       });
+    }
+
+    // Replay Controls: Play / Pause button
+    const playPauseBtn = document.getElementById('replay-play-btn');
+    if (playPauseBtn) {
+      playPauseBtn.addEventListener('click', () => {
+        togglePlayPause();
+      });
+    }
+
+    // Replay Controls: Playback Speed Buttons
+    document.querySelectorAll('.replay-speed-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const speed = parseFloat(btn.getAttribute('data-speed'));
+        if (!isNaN(speed)) {
+          setReplaySpeed(speed);
+        }
+      });
+    });
+
+    // Replay Controls: Timeline Scrub Slider (Mouse & Touch Dragging)
+    const scrubSlider = document.getElementById('replay-scrub-slider');
+    if (scrubSlider) {
+      let wasPlayingBeforeScrub = false;
+
+      const handleScrubStart = () => {
+        if (!state.isReplayActive) return;
+        wasPlayingBeforeScrub = state.isPlaying;
+        state.isPlaying = false;
+        updatePlayPauseButton();
+      };
+
+      const handleScrubMove = () => {
+        if (!state.isReplayActive) return;
+        const newTime = parseFloat(scrubSlider.value);
+        if (!isNaN(newTime)) {
+          state.currentTime = Math.max(0, Math.min(state.maxDuration, newTime));
+          const curTimeEl = document.getElementById('replay-current-time');
+          if (curTimeEl) curTimeEl.textContent = formatTime(state.currentTime);
+          renderReplayFrame(state.currentTime);
+        }
+      };
+
+      const handleScrubEnd = () => {
+        if (!state.isReplayActive) return;
+        handleScrubMove();
+        if (wasPlayingBeforeScrub) {
+          state.isPlaying = true;
+          state.lastFrameTime = performance.now();
+          updatePlayPauseButton();
+        }
+      };
+
+      scrubSlider.addEventListener('mousedown', handleScrubStart);
+      scrubSlider.addEventListener('touchstart', handleScrubStart, { passive: true });
+      scrubSlider.addEventListener('input', handleScrubMove);
+      scrubSlider.addEventListener('change', handleScrubEnd);
+      scrubSlider.addEventListener('mouseup', handleScrubEnd);
+      scrubSlider.addEventListener('touchend', handleScrubEnd, { passive: true });
     }
 
     // Classified Intel Modal Triggers

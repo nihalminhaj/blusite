@@ -4422,6 +4422,116 @@ kbd {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
 }
 
+[data-theme="plain-light"] .right-hud-content,
+[data-theme="plain-light"] #roster-player-dossier,
+[data-theme="plain-light"] .dossier-card {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="plain-light"] .gear-slot {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="plain-light"] .gear-type {
+  color: #64748b !important;
+}
+
+[data-theme="plain-light"] .gear-name {
+  color: #0f172a !important;
+}
+
+[data-theme="plain-light"] .weapon-chip {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="plain-light"] .empty-weapon-text {
+  color: #64748b !important;
+}
+
+[data-theme="plain-light"] .vital-bar-track {
+  background: #e2e8f0 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+[data-theme="plain-light"] .vital-bar-fill.hp {
+  box-shadow: none !important;
+}
+
+[data-theme="plain-light"] .vital-bar-fill.boost {
+  box-shadow: none !important;
+}
+
+[data-theme="plain-light"] .dossier-integrity {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="plain-light"] .integrity-badge.normal {
+  background: #f1f5f9 !important;
+  color: #16a34a !important;
+  border: 1px solid #bbf7d0 !important;
+}
+
+[data-theme="plain-light"] .classified-dossier-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="plain-light"] .classified-dossier-btn:hover {
+  background: #e2e8f0 !important;
+}
+
+[data-theme="plain-light"] .roster-squad-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="plain-light"] .roster-squad-header {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="plain-light"] .roster-player-row {
+  color: #334155 !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+[data-theme="plain-light"] .roster-player-row:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="plain-light"] .roster-player-row.active {
+  background: #e0f2fe !important;
+  color: #0284c7 !important;
+  border-left: 3px solid #0284c7 !important;
+}
+
+[data-theme="plain-light"] .dossier-section-title {
+  color: #64748b !important;
+}
+
+[data-theme="plain-light"] .profile-header-card,
+[data-theme="plain-light"] .profile-career-section {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+[data-theme="plain-light"] .profile-player-name {
+  color: #0f172a !important;
+}
+
+[data-theme="plain-light"] .profile-career-title {
+  color: #0f172a !important;
+}
+
 /* ==========================================================================
    THEME OVERRIDES: PLAIN DARK MINIMAL (CLEAN DARK, ZERO NEON)
    ========================================================================== */
@@ -4612,4 +4722,108 @@ kbd {
   background: #0d1117 !important;
   border: 1px solid #30363d !important;
   color: #58a6ff !important;
+}
+
+[data-theme="plain-dark"] .right-hud-content,
+[data-theme="plain-dark"] #roster-player-dossier,
+[data-theme="plain-dark"] .dossier-card {
+  background: #161b22 !important;
+  color: #f0f6fc !important;
+  border-color: #30363d !important;
+}
+
+[data-theme="plain-dark"] .gear-slot {
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="plain-dark"] .gear-type {
+  color: #8b949e !important;
+}
+
+[data-theme="plain-dark"] .gear-name {
+  color: #f0f6fc !important;
+}
+
+[data-theme="plain-dark"] .weapon-chip {
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="plain-dark"] .empty-weapon-text {
+  color: #8b949e !important;
+}
+
+[data-theme="plain-dark"] .vital-bar-track {
+  background: #0d1117 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="plain-dark"] .vital-bar-fill.hp {
+  box-shadow: none !important;
+}
+
+[data-theme="plain-dark"] .vital-bar-fill.boost {
+  box-shadow: none !important;
+}
+
+[data-theme="plain-dark"] .dossier-integrity {
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="plain-dark"] .classified-dossier-btn {
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="plain-dark"] .classified-dossier-btn:hover {
+  background: #30363d !important;
+}
+
+[data-theme="plain-dark"] .roster-squad-card {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="plain-dark"] .roster-squad-header {
+  background: #21262d !important;
+  border-bottom: 1px solid #30363d !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="plain-dark"] .roster-player-row {
+  color: #c9d1d9 !important;
+  border-bottom: 1px solid #21262d !important;
+}
+
+[data-theme="plain-dark"] .roster-player-row:hover {
+  background: #21262d !important;
+  color: #f0f6fc !important;
+}
+
+[data-theme="plain-dark"] .roster-player-row.active {
+  background: rgba(31, 111, 235, 0.15) !important;
+  color: #58a6ff !important;
+  border-left: 3px solid #58a6ff !important;
+}
+
+[data-theme="plain-dark"] .dossier-section-title {
+  color: #8b949e !important;
+}
+
+[data-theme="plain-dark"] .profile-header-card,
+[data-theme="plain-dark"] .profile-career-section {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+}
+
+[data-theme="plain-dark"] .profile-player-name {
+  color: #f0f6fc !important;
+}
+
+[data-theme="plain-dark"] .profile-career-title {
+  color: #f0f6fc !important;
 }
