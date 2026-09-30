@@ -428,6 +428,13 @@
     }
   }
 
+  // Get authentic PUBG Tier Badge Icon for Tiers 1 through 5
+  function getSurvivalTierIcon(tier = 1) {
+    const t = Math.max(1, Math.min(5, parseInt(tier, 10) || 1));
+    if (t === 2) return 'assets/tier_2.png';
+    return `assets/tier_${t}.svg`;
+  }
+
   // Fetch Official Match Details (including direct CDN Telemetry asset URL)
   async function fetchKraftonMatch(matchId, shardId = 'steam') {
     const json = await fetchKraftonApi(`matches/${matchId}`, shardId);
@@ -1799,9 +1806,10 @@
     const lvlEl = document.getElementById('dossier-survival-level');
     if (lvlEl) {
       if (p.name === state.searchedPlayerName && state.survivalMastery && state.survivalMastery.level) {
+        const tier = state.survivalMastery.tier || 1;
         lvlEl.style.display = 'inline-flex';
-        lvlEl.innerHTML = `<img src="assets/survival_tier_badge.png" class="survival-tier-img" alt="Tier" /> LVL ${state.survivalMastery.level}`;
-        lvlEl.title = `Survival Mastery Level ${state.survivalMastery.level}`;
+        lvlEl.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /> LVL ${state.survivalMastery.level}`;
+        lvlEl.title = `Survival Mastery Tier ${tier} - Level ${state.survivalMastery.level}`;
       } else {
         lvlEl.style.display = 'none';
       }
@@ -2692,10 +2700,11 @@
 
       const intelLvlBadge = document.getElementById('intel-survival-badge');
       if (survival && survival.level) {
+        const tier = survival.tier || 1;
         if (intelLvlBadge) {
           intelLvlBadge.style.display = 'inline-flex';
-          intelLvlBadge.innerHTML = `<img src="assets/survival_tier_badge.png" class="survival-tier-img" alt="Tier" /> LVL ${survival.level}`;
-          intelLvlBadge.title = `Survival Mastery Level ${survival.level}`;
+          intelLvlBadge.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /> LVL ${survival.level}`;
+          intelLvlBadge.title = `Survival Mastery Tier ${tier} - Level ${survival.level}`;
         }
       } else {
         if (intelLvlBadge) intelLvlBadge.style.display = 'none';
@@ -3235,10 +3244,11 @@
 
     const lvlEl = document.getElementById('profile-survival-level');
     if (state.survivalMastery && state.survivalMastery.level) {
+      const tier = state.survivalMastery.tier || 1;
       if (lvlEl) {
         lvlEl.style.display = 'inline-flex';
-        lvlEl.innerHTML = `<img src="assets/survival_tier_badge.png" class="survival-tier-img" alt="Tier" /> LVL ${state.survivalMastery.level}`;
-        lvlEl.title = `Survival Mastery Level ${state.survivalMastery.level}`;
+        lvlEl.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /> LVL ${state.survivalMastery.level}`;
+        lvlEl.title = `Survival Mastery Tier ${tier} - Level ${state.survivalMastery.level}`;
       }
     } else {
       if (lvlEl) lvlEl.style.display = 'none';
