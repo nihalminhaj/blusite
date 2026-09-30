@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLUdot — Facts. Tips. Insights.</title>
+  <meta name="description" content="BLUdot — Your daily dose of fascinating facts, life tips, and creative video editing.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="facts.html">Facts & Tips</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://youtube.com/@bludot.?si=pSSc-ZS6UurirwA7" target="_blank" class="nav-yt"><i class="fab fa-youtube"></i> YouTube</a></li>
+  </ul>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <canvas id="particles"></canvas>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="dot-live"></span>
+          Creating on YouTube weekly
+        </div>
+        <h1 class="hero-title">
+          Where <span class="gradient-text">curiosity</span><br>meets <span class="gradient-text">creativity</span>
+        </h1>
+        <p class="hero-sub">Facts that surprise. Tips that stick. Videos that move people. Welcome to BLUdot — your daily dose of knowledge and visual craft.</p>
+        <div class="hero-btns">
+          <a href="facts.html" class="btn btn-primary"><i class="fas fa-bolt"></i> Explore Facts</a>
+          <a href="portfolio.html" class="btn btn-outline"><i class="fas fa-film"></i> View Portfolio</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-val"><span id="c1">0</span><em>+</em></div>
+            <p>Facts Shared</p>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <div class="stat-val"><span id="c2">0</span><em>+</em></div>
+            <p>Tips & Tricks</p>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat">
+            <div class="stat-val"><span id="c3">0</span><em>+</em></div>
+            <p>Projects Edited</p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="float-card">
+          <div class="fc-icon"><i class="fas fa-brain"></i></div>
+          <p class="fc-lbl">Did You Know?</p>
+          <p class="fc-text">Honey never spoils — archaeologists found 3,000-year-old honey in Egyptian tombs still perfectly edible.</p>
+          <div class="fc-tag"><span class="tag tag-cyan">Science</span></div>
+        </div>
+        <div class="float-card c2">
+          <div class="fc-icon"><i class="fas fa-film"></i></div>
+          <p class="fc-lbl">Latest Edit</p>
+          <p class="fc-text">Cinematic color grade + motion graphics reel — available for your project.</p>
+          <div class="fc-tag"><span class="tag tag-purple">Portfolio</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-mouse"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <span class="section-lbl">About BLUdot</span>
+          <h2 class="section-title">More than just a<br><span>YouTube channel</span></h2>
+          <p class="section-sub">BLUdot is a creative space where mind-blowing facts, practical tips, and stunning video edits collide. Built for the curious and the creative.</p>
+          <div class="about-features">
+            <div class="about-feat">
+              <div class="af-icon"><i class="fas fa-lightbulb"></i></div>
+              <div>
+                <h4>Fascinating Facts</h4>
+                <p>Bite-sized knowledge drops from science, history, tech, and beyond that'll leave you amazed.</p>
+              </div>
+            </div>
+            <div class="about-feat">
+              <div class="af-icon p"><i class="fas fa-tools"></i></div>
+              <div>
+                <h4>Useful Tips</h4>
+                <p>Practical advice for everyday life, creativity, and levelling up your workflow.</p>
+              </div>
+            </div>
+            <div class="about-feat">
+              <div class="af-icon c"><i class="fas fa-film"></i></div>
+              <div>
+                <h4>Video Editing</h4>
+                <p>Professional editing work — cinematic, YouTube, promos. The kind that gets noticed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal" data-delay="2">
+          <div class="cat-grid">
+            <a href="facts.html?cat=science" class="cat-item">
+              <i class="fas fa-flask"></i><p>Science</p>
+            </a>
+            <a href="facts.html?cat=tech" class="cat-item">
+              <i class="fas fa-microchip"></i><p>Technology</p>
+            </a>
+            <a href="facts.html?cat=space" class="cat-item">
+              <i class="fas fa-satellite"></i><p>Space</p>
+            </a>
+            <a href="facts.html?cat=history" class="cat-item">
+              <i class="fas fa-landmark"></i><p>History</p>
+            </a>
+            <a href="facts.html?cat=tips" class="cat-item">
+              <i class="fas fa-heart"></i><p>Life Tips</p>
+            </a>
+            <a href="facts.html?cat=random" class="cat-item">
+              <i class="fas fa-random"></i><p>Random</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FACTS PREVIEW ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-hd">
+        <div>
+          <span class="section-lbl">Latest Facts</span>
+          <h2 class="section-title">Hover to <span>discover</span></h2>
+        </div>
+        <a href="facts.html" class="btn btn-ghost">All Facts <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="flip-grid">
+        <div class="flip-card reveal" data-delay="1">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="ff-icon"><i class="fas fa-satellite"></i></div>
+              <span class="tag tag-blue">Space</span>
+              <h3>Space is completely silent</h3>
+              <p class="ff-hint">Hover to reveal the fact →</p>
+            </div>
+            <div class="flip-back">
+              <span class="tag tag-blue">Space</span>
+              <p>In space there's no medium for sound waves to travel through. Every explosion, engine, and shockwave you see in sci-fi movies would be completely, perfectly silent in reality.</p>
+              <a href="facts.html" class="btn btn-outline">More Facts</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card reveal" data-delay="2">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="ff-icon" style="background:rgba(34,211,238,.12);color:var(--cyan)"><i class="fas fa-water"></i></div>
+              <span class="tag tag-cyan">Ocean</span>
+              <h3>95% of oceans unexplored</h3>
+              <p class="ff-hint">Hover to reveal the fact →</p>
+            </div>
+            <div class="flip-back">
+              <span class="tag tag-cyan">Ocean</span>
+              <p>Over 95% of Earth's oceans remain completely unexplored. We know more about the surface of Mars than we do about the deep ocean — which may still hold creatures we've never encountered.</p>
+              <a href="facts.html" class="btn btn-outline">More Facts</a>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card reveal" data-delay="3">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="ff-icon" style="background:rgba(139,92,246,.12);color:var(--purple)"><i class="fas fa-brain"></i></div>
+              <span class="tag tag-purple">Human Body</span>
+              <h3>Your brain generates electricity</h3>
+              <p class="ff-hint">Hover to reveal the fact →</p>
+            </div>
+            <div class="flip-back">
+              <span class="tag tag-purple">Human Body</span>
+              <p>The human brain generates around 20 watts of electricity — enough to power a dim light bulb. Every thought you have is a literal electrical impulse firing across 86 billion neurons.</p>
+              <a href="facts.html" class="btn btn-outline">More Facts</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PORTFOLIO PREVIEW ═══ -->
+  <section class="section" style="background:var(--bg2)">
+    <div class="container">
+      <div class="section-hd">
+        <div>
+          <span class="section-lbl">Video Editing</span>
+          <h2 class="section-title">The <span>reel</span> deal</h2>
+          <p class="section-sub" style="margin-top:.5rem">Professional editing work — cinematic, YouTube, promos & more.</p>
+        </div>
+        <a href="portfolio.html" class="btn btn-ghost">Full Portfolio <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="port-prev-grid">
+        <div class="port-prev-item reveal" data-delay="1">
+          <div class="port-thumb t1">
+            <i class="fas fa-film"></i>
+            <div class="port-overlay">
+              <div class="play-btn"><i class="fas fa-play"></i></div>
+              <span class="tag tag-blue">Cinematic</span>
+            </div>
+          </div>
+          <div class="port-info">
+            <h4>Cinematic Reel 2024</h4>
+            <p>Color graded shortfilm showcase</p>
+          </div>
+        </div>
+        <div class="port-prev-item reveal" data-delay="2">
+          <div class="port-thumb t2">
+            <i class="fab fa-youtube"></i>
+            <div class="port-overlay">
+              <div class="play-btn"><i class="fas fa-play"></i></div>
+              <span class="tag tag-purple">YouTube</span>
+            </div>
+          </div>
+          <div class="port-info">
+            <h4>BLUdot Intro Pack</h4>
+            <p>Motion graphics & transitions</p>
+          </div>
+        </div>
+        <div class="port-prev-item reveal" data-delay="3">
+          <div class="port-thumb t3">
+            <i class="fas fa-ad"></i>
+            <div class="port-overlay">
+              <div class="play-btn"><i class="fas fa-play"></i></div>
+              <span class="tag tag-green">Promo</span>
+            </div>
+          </div>
+          <div class="port-info">
+            <h4>Product Promo Edit</h4>
+            <p>Fast-paced brand video</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ YT CTA ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="yt-cta-box reveal">
+        <div class="yt-icon"><i class="fab fa-youtube"></i></div>
+        <h2>Join the <span class="gradient-text">BLUdot</span> community</h2>
+        <p>New facts, tips, and creative videos drop every week. Hit subscribe and never miss a knowledge bomb.</p>
+        <a href="https://youtube.com/@bludot.?si=pSSc-ZS6UurirwA7" target="_blank" class="btn btn-yt btn-primary">
+          <i class="fab fa-youtube"></i> Subscribe Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end page-wrap -->
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="font-size:1.3rem">
+        <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
+      </a>
+      <p>Facts that surprise. Tips that stick. Edits that move people. This is BLUdot.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="index.html">Home</a>
+      <a href="facts.html">Facts & Tips</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <a href="facts.html">Science</a>
+      <a href="facts.html">Technology</a>
+      <a href="facts.html">History</a>
+      <a href="facts.html">Life Tips</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="#"><i class="fab fa-twitter"></i> Twitter / X</a>
+    </div>
+  </div>
+  <div class="footer-btm">
+    <p>© 2024 BLUdot. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

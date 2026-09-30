@@ -1,0 +1,3049 @@
+window.PUBG_DEFAULT_MARKERS = {
+  "deston": [
+    {
+      "id": "deston_secret_room_1",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #1",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 1757,
+      "y": 6631,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_2",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #2",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 2003,
+      "y": 6430,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_3",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #3",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 1919,
+      "y": 6259,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_4",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #4",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1301,
+      "y": 7047,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_5",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #5",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 2848,
+      "y": 7469,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_6",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #6",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2479,
+      "y": 7473,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_7",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #7",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4854,
+      "y": 7161,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_8",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #8",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 5097,
+      "y": 7042,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_9",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #9",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3294,
+      "y": 6409,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_10",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #10",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 4959,
+      "y": 6039,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_11",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #11",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 5369,
+      "y": 5914,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_12",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #12",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 7407,
+      "y": 3908,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_13",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #13",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4349,
+      "y": 5165,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_14",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #14",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 4324,
+      "y": 5183,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_15",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #15",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3409,
+      "y": 5427,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_16",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #16",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3020,
+      "y": 5721,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_17",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #17",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 2979,
+      "y": 5302,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_18",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #18",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2703,
+      "y": 5203,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_19",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #19",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 494,
+      "y": 5665,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_20",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #20",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 6568,
+      "y": 6159,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_21",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #21",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4731,
+      "y": 4787,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_22",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #22",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4670,
+      "y": 4817,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_23",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #23",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6343,
+      "y": 4066,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_24",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #24",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6589,
+      "y": 3701,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_25",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #25",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6559,
+      "y": 3022,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_26",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #26",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5819,
+      "y": 3085,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_27",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #27",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5615,
+      "y": 3243,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_28",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #28",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5520,
+      "y": 2874,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_29",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #29",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5190,
+      "y": 3688,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_30",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #30",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 6551,
+      "y": 3869,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_31",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #31",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 5989,
+      "y": 3880,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_32",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #32",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 5942,
+      "y": 3769,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_33",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #33",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 6080,
+      "y": 3834,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_34",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #34",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 5980,
+      "y": 3381,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_35",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #35",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 6424,
+      "y": 3433,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_36",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #36",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6216,
+      "y": 2241,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_37",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #37",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6684,
+      "y": 1782,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_38",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #38",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6442,
+      "y": 2020,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_39",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #39",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5550,
+      "y": 1688,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_40",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #40",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5193,
+      "y": 1557,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_41",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #41",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 5504,
+      "y": 1758,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_42",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #42",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5067,
+      "y": 2280,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_43",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #43",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4227,
+      "y": 2058,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_44",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #44",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3808,
+      "y": 2323,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_45",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #45",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 3408,
+      "y": 2376,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_46",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #46",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 2831,
+      "y": 2784,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_47",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #47",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 1890,
+      "y": 3488,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_48",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #48",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 1419,
+      "y": 3476,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_49",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #49",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 729,
+      "y": 3472,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_50",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #50",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 771,
+      "y": 2882,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_51",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #51",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 1129,
+      "y": 1838,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_52",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #52",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 1038,
+      "y": 1824,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_53",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #53",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 1783,
+      "y": 1872,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_54",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #54",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 2258,
+      "y": 1625,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_glider_55",
+      "map": "deston",
+      "type": "glider",
+      "title": "Motor Glider Spawn #55",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4065,
+      "y": 3410,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_56",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #56",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 3733,
+      "y": 3540,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_57",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #57",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 4504,
+      "y": 4014,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_58",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #58",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3273,
+      "y": 4480,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_gas_station_59",
+      "map": "deston",
+      "type": "gas_station",
+      "title": "Gas Station #59",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 1378,
+      "y": 4687,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "deston_secret_room_60",
+      "map": "deston",
+      "type": "secret_room",
+      "title": "Security Room #60",
+      "desc": "Locked room requiring Security Keycard.",
+      "x": 1772,
+      "y": 4568,
+      "source": "pubg-maps.com"
+    }
+  ],
+  "erangel": [
+    {
+      "id": "erangel_glider_1",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #1",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5516,
+      "y": 7604,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_2",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #2",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6303,
+      "y": 7407,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_3",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #3",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6427,
+      "y": 6573,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_4",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #4",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6168,
+      "y": 6280,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_5",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #5",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5635,
+      "y": 5492,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_6",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #6",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5242,
+      "y": 4715,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_7",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #7",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4778,
+      "y": 4694,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_8",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #8",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6637,
+      "y": 5775,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_9",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #9",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 7238,
+      "y": 3989,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_10",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #10",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6739,
+      "y": 3258,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_11",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #11",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6612,
+      "y": 3078,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_12",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #12",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5566,
+      "y": 3737,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_13",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #13",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5613,
+      "y": 1751,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_14",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #14",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5392,
+      "y": 1882,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_15",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #15",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5244,
+      "y": 1454,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_16",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #16",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4772,
+      "y": 1556,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_17",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #17",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4084,
+      "y": 1561,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_18",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #18",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4030,
+      "y": 1403,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_19",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #19",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4152,
+      "y": 1115,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_20",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #20",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3441,
+      "y": 1690,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_21",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #21",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3006,
+      "y": 2763,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_22",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #22",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2003,
+      "y": 2547,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_23",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #23",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1262,
+      "y": 2366,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_24",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #24",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 913,
+      "y": 3185,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_25",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #25",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1025,
+      "y": 4313,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_26",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #26",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1062,
+      "y": 4856,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_27",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #27",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1539,
+      "y": 4708,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_28",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #28",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2606,
+      "y": 5096,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_29",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #29",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3281,
+      "y": 5593,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_30",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #30",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4268,
+      "y": 5751,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_31",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #31",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3507,
+      "y": 6437,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_32",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #32",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3464,
+      "y": 6877,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_33",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #33",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2911,
+      "y": 6810,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_34",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #34",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2364,
+      "y": 6623,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_35",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #35",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1665,
+      "y": 6493,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_36",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #36",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1610,
+      "y": 6056,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_37",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #37",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 931,
+      "y": 6392,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_38",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #38",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3438,
+      "y": 3341,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_39",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #39",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4066,
+      "y": 3409,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_40",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #40",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2139,
+      "y": 2817,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_glider_41",
+      "map": "erangel",
+      "type": "glider",
+      "title": "Motor Glider Spawn #41",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2350,
+      "y": 3689,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_42",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #42",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 5542,
+      "y": 1429,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_43",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #43",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 4299,
+      "y": 2217,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_44",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #44",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 3227,
+      "y": 1451,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_45",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #45",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 2674,
+      "y": 2964,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_46",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #46",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 2941,
+      "y": 4337,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_47",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #47",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 1229,
+      "y": 2598,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_48",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #48",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 1448,
+      "y": 4542,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_49",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #49",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 4552,
+      "y": 3680,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_50",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #50",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 6598,
+      "y": 3218,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_51",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #51",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 5340,
+      "y": 4656,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_52",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #52",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 6375,
+      "y": 5974,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_53",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #53",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 5005,
+      "y": 7353,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_54",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #54",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 4030,
+      "y": 6078,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_55",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #55",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 2533,
+      "y": 5844,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_secret_room_56",
+      "map": "erangel",
+      "type": "secret_room",
+      "title": "Secret Basement #56",
+      "desc": "Underground bunker requiring Secret Key. High-tier military loot.",
+      "x": 1349,
+      "y": 6231,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_57",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #57",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5431,
+      "y": 2206,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_58",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #58",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5355,
+      "y": 2937,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_59",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #59",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6498,
+      "y": 2975,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_60",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #60",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3216,
+      "y": 2845,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_61",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #61",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 864,
+      "y": 3281,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_62",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #62",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 1344,
+      "y": 5129,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_63",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #63",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4164,
+      "y": 5856,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_64",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #64",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4643,
+      "y": 5565,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_65",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #65",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6471,
+      "y": 6840,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "erangel_gas_station_66",
+      "map": "erangel",
+      "type": "gas_station",
+      "title": "Gas Station #66",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4274,
+      "y": 6896,
+      "source": "pubg-maps.com"
+    }
+  ],
+  "karakin": [
+    {
+      "id": "karakin_secret_room_1",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #1",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 448,
+      "y": 1259,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_2",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #2",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 481,
+      "y": 1329,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_3",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #3",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 811,
+      "y": 1359,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_4",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #4",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1531,
+      "y": 1381,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_5",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #5",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1496,
+      "y": 1349,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_6",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #6",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1195,
+      "y": 1058,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_7",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #7",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1059,
+      "y": 1076,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_8",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #8",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1098,
+      "y": 956,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_9",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #9",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1056,
+      "y": 957,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_10",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #10",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1489,
+      "y": 970,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_11",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #11",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1524,
+      "y": 607,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_12",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #12",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1458,
+      "y": 562,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_13",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #13",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 753,
+      "y": 433,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_14",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #14",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 846,
+      "y": 417,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_15",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #15",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 828,
+      "y": 593,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_16",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #16",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 933,
+      "y": 849,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_17",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #17",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1032,
+      "y": 774,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_18",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #18",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1246,
+      "y": 482,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_19",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #19",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1142,
+      "y": 525,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_20",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #20",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1134,
+      "y": 643,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_21",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #21",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1246,
+      "y": 1306,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "karakin_secret_room_22",
+      "map": "karakin",
+      "type": "secret_room",
+      "title": "Underground Bunker #22",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1172,
+      "y": 1365,
+      "source": "pubg-maps.com"
+    }
+  ],
+  "miramar": [
+    {
+      "id": "miramar_glider_1",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #1",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6527,
+      "y": 7249,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_2",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #2",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4930,
+      "y": 7399,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_3",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #3",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6992,
+      "y": 6593,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_4",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #4",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6669,
+      "y": 5928,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_5",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #5",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 7671,
+      "y": 4865,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_6",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #6",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 7188,
+      "y": 3274,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_7",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #7",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 7205,
+      "y": 2688,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_8",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #8",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5443,
+      "y": 1938,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_9",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #9",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4190,
+      "y": 1004,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_10",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #10",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3585,
+      "y": 1512,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_11",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #11",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3005,
+      "y": 794,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_12",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #12",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1892,
+      "y": 435,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_13",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #13",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1079,
+      "y": 681,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_14",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #14",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 946,
+      "y": 1356,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_15",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #15",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 997,
+      "y": 1988,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_16",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #16",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1017,
+      "y": 2708,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_17",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #17",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2008,
+      "y": 3070,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_18",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #18",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1699,
+      "y": 3500,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_19",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #19",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1464,
+      "y": 4760,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_20",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #20",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 373,
+      "y": 6048,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_21",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #21",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 879,
+      "y": 7146,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_22",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #22",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1629,
+      "y": 6460,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_23",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #23",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3587,
+      "y": 6697,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_24",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #24",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3484,
+      "y": 4969,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_25",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #25",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5235,
+      "y": 4294,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_26",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #26",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4635,
+      "y": 3378,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_27",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #27",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4147,
+      "y": 2804,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_28",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #28",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2863,
+      "y": 1788,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_glider_29",
+      "map": "miramar",
+      "type": "glider",
+      "title": "Motor Glider Spawn #29",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2062,
+      "y": 1013,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_30",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #30",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3496,
+      "y": 646,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_31",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #31",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 1320,
+      "y": 495,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_32",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #32",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5843,
+      "y": 1786,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_33",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #33",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6059,
+      "y": 3085,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_34",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #34",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3757,
+      "y": 3702,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_35",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #35",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 2740,
+      "y": 3726,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_36",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #36",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 1768,
+      "y": 4098,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_37",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #37",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 985,
+      "y": 5745,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_38",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #38",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 2133,
+      "y": 6490,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_39",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #39",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3661,
+      "y": 7480,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_40",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #40",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 6273,
+      "y": 6323,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_41",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #41",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5830,
+      "y": 5492,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_gas_station_42",
+      "map": "miramar",
+      "type": "gas_station",
+      "title": "Gas Station #42",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4238,
+      "y": 5816,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_43",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #43",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1354,
+      "y": 867,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_44",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #44",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 3246,
+      "y": 1474,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_45",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #45",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 5120,
+      "y": 1823,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_46",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #46",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1257,
+      "y": 2755,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_47",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #47",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 2654,
+      "y": 2992,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_48",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #48",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 4250,
+      "y": 2860,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_49",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #49",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 6076,
+      "y": 3733,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_50",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #50",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 3763,
+      "y": 4264,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_51",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #51",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1387,
+      "y": 4698,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_52",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #52",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1748,
+      "y": 6334,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_53",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #53",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 2730,
+      "y": 5527,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_54",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #54",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 3291,
+      "y": 6883,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_55",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #55",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 4510,
+      "y": 6590,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_56",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #56",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 5169,
+      "y": 4689,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "miramar_secret_room_57",
+      "map": "miramar",
+      "type": "secret_room",
+      "title": "Secret Room #57",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 6462,
+      "y": 6354,
+      "source": "pubg-maps.com"
+    }
+  ],
+  "paramo": [
+    {
+      "id": "paramo_secret_room_1",
+      "map": "paramo",
+      "type": "secret_room",
+      "title": "Secret Room #1",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1184,
+      "y": 2047,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "paramo_secret_room_2",
+      "map": "paramo",
+      "type": "secret_room",
+      "title": "Secret Room #2",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 833,
+      "y": 1926,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "paramo_secret_room_3",
+      "map": "paramo",
+      "type": "secret_room",
+      "title": "Secret Room #3",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 385,
+      "y": 1095,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "paramo_secret_room_4",
+      "map": "paramo",
+      "type": "secret_room",
+      "title": "Secret Room #4",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1302,
+      "y": 1109,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "paramo_secret_room_5",
+      "map": "paramo",
+      "type": "secret_room",
+      "title": "Secret Room #5",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1552,
+      "y": 589,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "paramo_secret_room_6",
+      "map": "paramo",
+      "type": "secret_room",
+      "title": "Secret Room #6",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1813,
+      "y": 1193,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "paramo_secret_room_7",
+      "map": "paramo",
+      "type": "secret_room",
+      "title": "Secret Room #7",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 2449,
+      "y": 1282,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "paramo_secret_room_8",
+      "map": "paramo",
+      "type": "secret_room",
+      "title": "Secret Room #8",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1868,
+      "y": 1532,
+      "source": "pubg-maps.com"
+    }
+  ],
+  "rondo": [
+    {
+      "id": "rondo_glider_1",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #1",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3288,
+      "y": 7691,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_2",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #2",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5799,
+      "y": 7753,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_3",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #3",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 7386,
+      "y": 7146,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_4",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #4",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 7625,
+      "y": 4438,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_5",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #5",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3816,
+      "y": 1017,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_6",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #6",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2116,
+      "y": 924,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_7",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #7",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 809,
+      "y": 2069,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_8",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #8",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 501,
+      "y": 5963,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_9",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #9",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1516,
+      "y": 6581,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_glider_10",
+      "map": "rondo",
+      "type": "glider",
+      "title": "Motor Glider Spawn #10",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 7622,
+      "y": 5723,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_11",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #11",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 3720,
+      "y": 5394,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_12",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #12",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 4945,
+      "y": 5980,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_13",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #13",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 6580,
+      "y": 3758,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_14",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #14",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 5689,
+      "y": 7132,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_15",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #15",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 6876,
+      "y": 5266,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_16",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #16",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 2980,
+      "y": 7087,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_17",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #17",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1444,
+      "y": 6669,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_18",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #18",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1397,
+      "y": 4820,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_19",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #19",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1436,
+      "y": 3301,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_20",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #20",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 2963,
+      "y": 2951,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_21",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #21",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1252,
+      "y": 1623,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_22",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #22",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 3322,
+      "y": 1124,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_23",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #23",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 4849,
+      "y": 748,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_24",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #24",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 5612,
+      "y": 2001,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "rondo_secret_room_25",
+      "map": "rondo",
+      "type": "secret_room",
+      "title": "Secret Room #25",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 4584,
+      "y": 3688,
+      "source": "pubg-maps.com"
+    }
+  ],
+  "sanhok": [],
+  "taego": [
+    {
+      "id": "taego_secret_room_1",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #1",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1411,
+      "y": 6838,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_2",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #2",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 2545,
+      "y": 6654,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_3",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #3",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 3508,
+      "y": 6066,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_4",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #4",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 4741,
+      "y": 6314,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_5",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #5",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 6749,
+      "y": 5963,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_6",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #6",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 6994,
+      "y": 4702,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_7",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #7",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 5888,
+      "y": 4193,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_8",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #8",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 6271,
+      "y": 2563,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_9",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #9",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 6222,
+      "y": 916,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_10",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #10",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 4834,
+      "y": 1696,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_11",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #11",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 2376,
+      "y": 1673,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_12",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #12",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 938,
+      "y": 2836,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_13",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #13",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 999,
+      "y": 4664,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_14",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #14",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 1236,
+      "y": 5353,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_secret_room_15",
+      "map": "taego",
+      "type": "secret_room",
+      "title": "Secret Room #15",
+      "desc": "Locked room requiring Secret Key. Contains high-tier loot.",
+      "x": 4343,
+      "y": 3126,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_16",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #16",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1758,
+      "y": 6016,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_17",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #17",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3582,
+      "y": 5300,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_18",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #18",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4992,
+      "y": 4530,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_19",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #19",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3949,
+      "y": 3329,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_20",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #20",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6322,
+      "y": 1759,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_21",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #21",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2962,
+      "y": 1135,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_22",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #22",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1336,
+      "y": 4108,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_23",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #23",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6198,
+      "y": 5286,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_24",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #24",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 7454,
+      "y": 5865,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "taego_glider_25",
+      "map": "taego",
+      "type": "glider",
+      "title": "Motor Glider Spawn #25",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4262,
+      "y": 7056,
+      "source": "pubg-maps.com"
+    }
+  ],
+  "vikendi": [
+    {
+      "id": "vikendi_special_1",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #1",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 3763,
+      "y": 2041,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_2",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #2",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 3676,
+      "y": 1580,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_3",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #3",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 5143,
+      "y": 2204,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_4",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #4",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 6156,
+      "y": 2266,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_5",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #5",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 6842,
+      "y": 4035,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_6",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #6",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 4644,
+      "y": 4477,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_7",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #7",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 5623,
+      "y": 5118,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_8",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #8",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 5961,
+      "y": 6140,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_9",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #9",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 5214,
+      "y": 6670,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_10",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Polar Bear Cave #10",
+      "desc": "Guarded cave with tier-3 crate loot and polar bears.",
+      "x": 2797,
+      "y": 6661,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_11",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #11",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 3886,
+      "y": 1586,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_12",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #12",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 2339,
+      "y": 2469,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_13",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #13",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 1368,
+      "y": 4232,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_14",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #14",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 5968,
+      "y": 2227,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_15",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #15",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 6730,
+      "y": 4189,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_16",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #16",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 6143,
+      "y": 5594,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_17",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #17",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 4039,
+      "y": 4849,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_18",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #18",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 2698,
+      "y": 6447,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_gas_station_19",
+      "map": "vikendi",
+      "type": "gas_station",
+      "title": "Gas Station #19",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4102,
+      "y": 1384,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_gas_station_20",
+      "map": "vikendi",
+      "type": "gas_station",
+      "title": "Gas Station #20",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 2836,
+      "y": 2866,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_gas_station_21",
+      "map": "vikendi",
+      "type": "gas_station",
+      "title": "Gas Station #21",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 1906,
+      "y": 4966,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_gas_station_22",
+      "map": "vikendi",
+      "type": "gas_station",
+      "title": "Gas Station #22",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 3000,
+      "y": 6774,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_gas_station_23",
+      "map": "vikendi",
+      "type": "gas_station",
+      "title": "Gas Station #23",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 4951,
+      "y": 5550,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_gas_station_24",
+      "map": "vikendi",
+      "type": "gas_station",
+      "title": "Gas Station #24",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5008,
+      "y": 4125,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_gas_station_25",
+      "map": "vikendi",
+      "type": "gas_station",
+      "title": "Gas Station #25",
+      "desc": "Vehicle refuel and repair pump station.",
+      "x": 5064,
+      "y": 3438,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_26",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #26",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4925,
+      "y": 1145,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_27",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #27",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 2413,
+      "y": 964,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_28",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #28",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1271,
+      "y": 2228,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_29",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #29",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1719,
+      "y": 4157,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_30",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #30",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 1578,
+      "y": 6587,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_31",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #31",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 3573,
+      "y": 5800,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_32",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #32",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5346,
+      "y": 5021,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_33",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #33",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 5789,
+      "y": 6016,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_34",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #34",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 4229,
+      "y": 3687,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_glider_35",
+      "map": "vikendi",
+      "type": "glider",
+      "title": "Motor Glider Spawn #35",
+      "desc": "High-probability motor glider spawn point.",
+      "x": 6575,
+      "y": 2554,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_36",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Lab Camp #36",
+      "desc": "Medical and emergency supply camp.",
+      "x": 1986,
+      "y": 5370,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_37",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Lab Camp #37",
+      "desc": "Medical and emergency supply camp.",
+      "x": 2241,
+      "y": 5857,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_38",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Lab Camp #38",
+      "desc": "Medical and emergency supply camp.",
+      "x": 3165,
+      "y": 6104,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_special_39",
+      "map": "vikendi",
+      "type": "special",
+      "title": "Lab Camp #39",
+      "desc": "Medical and emergency supply camp.",
+      "x": 3219,
+      "y": 6958,
+      "source": "pubg-maps.com"
+    },
+    {
+      "id": "vikendi_secret_room_40",
+      "map": "vikendi",
+      "type": "secret_room",
+      "title": "Underground Bunker #40",
+      "desc": "Subterranean bunker / secret vault.",
+      "x": 5322,
+      "y": 6705,
+      "source": "pubg-maps.com"
+    }
+  ]
+};

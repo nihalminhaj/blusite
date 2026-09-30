@@ -3,316 +3,1207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BLUdot — Facts. Tips. Insights.</title>
-  <meta name="description" content="BLUdot — Your daily dose of fascinating facts, life tips, and creative video editing.">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>PUBG Tactical Mortar Computer & Interactive Map</title>
+  <link rel="stylesheet" href="assets/leaflet.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">
-    <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="facts.html">Facts & Tips</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="https://youtube.com/@bludot.?si=pSSc-ZS6UurirwA7" target="_blank" class="nav-yt"><i class="fab fa-youtube"></i> YouTube</a></li>
-  </ul>
-  <div class="nav-toggle" id="navToggle">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<div class="page-wrap">
-
-  <!-- ═══ HERO ═══ -->
-  <section class="hero">
-    <div class="hero-bg">
-      <canvas id="particles"></canvas>
-    </div>
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-badge">
-          <span class="dot-live"></span>
-          Creating on YouTube weekly
+  <div id="app-container">
+    <!-- LEFT SIDEBAR -->
+    <aside id="sidebar">
+      <!-- HEADER -->
+      <div class="sidebar-header">
+        <div class="brand-row">
+          <div class="brand-title">
+            <div class="radar-dot"></div>
+            <span>PUBG MORTAR HUD</span>
+          </div>
+          <span class="version-badge">v2.4 TAC</span>
         </div>
-        <h1 class="hero-title">
-          Where <span class="gradient-text">curiosity</span><br>meets <span class="gradient-text">creativity</span>
-        </h1>
-        <p class="hero-sub">Facts that surprise. Tips that stick. Videos that move people. Welcome to BLUdot — your daily dose of knowledge and visual craft.</p>
-        <div class="hero-btns">
-          <a href="facts.html" class="btn btn-primary"><i class="fas fa-bolt"></i> Explore Facts</a>
-          <a href="portfolio.html" class="btn btn-outline"><i class="fas fa-film"></i> View Portfolio</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-val"><span id="c1">0</span><em>+</em></div>
-            <p>Facts Shared</p>
+        <div class="tagline">Dual-Monitor Ballistics & Map Intelligence</div>
+      </div>
+
+      <!-- SIDEBAR MODE TABS -->
+      <div class="sidebar-tab-switcher">
+        <button class="sidebar-tab-btn active" id="tab-btn-mortar">
+          <span>🎯</span> Mortar & Intel
+        </button>
+        <button class="sidebar-tab-btn" id="tab-btn-replay">
+          <span>🎬</span> 2D Replays (pubg.sh)
+        </button>
+      </div>
+
+      <!-- VIEW 1: MORTAR & INTEL VIEW -->
+      <div id="mortar-sidebar-view" class="sidebar-view-pane active">
+        <!-- MAP SELECTION -->
+        <div class="section-block">
+          <div class="section-label">
+            <span>Active Battleground</span>
+            <span id="map-size-label" style="font-family: var(--font-mono); color: var(--accent-cyan);">8x8 KM</span>
           </div>
-          <div class="stat-sep"></div>
-          <div class="stat">
-            <div class="stat-val"><span id="c2">0</span><em>+</em></div>
-            <p>Tips & Tricks</p>
-          </div>
-          <div class="stat-sep"></div>
-          <div class="stat">
-            <div class="stat-val"><span id="c3">0</span><em>+</em></div>
-            <p>Projects Edited</p>
-          </div>
+        <div class="map-selector-grid">
+          <button class="map-btn active" data-map="deston">Deston</button>
+          <button class="map-btn" data-map="erangel">Erangel</button>
+          <button class="map-btn" data-map="taego">Taego</button>
+          <button class="map-btn" data-map="miramar">Miramar</button>
+          <button class="map-btn" data-map="rondo">Rondo</button>
+          <button class="map-btn" data-map="vikendi">Vikendi</button>
+          <button class="map-btn" data-map="sanhok">Sanhok</button>
+          <button class="map-btn" data-map="karakin">Karakin</button>
+          <button class="map-btn" data-map="paramo">Paramo</button>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="float-card">
-          <div class="fc-icon"><i class="fas fa-brain"></i></div>
-          <p class="fc-lbl">Did You Know?</p>
-          <p class="fc-text">Honey never spoils — archaeologists found 3,000-year-old honey in Egyptian tombs still perfectly edible.</p>
-          <div class="fc-tag"><span class="tag tag-cyan">Science</span></div>
+
+      <!-- MORTAR FIRING COMPUTER -->
+      <div class="section-block">
+        <div class="section-label">
+          <span>Mortar Fire Control</span>
+          <span id="calib-indicator" style="font-family: var(--font-mono); color: var(--accent-green);">1.000x CALIB</span>
         </div>
-        <div class="float-card c2">
-          <div class="fc-icon"><i class="fas fa-film"></i></div>
-          <p class="fc-lbl">Latest Edit</p>
-          <p class="fc-text">Cinematic color grade + motion graphics reel — available for your project.</p>
-          <div class="fc-tag"><span class="tag tag-purple">Portfolio</span></div>
+
+        <div class="ballistics-panel standby" id="ballistics-panel">
+          <div class="digital-readout-row">
+            <div>
+              <span class="distance-number" id="distance-readout">0</span>
+              <span class="unit-label">m</span>
+            </div>
+            <div class="status-badge status-standby" id="range-status-badge">Standby</div>
+          </div>
+
+          <!-- RANGE BAR -->
+          <div class="range-bar-container">
+            <div class="range-bar-track">
+              <div class="range-bar-fill" id="range-bar-fill"></div>
+            </div>
+            <div class="range-labels">
+              <span>0m</span>
+              <span>Min: 121m</span>
+              <span>Max: 700m</span>
+            </div>
+          </div>
+
+          <!-- TELEMETRY STATS -->
+          <div class="telemetry-grid">
+            <div class="telemetry-card">
+              <div class="telemetry-title">Azimuth / Bearing</div>
+              <div class="telemetry-val" id="bearing-val">---°</div>
+            </div>
+            <div class="telemetry-card">
+              <div class="telemetry-title">Mortar Elevation</div>
+              <div class="telemetry-val" id="elevation-val">--- mils</div>
+            </div>
+            <div class="telemetry-card">
+              <div class="telemetry-title">Shell Travel Time</div>
+              <div class="telemetry-val" id="flight-time-val">~0.0 s</div>
+            </div>
+            <div class="telemetry-card">
+              <div class="telemetry-title">Target Sprint Time</div>
+              <div class="telemetry-val" id="sprint-time-val">~0.0 s</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-primary danger" id="clear-markers-btn" title="Clear Mortar and Target (Shortcut: C or Space)">
+            <span>🗑️</span> Clear Map
+          </button>
+          <button class="btn-primary" id="copy-distance-btn" title="Copy exact distance to clipboard">
+            <span>📋</span> Copy Dist
+          </button>
         </div>
       </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="scroll-mouse"></div>
-      <span>Scroll</span>
-    </div>
-  </section>
 
-  <!-- ═══ ABOUT ═══ -->
-  <section class="section" style="background:var(--bg2)">
-    <div class="container">
-      <div class="about-grid">
-        <div class="reveal">
-          <span class="section-lbl">About BLUdot</span>
-          <h2 class="section-title">More than just a<br><span>YouTube channel</span></h2>
-          <p class="section-sub">BLUdot is a creative space where mind-blowing facts, practical tips, and stunning video edits collide. Built for the curious and the creative.</p>
-          <div class="about-features">
-            <div class="about-feat">
-              <div class="af-icon"><i class="fas fa-lightbulb"></i></div>
-              <div>
-                <h4>Fascinating Facts</h4>
-                <p>Bite-sized knowledge drops from science, history, tech, and beyond that'll leave you amazed.</p>
+      <!-- POI & SPAWN TOGGLES -->
+      <div class="section-block">
+        <div class="section-label">
+          <span>Map Intelligence & Spawns</span>
+          <span style="font-size: 10px; color: var(--text-muted);">Toggle Overlay</span>
+        </div>
+        <div class="filter-list">
+          <label class="filter-item">
+            <div class="filter-left">
+              <span class="filter-icon">🗝️</span>
+              <span>Secret Rooms, Basements & Bunkers</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="filter-count" id="count-secret-rooms">0</span>
+              <label class="custom-switch">
+                <input type="checkbox" id="toggle-secret-rooms">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </label>
+
+          <label class="filter-item">
+            <div class="filter-left">
+              <span class="filter-icon">🛩️</span>
+              <span>Motor Gliders</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="filter-count" id="count-gliders">0</span>
+              <label class="custom-switch">
+                <input type="checkbox" id="toggle-gliders">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </label>
+
+          <label class="filter-item">
+            <div class="filter-left">
+              <span class="filter-icon">⛽</span>
+              <span>Gas Stations</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="filter-count" id="count-gas-stations">0</span>
+              <label class="custom-switch">
+                <input type="checkbox" id="toggle-gas-stations">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </label>
+
+          <label class="filter-item">
+            <div class="filter-left">
+              <span class="filter-icon">🐻</span>
+              <span>Bear Caves & Special Sites</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="filter-count" id="count-special">0</span>
+              <label class="custom-switch">
+                <input type="checkbox" id="toggle-special">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </label>
+
+          <label class="filter-item">
+            <div class="filter-left">
+              <span class="filter-icon">📍</span>
+              <span>Custom Waypoints</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="filter-count" id="count-custom">0</span>
+              <label class="custom-switch">
+                <input type="checkbox" id="toggle-custom">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- TACTICAL TOOLS -->
+      <div class="section-block">
+        <div class="section-label">
+          <span>Tactical Tools & Settings</span>
+        </div>
+        <div class="tools-grid">
+          <button class="tool-card-btn" id="tool-flightpath-btn" title="Plot Plane Flight Route and Parachute Drop Corridor">
+            <span class="tool-icon">✈️</span>
+            <span class="tool-text">Flight Path</span>
+          </button>
+          <button class="tool-card-btn" id="tool-grid-btn" title="Toggle 1000m and 100m tactical grid lines">
+            <span class="tool-icon">📐</span>
+            <span class="tool-text">Grid Overlay</span>
+          </button>
+          <button class="tool-card-btn" id="tool-calibrate-btn" title="Calibrate Map Scale with In-Game Mortar Shots">
+            <span class="tool-icon">🎯</span>
+            <span class="tool-text">Calibrate</span>
+          </button>
+          <button class="tool-card-btn" id="tool-editmode-btn" title="Right-click anywhere to add, or left-click to edit/delete any marker">
+            <span class="tool-icon">✏️</span>
+            <span class="tool-text">Edit Markers</span>
+          </button>
+          <button class="tool-card-btn" id="tool-export-btn" title="Save & share your calibrated config with friends">
+            <span class="tool-icon">💾</span>
+            <span class="tool-text">Share / Export</span>
+          </button>
+          <button class="tool-card-btn" id="tool-replays-btn" title="2D Match Replays & Player Tracker (pubg.sh) (Shortcut: R)" style="border-color: rgba(0, 229, 255, 0.4); background: rgba(0, 229, 255, 0.08);">
+            <span class="tool-icon">🎬</span>
+            <span class="tool-text" style="color: #00e5ff; font-weight: bold;">2D Replay</span>
+          </button>
+          <button class="tool-card-btn" id="tool-fullscreen-btn" title="Toggle Fullscreen on 2nd monitor">
+            <span class="tool-icon">⛶</span>
+            <span class="tool-text">Fullscreen</span>
+          </button>
+        </div>
+      </div>
+      </div>
+      <!-- END #mortar-sidebar-view -->
+
+      <!-- VIEW 2: PUBG.SH 2D REPLAY & ROSTER SIDEBAR VIEW -->
+      <div id="replay-sidebar-view" class="sidebar-view-pane" style="display: none;">
+        <!-- SEARCH BOX SECTION -->
+        <div class="section-block replay-side-search-box">
+          <div class="section-label">
+            <span>Player Match Search</span>
+            <span style="font-size: 10px; color: #46d369; font-weight: bold; background: rgba(70, 211, 105, 0.12); border: 1px solid rgba(70, 211, 105, 0.35); padding: 1px 6px; border-radius: 4px;">🟢 KRAFTON OFFICIAL API</span>
+          </div>
+
+          <!-- Platform Selector Pills -->
+          <div class="replay-platform-pills">
+            <button class="platform-pill active" data-shard="steam">Steam</button>
+            <button class="platform-pill" data-shard="kakao">Kakao</button>
+            <button class="platform-pill" data-shard="xbox">Xbox</button>
+            <button class="platform-pill" data-shard="psn">PSN</button>
+          </div>
+
+          <!-- Player Input Row -->
+          <div class="replay-input-group">
+            <input type="text" id="sidebar-replay-input" class="form-input" placeholder="Search player name (e.g. XXmariyahXX)..." autocomplete="off" value="XXmariyahXX">
+            <button class="btn-primary" id="sidebar-replay-search-btn" title="Search player match history">
+              <span>🔍</span>
+            </button>
+          </div>
+
+          <div id="sidebar-replay-status" class="sidebar-replay-status">
+            Search any player on Steam/Console to stream official 2D match replays.
+          </div>
+          <div class="sidebar-theme-switch-row" style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 11px; color: #94a3b8; font-weight: 600;">Player Icon Style:</span>
+            <button id="sidebar-theme-toggle-btn" class="replay-theme-btn" title="Toggle Player Icon Theme (New Minimalist White vs Old Tactical Colors)">
+              <span>🎨</span> <span id="sidebar-theme-label">Icons: New (White)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- KRAFTON OFFICIAL PLAYER PROFILE & CAREER STATS CARD -->
+        <div id="player-profile-card" class="player-profile-card" style="display: none;">
+          <div class="profile-header-card">
+            <div class="profile-header-main">
+              <div class="profile-avatar-box">🪖</div>
+              <div class="profile-text-meta">
+                <div class="profile-name-row">
+                  <span id="profile-player-name" class="profile-player-name">--</span>
+                  <span id="profile-survival-level" class="survival-level-badge" style="display: none;" title="PUBG Survival Mastery Level"><img src="assets/survival_tier_badge.png" class="survival-tier-img" alt="Tier" /> LVL --</span>
+                  <span class="official-verified-badge" title="Verified via Official Krafton PUBG Developer API">✓ OFFICIAL API</span>
+                </div>
+                <div class="profile-clan-row" id="profile-clan-row" style="display: none;">
+                  <span class="clan-tag-badge" id="profile-clan-tag">--</span>
+                  <span class="clan-name-text" id="profile-clan-name">--</span>
+                  <span class="clan-level-badge" id="profile-clan-level">LVL --</span>
+                </div>
               </div>
             </div>
-            <div class="about-feat">
-              <div class="af-icon p"><i class="fas fa-tools"></i></div>
+          </div>
+
+          <!-- Ranked Tier Banner -->
+          <div id="profile-ranked-banner" class="profile-ranked-banner" style="display: none;">
+            <div class="ranked-left">
+              <span class="ranked-icon">🎖️</span>
               <div>
-                <h4>Useful Tips</h4>
-                <p>Practical advice for everyday life, creativity, and levelling up your workflow.</p>
+                <div class="ranked-tier-name" id="profile-ranked-tier">GOLD II</div>
+                <div class="ranked-rp-sub" id="profile-ranked-rp">2,001 RP</div>
               </div>
             </div>
-            <div class="about-feat">
-              <div class="af-icon c"><i class="fas fa-film"></i></div>
-              <div>
-                <h4>Video Editing</h4>
-                <p>Professional editing work — cinematic, YouTube, promos. The kind that gets noticed.</p>
+            <div class="ranked-right">
+              <div class="ranked-stat-pill">Top 10: <b id="profile-ranked-top10">--</b></div>
+              <div class="ranked-stat-pill">Avg Rank: <b id="profile-ranked-rank">--</b></div>
+            </div>
+          </div>
+
+          <!-- Career Stats Accordion / Section -->
+          <div class="profile-career-section">
+            <div class="profile-career-header">
+              <span id="profile-career-title">CAREER STATS</span>
+              <span id="profile-total-matches-badge" class="profile-matches-badge">0 Matches</span>
+            </div>
+
+            <!-- Match Type Switcher: Normal vs Ranked -->
+            <div class="profile-category-pills">
+              <button class="profile-category-pill active" data-category="normal">🎮 Normal Match</button>
+              <button class="profile-category-pill" data-category="ranked">🎖️ Ranked Match</button>
+            </div>
+
+            <!-- Career Game Mode Tabs -->
+            <div class="profile-modes-tabs">
+              <button class="profile-mode-tab active" data-pmode="squad">Squad</button>
+              <button class="profile-mode-tab" data-pmode="squad-fpp">Squad FPP</button>
+              <button class="profile-mode-tab" data-pmode="duo">Duo</button>
+              <button class="profile-mode-tab" data-pmode="solo">Solo</button>
+            </div>
+
+            <!-- Profile Date / Time Window Selector -->
+            <div class="profile-date-filter-row">
+              <div class="profile-date-chips">
+                <button class="profile-date-chip active" data-pdays="0">All Time (Lifetime)</button>
+                <button class="profile-date-chip" data-pdays="1">Today ⏱️</button>
+                <button class="profile-date-chip" data-pdays="7">7 Days</button>
+                <button class="profile-date-chip" data-pdays="30">30 Days</button>
+              </div>
+              <div class="date-slider-wrap profile-slider-wrap">
+                <span class="date-slider-label">Scope: <b id="profile-date-slider-val">All Time (Lifetime)</b></span>
+                <input type="range" id="profile-date-slider" min="0" max="60" value="0" class="date-slider-input" title="Slide to filter profile statistics by recency (in days)">
+              </div>
+            </div>
+
+            <!-- Career Stats Grid -->
+            <div class="profile-stats-grid" id="profile-stats-grid"></div>
+
+            <!-- Classified Intel Dossier Trigger Button -->
+            <div style="padding: 10px 14px 4px 14px;">
+              <button id="open-player-intel-btn" class="classified-dossier-btn" title="View Full Classified Account Dossier (Hidden Stats, Friendly Kills, Suicides, Odometry, etc.)">
+                <span class="dossier-btn-icon">📁</span>
+                <span class="dossier-btn-text">CLASSIFIED ACCOUNT DOSSIER</span>
+                <span class="dossier-btn-badge">RAW DATA</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-VIEW A: MATCHES LIST -->
+        <div id="replay-view-matches" class="replay-subpane">
+          <div class="section-block" style="padding-bottom: 8px;">
+            <div class="replay-matches-header">
+              <span id="replay-matches-count-label" style="font-size: 12px; font-weight: bold; color: var(--text-muted);">Recent Matches</span>
+              <div class="replay-mode-filters">
+                <button class="mode-filter-chip active" data-filter="all">All</button>
+                <button class="mode-filter-chip" data-filter="ranked">🎖️ Ranked</button>
+                <button class="mode-filter-chip" data-filter="normal">Normal</button>
+                <button class="mode-filter-chip" data-filter="squad">Squad</button>
+                <button class="mode-filter-chip" data-filter="duo">Duo</button>
+                <button class="mode-filter-chip" data-filter="solo">Solo</button>
+              </div>
+            </div>
+
+            <!-- Date / Recency Filter & Slider -->
+            <div class="replay-date-filter-row">
+              <div class="date-filter-chips">
+                <button class="date-filter-chip active" data-days="0">All Time</button>
+                <button class="date-filter-chip" data-days="1">Today ⏱️</button>
+                <button class="date-filter-chip" data-days="7">7 Days</button>
+                <button class="date-filter-chip" data-days="30">30 Days</button>
+              </div>
+              <div class="date-slider-wrap">
+                <span class="date-slider-label">Window: <b id="date-slider-val">All Time</b></span>
+                <input type="range" id="match-date-slider" min="0" max="60" value="0" class="date-slider-input" title="Slide to filter matches by recency (in days)">
               </div>
             </div>
           </div>
-        </div>
-        <div class="reveal" data-delay="2">
-          <div class="cat-grid">
-            <a href="facts.html?cat=science" class="cat-item">
-              <i class="fas fa-flask"></i><p>Science</p>
-            </a>
-            <a href="facts.html?cat=tech" class="cat-item">
-              <i class="fas fa-microchip"></i><p>Technology</p>
-            </a>
-            <a href="facts.html?cat=space" class="cat-item">
-              <i class="fas fa-satellite"></i><p>Space</p>
-            </a>
-            <a href="facts.html?cat=history" class="cat-item">
-              <i class="fas fa-landmark"></i><p>History</p>
-            </a>
-            <a href="facts.html?cat=tips" class="cat-item">
-              <i class="fas fa-heart"></i><p>Life Tips</p>
-            </a>
-            <a href="facts.html?cat=random" class="cat-item">
-              <i class="fas fa-random"></i><p>Random</p>
-            </a>
+          <div id="sidebar-matches-list" class="sidebar-matches-list">
+            <div class="empty-matches-prompt">
+              <span style="font-size: 28px;">🎮</span>
+              <p>Type any PUBG player's name above and hit Search to view their match history and play 2D replays.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══ FACTS PREVIEW ═══ -->
-  <section class="section">
-    <div class="container">
-      <div class="section-hd">
-        <div>
-          <span class="section-lbl">Latest Facts</span>
-          <h2 class="section-title">Hover to <span>discover</span></h2>
-        </div>
-        <a href="facts.html" class="btn btn-ghost">All Facts <i class="fas fa-arrow-right"></i></a>
-      </div>
-      <div class="flip-grid">
-        <div class="flip-card reveal" data-delay="1">
-          <div class="flip-inner">
-            <div class="flip-front">
-              <div class="ff-icon"><i class="fas fa-satellite"></i></div>
-              <span class="tag tag-blue">Space</span>
-              <h3>Space is completely silent</h3>
-              <p class="ff-hint">Hover to reveal the fact →</p>
-            </div>
-            <div class="flip-back">
-              <span class="tag tag-blue">Space</span>
-              <p>In space there's no medium for sound waves to travel through. Every explosion, engine, and shockwave you see in sci-fi movies would be completely, perfectly silent in reality.</p>
-              <a href="facts.html" class="btn btn-outline">More Facts</a>
+        <!-- SUB-VIEW B: ACTIVE MATCH ROSTER & DETAILS -->
+        <div id="replay-view-roster" class="replay-subpane" style="display: none;">
+          <div class="section-block replay-roster-header-box">
+            <button id="roster-back-to-matches-btn" class="btn-primary" style="width: 100%; margin-bottom: 10px; font-size: 12px; padding: 6px 12px;">
+              <span>◀</span> Back to Matches
+            </button>
+            <div class="active-match-meta">
+              <div class="match-meta-row">
+                <span id="active-match-map" class="meta-map-badge">TAEGO</span>
+                <span id="active-match-mode" class="meta-mode-badge">SQUAD</span>
+                <span id="active-match-time" class="meta-time">28m 24s</span>
+              </div>
+              <div class="match-meta-stats">
+                <span>Spectating: <b id="tracking-player-name" style="color: #ffea00;">--</b></span>
+                <span id="tracking-player-stats" style="font-size: 11px; color: var(--text-muted);">🎯 0 Kills</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="flip-card reveal" data-delay="2">
-          <div class="flip-inner">
-            <div class="flip-front">
-              <div class="ff-icon" style="background:rgba(34,211,238,.12);color:var(--cyan)"><i class="fas fa-water"></i></div>
-              <span class="tag tag-cyan">Ocean</span>
-              <h3>95% of oceans unexplored</h3>
-              <p class="ff-hint">Hover to reveal the fact →</p>
-            </div>
-            <div class="flip-back">
-              <span class="tag tag-cyan">Ocean</span>
-              <p>Over 95% of Earth's oceans remain completely unexplored. We know more about the surface of Mars than we do about the deep ocean — which may still hold creatures we've never encountered.</p>
-              <a href="facts.html" class="btn btn-outline">More Facts</a>
-            </div>
-          </div>
-        </div>
-        <div class="flip-card reveal" data-delay="3">
-          <div class="flip-inner">
-            <div class="flip-front">
-              <div class="ff-icon" style="background:rgba(139,92,246,.12);color:var(--purple)"><i class="fas fa-brain"></i></div>
-              <span class="tag tag-purple">Human Body</span>
-              <h3>Your brain generates electricity</h3>
-              <p class="ff-hint">Hover to reveal the fact →</p>
-            </div>
-            <div class="flip-back">
-              <span class="tag tag-purple">Human Body</span>
-              <p>The human brain generates around 20 watts of electricity — enough to power a dim light bulb. Every thought you have is a literal electrical impulse firing across 86 billion neurons.</p>
-              <a href="facts.html" class="btn btn-outline">More Facts</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ═══ PORTFOLIO PREVIEW ═══ -->
-  <section class="section" style="background:var(--bg2)">
-    <div class="container">
-      <div class="section-hd">
-        <div>
-          <span class="section-lbl">Video Editing</span>
-          <h2 class="section-title">The <span>reel</span> deal</h2>
-          <p class="section-sub" style="margin-top:.5rem">Professional editing work — cinematic, YouTube, promos & more.</p>
+          <!-- OPERATIVE TELEMETRY DOSSIER (DEEP TELEMETRY & ANTI-CHEAT ANALYSIS) -->
+          <div id="roster-player-dossier" class="player-dossier-card" style="display: none;">
+            <div class="dossier-header">
+              <div class="dossier-avatar" id="dossier-avatar">⭐</div>
+              <div class="dossier-names">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <div class="dossier-player-name" id="dossier-name">--</div>
+                  <span id="dossier-survival-level" class="survival-level-badge" style="display: none;"><img src="assets/survival_tier_badge.png" class="survival-tier-img" alt="Tier" /> LVL --</span>
+                </div>
+                <div class="dossier-team-tag" id="dossier-tag">Squad #--</div>
+              </div>
+              <div class="dossier-status-pill" id="dossier-status">ALIVE</div>
+            </div>
+
+            <!-- Live Vitals: HP & Boost Bars -->
+            <div class="dossier-vitals">
+              <div class="vital-row">
+                <div class="vital-label">
+                  <span>HEALTH</span>
+                  <b id="dossier-hp-val">100 / 100</b>
+                </div>
+                <div class="vital-bar-track">
+                  <div class="vital-bar-fill hp" id="dossier-hp-bar" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="vital-row">
+                <div class="vital-label">
+                  <span>BOOST GAUGE</span>
+                  <b id="dossier-boost-val" style="color: #ffb703;">0%</b>
+                </div>
+                <div class="vital-bar-track">
+                  <div class="vital-bar-fill boost" id="dossier-boost-bar" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tactical Equipment (Helmet, Armor, Backpack) -->
+            <div class="dossier-gear-grid">
+              <div class="gear-slot" id="gear-helmet">
+                <span class="gear-icon">🪖</span>
+                <div class="gear-info">
+                  <span class="gear-type">HELMET</span>
+                  <span class="gear-name" id="dossier-helmet">None</span>
+                </div>
+              </div>
+              <div class="gear-slot" id="gear-vest">
+                <span class="gear-icon">🛡️</span>
+                <div class="gear-info">
+                  <span class="gear-type">ARMOR</span>
+                  <span class="gear-name" id="dossier-vest">None</span>
+                </div>
+              </div>
+              <div class="gear-slot" id="gear-backpack">
+                <span class="gear-icon">🎒</span>
+                <div class="gear-info">
+                  <span class="gear-type">BACKPACK</span>
+                  <span class="gear-name" id="dossier-backpack">None</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weapon Loadout -->
+            <div class="dossier-weapons-section">
+              <span class="dossier-section-title">EQUIPPED ARSENAL</span>
+              <div class="dossier-weapons-list" id="dossier-weapons-list">
+                <span class="empty-weapon-text">No equipped weapons</span>
+              </div>
+            </div>
+
+            <!-- Anti-Cheat & Combat Anomaly Heuristics -->
+            <div class="dossier-integrity" id="dossier-integrity-box">
+              <div class="integrity-badge normal" id="dossier-integrity-badge">
+                <span id="dossier-integrity-icon">🛡️</span>
+                <span id="dossier-integrity-title">NORMAL PLAYSTYLE</span>
+              </div>
+              <div class="integrity-metrics" id="dossier-integrity-metrics">
+                <span>HS Kill: <b id="dossier-hs-rate">0%</b></span>
+                <span>Longest: <b id="dossier-longest-kill">0m</b></span>
+                <span>Dmg: <b id="dossier-total-dmg">0</b></span>
+              </div>
+            </div>
+
+            <!-- Inspect Full Account Intel Button for Tracked Player -->
+            <button id="roster-view-full-intel-btn" class="classified-dossier-btn" style="margin-top: 10px;" title="View Full Classified Account Dossier for this player">
+              <span class="dossier-btn-icon">📁</span>
+              <span class="dossier-btn-text">INSPECT FULL ACCOUNT INTEL</span>
+              <span class="dossier-btn-badge">RAW DATA</span>
+            </button>
+          </div>
+
+          <!-- Roster Search & Filter -->
+          <div class="section-block" style="padding: 8px 14px;">
+            <input type="text" id="roster-search-input" class="form-input" placeholder="Filter player in roster..." style="font-size: 12px; height: 32px;">
+          </div>
+
+          <!-- Squad Roster List -->
+          <div id="sidebar-roster-list" class="sidebar-roster-list"></div>
         </div>
-        <a href="portfolio.html" class="btn btn-ghost">Full Portfolio <i class="fas fa-arrow-right"></i></a>
       </div>
-      <div class="port-prev-grid">
-        <div class="port-prev-item reveal" data-delay="1">
-          <div class="port-thumb t1">
-            <i class="fas fa-film"></i>
-            <div class="port-overlay">
-              <div class="play-btn"><i class="fas fa-play"></i></div>
-              <span class="tag tag-blue">Cinematic</span>
+      <!-- END #replay-sidebar-view -->
+    </aside>
+
+    <!-- MAIN MAP VIEWPORT -->
+    <main id="map-viewport">
+      <!-- FLOATING QUICK CONTROLS -->
+      <div class="map-floating-controls">
+        <button class="map-floating-btn" id="toggle-sidebar-btn" title="Toggle Sidebar HUD (Shortcut: H)">
+          <span id="sidebar-toggle-icon">◀</span> <span id="sidebar-toggle-text">Hide HUD</span>
+        </button>
+        <button class="map-floating-btn" id="full-map-view-btn" title="Reset to Full Map View (Shortcut: M)">
+          <span>🗺️</span> Full Map (M)
+        </button>
+        <button class="map-floating-btn" id="floating-replay-btn" title="2D Match Replays & Player Tracker (Shortcut: R)">
+          <span>🎬</span> Replay (R)
+        </button>
+        <button class="map-floating-btn" id="floating-theme-btn" title="Switch Player Icon Theme (New White vs Old Colors) - Shortcut: T">
+          <span>🎨</span> <span id="floating-theme-label">Icons: New</span>
+        </button>
+      </div>
+
+      <!-- FLOATING MODE BANNER -->
+      <div class="floating-mode-indicator" id="mode-indicator">
+        <span id="mode-indicator-text">MODE ACTIVE</span>
+        <button id="cancel-mode-btn" style="background: none; border: none; cursor: pointer; font-weight: bold; margin-left: 8px;">✕ Cancel</button>
+      </div>
+
+      <!-- REPLAY KILLFEED TICKER -->
+      <div id="replay-killfeed" class="replay-killfeed" style="display: none;"></div>
+
+      <!-- REPLAY TIMELINE CONTROLLER BAR (pubg.sh Layout) -->
+      <div id="replay-controller-bar" class="replay-controller-bar" style="display: none;">
+        <div class="replay-meta-left">
+          <div id="replay-match-date" class="replay-match-date">Match Replay</div>
+          <div id="replay-match-placement" class="replay-match-placement"><b id="replay-meta-rank">--</b>, <b id="replay-meta-kills">0 kills</b></div>
+        </div>
+
+        <div class="replay-timeline-center">
+          <div class="replay-playhead-readout">
+            <span id="replay-current-time">00:00.0</span>
+          </div>
+          <div class="replay-slider-track-wrap">
+            <input type="range" id="replay-scrub-slider" min="0" max="100" value="0" step="0.1" class="replay-slider">
+            <div id="replay-kill-marks" class="replay-kill-marks"></div>
+          </div>
+        </div>
+
+        <div class="replay-controls-right">
+          <button id="replay-play-btn" class="replay-play-btn" title="Play / Pause (Space)">▶</button>
+          <div class="replay-speed-selector">
+            <button class="replay-speed-btn active" data-speed="1">1x</button>
+            <button class="replay-speed-btn" data-speed="2">2x</button>
+            <button class="replay-speed-btn" data-speed="5">5x</button>
+            <button class="replay-speed-btn" data-speed="10">10x</button>
+            <button class="replay-speed-btn" data-speed="20">20x</button>
+          </div>
+          <label class="replay-toggle-pill" title="Show only spectated player & squad (pubg.sh mode)">
+            <input type="checkbox" id="replay-toggle-squad-only">
+            <span>Squad</span>
+          </label>
+          <label class="replay-toggle-pill" title="Toggle bullet tracers">
+            <input type="checkbox" id="replay-toggle-tracers" checked>
+            <span>Tracers</span>
+          </label>
+          <label class="replay-toggle-pill" title="Auto-center camera on spectated player">
+            <input type="checkbox" id="replay-toggle-follow">
+            <span>Follow</span>
+          </label>
+          <button id="replay-theme-toggle" class="replay-theme-btn" title="Toggle Theme: New Minimalist vs Classic Neon (Shortcut: T)">
+            <span>🎨</span> <span id="replay-theme-label">Theme: New</span>
+          </button>
+          <button id="replay-exit-btn" class="replay-exit-btn" title="Exit Replay Mode">✕ Exit</button>
+        </div>
+      </div>
+
+      <!-- ICONIC PUBG.SH ALIVE BADGE (TOP-LEFT OF MAP) -->
+      <div id="replay-alive-hud" class="replay-alive-hud" style="display: none;">
+        <span id="replay-alive-count" class="alive-num">--</span>
+        <span class="alive-text">ALIVE</span>
+      </div>
+
+      <!-- LEAFLET MAP -->
+      <div id="leaflet-map"></div>
+
+      <!-- FLOATING HUD STATUS BAR -->
+      <div class="hud-coords-bar">
+        <span>MAP: <b id="hud-map-name">DESTON</b></span>
+        <span>GRID: <b id="hud-grid-coord">D4</b></span>
+        <span>COORD: <b id="hud-xy-coord">0m, 0m</b></span>
+        <span>ZOOM: <b id="hud-zoom-val">100%</b></span>
+      </div>
+    </main>
+  </div>
+
+  <!-- CALIBRATION MODAL -->
+  <div class="modal-overlay" id="modal-calibration">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title"><span>🎯</span> In-Game Scale Calibration</div>
+        <button class="modal-close-btn" data-close="modal-calibration">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>If PUBG changes map scales or mortar trajectory calculations in an update, you can calibrate this tool using real in-game mortar test shots.</p>
+
+        <div class="calibration-step-box">
+          <div class="step-header">Option 1: Two-Shot Mortar Test (Recommended)</div>
+          <p style="font-size: 12px; margin-bottom: 8px;">
+            1. Deploy a mortar in-game.<br>
+            2. Fire 1st shot at minimum range (<b>121m</b>).<br>
+            3. Fire 2nd shot at maximum range (<b>700m</b>).<br>
+            4. Click "Start 2-Shot Calibration" below, then click your mortar position and both shell impact craters on the map!
+          </p>
+          <button class="btn-primary" id="start-two-shot-calib-btn" style="width: 100%;">
+            <span>🎯</span> Start In-Game 2-Shot Calibration
+          </button>
+        </div>
+
+        <div class="calibration-step-box">
+          <div class="step-header">Option 2: Manual Reference Scale Factor</div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">Scale Multiplier (Default: 1.0000)</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="number" id="manual-scale-input" class="form-input" step="0.001" value="1.000">
+              <button class="btn-primary" id="apply-manual-scale-btn" style="flex: none; width: 120px;">Apply</button>
             </div>
           </div>
-          <div class="port-info">
-            <h4>Cinematic Reel 2024</h4>
-            <p>Color graded shortfilm showcase</p>
-          </div>
         </div>
-        <div class="port-prev-item reveal" data-delay="2">
-          <div class="port-thumb t2">
-            <i class="fab fa-youtube"></i>
-            <div class="port-overlay">
-              <div class="play-btn"><i class="fas fa-play"></i></div>
-              <span class="tag tag-purple">YouTube</span>
-            </div>
-          </div>
-          <div class="port-info">
-            <h4>BLUdot Intro Pack</h4>
-            <p>Motion graphics & transitions</p>
-          </div>
-        </div>
-        <div class="port-prev-item reveal" data-delay="3">
-          <div class="port-thumb t3">
-            <i class="fas fa-ad"></i>
-            <div class="port-overlay">
-              <div class="play-btn"><i class="fas fa-play"></i></div>
-              <span class="tag tag-green">Promo</span>
-            </div>
-          </div>
-          <div class="port-info">
-            <h4>Product Promo Edit</h4>
-            <p>Fast-paced brand video</p>
-          </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+          <span style="font-size: 12px; color: var(--text-muted);">Current Active Scale: <b id="current-calib-display" style="color: var(--accent-green);">1.0000x</b></span>
+          <button class="btn-primary danger" id="reset-calib-btn" style="flex: none;">Reset to Default</button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ═══ YT CTA ═══ -->
-  <section class="section">
-    <div class="container">
-      <div class="yt-cta-box reveal">
-        <div class="yt-icon"><i class="fab fa-youtube"></i></div>
-        <h2>Join the <span class="gradient-text">BLUdot</span> community</h2>
-        <p>New facts, tips, and creative videos drop every week. Hit subscribe and never miss a knowledge bomb.</p>
-        <a href="https://youtube.com/@bludot.?si=pSSc-ZS6UurirwA7" target="_blank" class="btn btn-yt btn-primary">
-          <i class="fab fa-youtube"></i> Subscribe Now
-        </a>
+      <div class="modal-footer">
+        <button class="btn-primary" data-close="modal-calibration">Done</button>
       </div>
-    </div>
-  </section>
-
-</div><!-- end page-wrap -->
-
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="index.html" class="nav-logo" style="font-size:1.3rem">
-        <span class="blu">BLU</span><span class="dot-logo"></span><span>dot</span>
-      </a>
-      <p>Facts that surprise. Tips that stick. Edits that move people. This is BLUdot.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <a href="index.html">Home</a>
-      <a href="facts.html">Facts & Tips</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Categories</h4>
-      <a href="facts.html">Science</a>
-      <a href="facts.html">Technology</a>
-      <a href="facts.html">History</a>
-      <a href="facts.html">Life Tips</a>
-    </div>
-    <div class="footer-col">
-      <h4>Connect</h4>
-      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-      <a href="#"><i class="fab fa-twitter"></i> Twitter / X</a>
     </div>
   </div>
-  <div class="footer-btm">
-    <p>© 2024 BLUdot. All rights reserved.</p>
-    <div class="footer-socials">
-      <a href="https://youtube.com/@BLUdot" target="_blank"><i class="fab fa-youtube"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
+
+  <!-- CUSTOM MARKER EDIT/ADD MODAL -->
+  <div class="modal-overlay" id="modal-marker">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="marker-modal-title"><span>📍</span> Custom Tactical Marker</div>
+        <button class="modal-close-btn" data-close="modal-marker">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="marker-edit-id">
+        <input type="hidden" id="marker-edit-x">
+        <input type="hidden" id="marker-edit-y">
+
+        <div class="form-group">
+          <label class="form-label">Marker Title / Label</label>
+          <input type="text" id="marker-input-title" class="form-input" placeholder="e.g. Secret Room Roof Access">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select id="marker-input-type" class="form-select">
+            <option value="secret_room">🗝️ Secret Room / Basement / Bunker</option>
+            <option value="glider">🛩️ Motor Glider</option>
+            <option value="gas_station">⛽ Gas Station</option>
+            <option value="special">🐻 Bear Cave / Special Site</option>
+            <option value="custom">📍 Custom Waypoint / Note</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Tactical Notes & Intel</label>
+          <textarea id="marker-input-desc" class="form-textarea" placeholder="e.g. Drone hole on western exterior wall. Guaranteed Level 3 helmet."></textarea>
+        </div>
+
+        <div style="font-size: 11px; color: var(--text-muted); font-family: var(--font-mono);">
+          Location: <span id="marker-coords-preview">X: 0m, Y: 0m</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary danger" id="marker-delete-btn" style="display: none; margin-right: auto;">Delete</button>
+        <button class="btn-primary" data-close="modal-marker">Cancel</button>
+        <button class="btn-primary" id="marker-save-btn" style="background: var(--accent-green); color: #000; font-weight: 700;">Save Marker</button>
+      </div>
     </div>
   </div>
-</footer>
 
-<script src="js/main.js"></script>
+  <!-- EXPORT / IMPORT CONFIG MODAL -->
+  <div class="modal-overlay" id="modal-export">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title"><span>💾</span> Share / Backup Configuration</div>
+        <button class="modal-close-btn" data-close="modal-export">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Save all your custom map calibrations, corrected vehicle spawns, and secret room pins into a single file to share with teammates.</p>
+
+        <div class="calibration-step-box">
+          <div class="step-header">Export Configuration File</div>
+          <p style="font-size: 12px; margin-bottom: 8px;">Downloads a <code>pubg_tactical_config.json</code> file with all your custom pins and scales.</p>
+          <button class="btn-primary" id="export-download-btn" style="width: 100%;">
+            <span>📥</span> Download Config File (.json)
+          </button>
+        </div>
+
+        <div class="calibration-step-box">
+          <div class="step-header">Import Configuration File</div>
+          <p style="font-size: 12px; margin-bottom: 8px;">Load a configuration file shared by a teammate.</p>
+          <input type="file" id="import-file-input" accept=".json" style="display: none;">
+          <button class="btn-primary" id="import-browse-btn" style="width: 100%;">
+            <span>📤</span> Choose File to Import
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" data-close="modal-export">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLASSIFIED PLAYER INTEL & HIDDEN ACCOUNT DOSSIER MODAL -->
+  <div class="modal-overlay" id="modal-player-intel">
+    <div class="modal-box modal-box-intel">
+      <div class="modal-header intel-modal-header">
+        <div class="modal-title">
+          <span class="intel-badge-icon">🪖</span>
+          <span id="intel-modal-title">CLASSIFIED OPERATIVE DOSSIER</span>
+        </div>
+        <button class="modal-close-btn" data-close="modal-player-intel">&times;</button>
+      </div>
+
+      <div class="modal-body intel-modal-body">
+        <!-- Top Identity & Security Clearance Bar -->
+        <div class="intel-id-banner">
+          <div class="intel-avatar-box" id="intel-avatar-icon">⭐</div>
+          <div class="intel-id-details">
+            <div class="intel-name-row">
+              <span class="intel-player-name" id="intel-player-name">--</span>
+              <span id="intel-survival-badge" class="survival-level-badge" style="display: none;"><img src="assets/survival_tier_badge.png" class="survival-tier-img" alt="Tier" /> LVL --</span>
+              <span class="intel-verdict-pill" id="intel-account-type">VERIFIED STEAM HUMAN</span>
+              <span class="intel-clan-tag" id="intel-clan-tag" style="display: none;">[CLAN]</span>
+            </div>
+            <div class="intel-sub-id-row">
+              <span class="intel-account-id-label">MASTER ID:</span>
+              <code class="intel-account-id-val" id="intel-account-id">account.--------------------------------</code>
+              <button class="intel-copy-id-btn" id="intel-copy-id-btn" title="Copy Account ID">📋 Copy</button>
+              <span class="intel-platform-pill" id="intel-platform">STEAM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Intel Category Switcher: Normal Career vs Ranked Season -->
+        <div class="intel-category-pills">
+          <button class="intel-category-pill active" data-icategory="normal">🎮 Normal Career Dossier</button>
+          <button class="intel-category-pill" data-icategory="ranked">🎖️ Ranked Season Dossier</button>
+        </div>
+
+        <!-- Mode Selector Tabs -->
+        <div class="intel-mode-tabs">
+          <button class="intel-mode-tab active" data-imode="squad">Squad</button>
+          <button class="intel-mode-tab" data-imode="squad-fpp">Squad FPP</button>
+          <button class="intel-mode-tab" data-imode="duo">Duo</button>
+          <button class="intel-mode-tab" data-imode="solo">Solo</button>
+        </div>
+
+        <!-- Intel Date / Recency Time Window Selector -->
+        <div class="intel-date-filter-row">
+          <div class="intel-date-chips">
+            <button class="intel-date-chip active" data-idays="0">All Time (Lifetime)</button>
+            <button class="intel-date-chip" data-idays="1">Today ⏱️</button>
+            <button class="intel-date-chip" data-idays="7">7 Days</button>
+            <button class="intel-date-chip" data-idays="30">30 Days</button>
+          </div>
+          <div class="date-slider-wrap intel-slider-wrap">
+            <span class="date-slider-label">Dossier Scope: <b id="intel-date-slider-val">All Time (Lifetime)</b></span>
+            <input type="range" id="intel-date-slider" min="0" max="60" value="0" class="date-slider-input" title="Slide to filter dossier statistics by recency (in days)">
+          </div>
+        </div>
+
+        <div id="intel-loading-indicator" style="display: none; text-align: center; padding: 24px; color: var(--accent-cyan); font-family: var(--font-mono);">
+          <div class="intel-spinner"></div>
+          <span style="font-size: 12px; letter-spacing: 1px;">DECRYPTING KRAFTON CLASSIFIED TELEMETRY & LIFETIME LOGS...</span>
+        </div>
+
+        <div id="intel-content-sections">
+          <div id="intel-normal-sections">
+            <!-- Section 1: Hidden Incidents (Normally hidden by PUBG) -->
+          <div class="intel-section">
+            <div class="intel-section-header warning-header">
+              <span>⚠️ UNCENSORED INCIDENTS & HIDDEN TELEMETRY</span>
+              <span class="intel-header-note">NEVER DISPLAYED IN NORMAL IN-GAME SUMMARY</span>
+            </div>
+            <div class="intel-grid col-3">
+              <div class="intel-card danger-card">
+                <div class="intel-card-val text-red" id="intel-team-kills">0</div>
+                <div class="intel-card-lbl">Team Kills (Friendly Fire) 🩸</div>
+              </div>
+              <div class="intel-card warning-card">
+                <div class="intel-card-val text-yellow" id="intel-suicides">0</div>
+                <div class="intel-card-lbl">Suicides / Self-Kills 💀</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val text-cyan" id="intel-road-kills">0</div>
+                <div class="intel-card-lbl">Road Kills (Vehicles) 🚙</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-veh-destroys">0</div>
+                <div class="intel-card-lbl">Vehicles Destroyed 💥</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val text-green" id="intel-dbnos">0</div>
+                <div class="intel-card-lbl">Knockdowns (dBNOs) 🎯</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-weapons-looted">0</div>
+                <div class="intel-card-lbl">Weapons Looted 🔫</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Medical & Sustenance -->
+          <div class="intel-section">
+            <div class="intel-section-header">
+              <span>💉 MEDICAL, SUSTENANCE & SUPPORT TELEMETRY</span>
+            </div>
+            <div class="intel-grid col-3">
+              <div class="intel-card">
+                <div class="intel-card-val text-green" id="intel-heals">0</div>
+                <div class="intel-card-lbl">Medical Items Used 🩹</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val text-gold" id="intel-boosts">0</div>
+                <div class="intel-card-lbl">Boosts Injected (Drinks/Pills) ⚡</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val text-cyan" id="intel-revives">0</div>
+                <div class="intel-card-lbl">Teammates Revived 🤝</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Odometry & Movement Distances -->
+          <div class="intel-section">
+            <div class="intel-section-header">
+              <span>🏃 ODOMETRY & MOVEMENT TELEMETRY</span>
+            </div>
+            <div class="intel-grid col-3">
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-walk-dist">0 km</div>
+                <div class="intel-card-lbl">Foot Distance (Walk/Sprint) 🥾</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-ride-dist">0 km</div>
+                <div class="intel-card-lbl">Vehicle Driving Distance 🏎️</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-swim-dist">0 km</div>
+                <div class="intel-card-lbl">Swimming Distance 🏊</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val text-cyan" id="intel-time-survived">0h</div>
+                <div class="intel-card-lbl">Total Time Survived ⏳</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val text-gold" id="intel-longest-survived">--</div>
+                <div class="intel-card-lbl">Longest Match Record 🏆</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-avg-survival">--</div>
+                <div class="intel-card-lbl">Avg Survival / Match ⏱️</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Combat Lethality & Ballistics Records -->
+          <div class="intel-section">
+            <div class="intel-section-header">
+              <span>⚔️ COMBAT LETHALITY & BALLISTICS RECORDS</span>
+            </div>
+            <div class="intel-grid col-4">
+              <div class="intel-card">
+                <div class="intel-card-val highlight-cyan" id="intel-kd">0.00</div>
+                <div class="intel-card-lbl">Kill/Death (K/D)</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val highlight-green" id="intel-adr">0</div>
+                <div class="intel-card-lbl">Avg Damage (ADR)</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val highlight-gold" id="intel-win-rate">0%</div>
+                <div class="intel-card-lbl">Win Rate (Wins: <b id="intel-wins">0</b>)</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-top10-rate">0%</div>
+                <div class="intel-card-lbl">Top 10 Finish Rate</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-kills">0</div>
+                <div class="intel-card-lbl">Total Kills</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val" id="intel-headshot-rate">0%</div>
+                <div class="intel-card-lbl">Headshot Rate (<b id="intel-hs-kills">0</b> HS)</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val text-gold" id="intel-longest-kill">0m</div>
+                <div class="intel-card-lbl">Longest Sniper Kill 🎯</div>
+              </div>
+              <div class="intel-card">
+                <div class="intel-card-val text-red" id="intel-round-most-kills">0</div>
+                <div class="intel-card-lbl">Most Kills in 1 Match 🔥</div>
+              </div>
+            </div>
+          </div>
+
+          </div><!-- end intel-normal-sections -->
+
+          <!-- RANKED SEASON SECTIONS (Pure Ranked Data for Selected Mode) -->
+          <div id="intel-ranked-sections" style="display: none;">
+            <!-- Ranked Section 1: Official Krafton Competitive Standing -->
+            <div class="intel-section">
+              <div class="intel-section-header">
+                <span>🎖️ OFFICIAL KRAFTON CURRENT SEASON RANKED STANDING</span>
+              </div>
+              <div class="intel-ranked-box">
+                <div class="intel-ranked-tier-col">
+                  <div class="intel-tier-name" id="intel-rk-tier-title">UNRANKED</div>
+                  <div class="intel-rp-badge" id="intel-rk-rp-display">-- RP</div>
+                  <div class="intel-best-rp" id="intel-rk-best-rp">Season Best: --</div>
+                </div>
+                <div class="intel-ranked-stats-col">
+                  <div class="intel-ranked-stat-item"><span>Ranked Matches:</span> <b id="intel-rk-rounds">0</b></div>
+                  <div class="intel-ranked-stat-item"><span>Ranked Win Rate:</span> <b id="intel-rk-win-rate">0%</b></div>
+                  <div class="intel-ranked-stat-item"><span>Ranked Top 10%:</span> <b id="intel-rk-top10-rate">0%</b></div>
+                  <div class="intel-ranked-stat-item"><span>Ranked K/D Ratio:</span> <b id="intel-rk-kd">0.00</b></div>
+                  <div class="intel-ranked-stat-item"><span>Ranked ADR:</span> <b id="intel-rk-adr">0</b></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ranked Section 2: Combat Lethality & Teamwork -->
+            <div class="intel-section">
+              <div class="intel-section-header">
+                <span>⚔️ RANKED COMBAT & TEAMWORK METRICS</span>
+              </div>
+              <div class="intel-grid">
+                <div class="intel-card">
+                  <div class="intel-card-val highlight-gold" id="intel-rk-wins">0</div>
+                  <div class="intel-card-lbl">Ranked Dinners 🏆</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val highlight-cyan" id="intel-rk-top10s">0</div>
+                  <div class="intel-card-lbl">Ranked Top 10s</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val text-red" id="intel-rk-kills">0</div>
+                  <div class="intel-card-lbl">Ranked Kills 🎯</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val" id="intel-rk-deaths">0</div>
+                  <div class="intel-card-lbl">Ranked Deaths 💀</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val" id="intel-rk-assists">0</div>
+                  <div class="intel-card-lbl">Tactical Assists 🤝</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val" id="intel-rk-dbnos">0</div>
+                  <div class="intel-card-lbl">Enemy Knocks (dBNO) 💥</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val text-gold" id="intel-rk-revives">0</div>
+                  <div class="intel-card-lbl">Teammates Revived 💉</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val" id="intel-rk-damage">0</div>
+                  <div class="intel-card-lbl">Total Damage Dealt 🩸</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ranked Section 3: Weapon Accuracy & Season Peak Records -->
+            <div class="intel-section">
+              <div class="intel-section-header">
+                <span>🎯 RANKED ACCURACY & SEASON PEAK RECORDS</span>
+              </div>
+              <div class="intel-grid">
+                <div class="intel-card">
+                  <div class="intel-card-val" id="intel-rk-headshot-rate">0%</div>
+                  <div class="intel-card-lbl">Ranked HS Rate (<b id="intel-rk-hs-kills">0</b> HS)</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val text-gold" id="intel-rk-longest-kill">0m</div>
+                  <div class="intel-card-lbl">Longest Ranked Kill 🏹</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val text-red" id="intel-rk-round-most-kills">0</div>
+                  <div class="intel-card-lbl">Most Kills in 1 Match 🔥</div>
+                </div>
+                <div class="intel-card">
+                  <div class="intel-card-val highlight-cyan" id="intel-rk-avg-rank">--</div>
+                  <div class="intel-card-lbl">Average Ranked Finish #</div>
+                </div>
+              </div>
+            </div>
+          </div><!-- end intel-ranked-sections -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-primary" data-close="modal-player-intel">Close Dossier</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: FULL MATCH TELEMETRY & COMBAT INTEL (KRAFTON OFFICIAL API) -->
+  <div class="modal" id="modal-match-intel">
+    <div class="modal-dialog modal-lg intel-modal-dialog">
+      <div class="modal-header">
+        <div class="intel-header-title-wrap">
+          <span class="intel-badge-icon">🎯</span>
+          <div>
+            <h3 id="match-intel-title">FULL MATCH TELEMETRY & COMBAT DOSSIER</h3>
+            <span class="intel-subtitle">DECRYPTED OFFICIAL KRAFTON MATCH LOGS & SQUAD PARTICIPATION</span>
+          </div>
+        </div>
+        <button class="modal-close-btn" data-close="modal-match-intel">&times;</button>
+      </div>
+
+      <div class="modal-body intel-modal-body">
+        <!-- Match Meta Bar -->
+        <div class="match-intel-meta-bar">
+          <div class="match-meta-item">
+            <span class="meta-label">MAP:</span>
+            <b id="match-intel-map" class="meta-value text-cyan">Taego</b>
+          </div>
+          <div class="match-meta-item">
+            <span class="meta-label">CATEGORY:</span>
+            <b id="match-intel-category" class="meta-value">🎖️ RANKED</b>
+          </div>
+          <div class="match-meta-item">
+            <span class="meta-label">MODE:</span>
+            <b id="match-intel-mode" class="meta-value">SQUAD</b>
+          </div>
+          <div class="match-meta-item">
+            <span class="meta-label">PLAYED:</span>
+            <b id="match-intel-date" class="meta-value">--</b>
+          </div>
+          <div class="match-meta-item">
+            <span class="meta-label">DURATION:</span>
+            <b id="match-intel-duration" class="meta-value">--</b>
+          </div>
+          <div class="match-meta-item">
+            <span class="meta-label">PLACEMENT:</span>
+            <b id="match-intel-placement" class="meta-value text-gold">#1 Finish</b>
+          </div>
+        </div>
+
+        <div class="intel-section">
+          <div class="intel-section-header">
+            <span>⚔️ INDIVIDUAL COMBAT PERFORMANCE & LETHALITY</span>
+          </div>
+          <div class="intel-grid">
+            <div class="intel-card">
+              <div class="intel-card-val text-red" id="match-intel-kills">0</div>
+              <div class="intel-card-lbl">Kills 🎯</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val highlight-gold" id="match-intel-damage">0</div>
+              <div class="intel-card-lbl">Damage Dealt 🩸</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val highlight-cyan" id="match-intel-dbnos">0</div>
+              <div class="intel-card-lbl">Knocks (dBNO) 💥</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-assists">0</div>
+              <div class="intel-card-lbl">Assists 🤝</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-headshots">0</div>
+              <div class="intel-card-lbl">Headshot Kills (<b id="match-intel-hs-pct">0%</b>)</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val text-gold" id="match-intel-longest-kill">0m</div>
+              <div class="intel-card-lbl">Longest Sniper Kill 🏹</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-kill-streaks">0</div>
+              <div class="intel-card-lbl">Highest Kill Streak 🔥</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-kill-place">#--</div>
+              <div class="intel-card-lbl">Server Kill Rank 🏅</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="intel-section">
+          <div class="intel-section-header">
+            <span>🩺 SURVIVAL, LOGISTICS & MEDICAL SUSTENANCE</span>
+          </div>
+          <div class="intel-grid">
+            <div class="intel-card">
+              <div class="intel-card-val text-cyan" id="match-intel-survived">00:00</div>
+              <div class="intel-card-lbl">Time Survived ⏱️</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-death-type">ALIVE</div>
+              <div class="intel-card-lbl">Elimination Status 💀</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val text-gold" id="match-intel-revives">0</div>
+              <div class="intel-card-lbl">Teammates Revived 💉</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-heals">0</div>
+              <div class="intel-card-lbl">Medkits & Bandages (Heals) 🩹</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-boosts">0</div>
+              <div class="intel-card-lbl">Energy Drinks & Painkillers ⚡</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-weapons">0</div>
+              <div class="intel-card-lbl">Weapons Looted 🎒</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="intel-section">
+          <div class="intel-section-header">
+            <span>🚗 MOBILITY, VEHICLES & DISTANCE ODOMETRY</span>
+          </div>
+          <div class="intel-grid">
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-walk">0.0 km</div>
+              <div class="intel-card-lbl">Foot Patrol Distance 🚶</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-ride">0.0 km</div>
+              <div class="intel-card-lbl">Vehicle Drive Distance 🏎️</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-swim">0.0 km</div>
+              <div class="intel-card-lbl">Swim Distance 🏊</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val text-gold" id="match-intel-total-dist">0.0 km</div>
+              <div class="intel-card-lbl">Total Odometry Distance 🗺️</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-veh-destroys">0</div>
+              <div class="intel-card-lbl">Vehicles Blown Up 💣</div>
+            </div>
+            <div class="intel-card">
+              <div class="intel-card-val" id="match-intel-road-kills">0</div>
+              <div class="intel-card-lbl">Vehicular Road Kills 🚗</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Squad Teammates Performance Table -->
+        <div class="intel-section" id="match-intel-squad-section">
+          <div class="intel-section-header">
+            <span>👥 SQUAD ROSTER PARTICIPATION & CONTRIBUTIONS</span>
+          </div>
+          <div class="match-squad-table-wrap">
+            <table class="match-squad-table" id="match-intel-squad-table">
+              <thead>
+                <tr>
+                  <th>Player Nickname</th>
+                  <th>Kills</th>
+                  <th>Damage</th>
+                  <th>Knocks</th>
+                  <th>Assists</th>
+                  <th>Survived</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="match-intel-squad-tbody">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display: flex; justify-content: space-between;">
+        <button class="btn-primary" id="match-intel-launch-replay-btn">▶️ Launch 2D Telemetry Replay</button>
+        <button class="btn-secondary" data-close="modal-match-intel">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script src="assets/leaflet.js"></script>
+  <script src="data/markers_data.js"></script>
+  <script src="app.js"></script>
+  <script src="replay.js"></script>
 </body>
 </html>

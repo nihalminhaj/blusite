@@ -1,0 +1,24 @@
+.leaflet-tooltip.player-hud-tooltip::before {
+  border-top-color: rgba(0, 229, 255, 0.4);
+}
+
+/* Replay Airplane Marker & Flight Path */
+.replay-plane-marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.replay-plane-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.95));
+  transform-origin: center center;
+  transition: transform 0.05s linear;
+}
+.replay-plane-icon-wrap .plane-emoji {
+  font-size: 28px;
+  line-height: 1;
+  display: block;
+}
