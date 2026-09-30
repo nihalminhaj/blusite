@@ -159,7 +159,7 @@
     isPlaying: false,
     currentTime: 0,
     maxDuration: 0,
-    playbackSpeed: 1,
+    playbackSpeed: 5,
     lastFrameTime: null,
     animationFrameId: null,
 
@@ -182,7 +182,7 @@
     currentMatch: null,
     focusPlayerName: '',
     focusTeamId: null,
-    theme: localStorage.getItem('pubg_replay_theme') || 'new', // 'new' (minimalist white) or 'old' (tactical neon)
+    theme: localStorage.getItem('pubg_replay_theme') || 'old', // 'new' (minimalist white) or 'old' (tactical neon)
     squads: [], // sorted list of squads { teamId, rank, members: [playerObj] }
 
     // Parsed telemetry
@@ -632,17 +632,15 @@
     const clean = itemId.replace(/^Item_/, '');
     if (clean.includes('Head')) {
       const lv = clean.includes('Lv3') ? 3 : (clean.includes('Lv2') ? 2 : 1);
-      const names = { 1: 'Motorcycle Helmet', 2: 'Military Helmet', 3: 'Spetsnaz Helmet' };
-      return { type: 'helmet', level: lv, name: `Lv.${lv} ${names[lv] || 'Helmet'}` };
+      return { type: 'helmet', level: lv, name: `Helmet Lv.${lv}` };
     }
     if (clean.includes('Armor')) {
       const lv = clean.includes('Lv3') ? 3 : (clean.includes('Lv2') ? 2 : 1);
-      const names = { 1: 'Police Vest', 2: 'Police Vest', 3: 'Military Vest' };
-      return { type: 'vest', level: lv, name: `Lv.${lv} ${names[lv] || 'Vest'}` };
+      return { type: 'vest', level: lv, name: `Vest Lv.${lv}` };
     }
     if (clean.includes('Back')) {
       const lv = clean.includes('Lv3') ? 3 : (clean.includes('Lv2') ? 2 : 1);
-      return { type: 'backpack', level: lv, name: `Lv.${lv} Backpack` };
+      return { type: 'backpack', level: lv, name: `Backpack Lv.${lv}` };
     }
     return null;
   }
@@ -678,6 +676,7 @@
             gear: { helmet: null, vest: null, backpack: null },
             weapons: [],
             boost: 0,
+            boostEvents: [],
             damageDealt: 0,
             headshots: 0,
             longestKill: 0,
@@ -755,6 +754,7 @@
             gear: { helmet: null, vest: null, backpack: null },
             weapons: [],
             boost: 0,
+            boostEvents: [],
             damageDealt: 0,
             headshots: 0,
             longestKill: 0,
@@ -823,9 +823,19 @@
         const name = e.character.name;
         if (players[name]) {
           const id = e.item.itemId || '';
-          if (id.includes('EnergyDrink')) players[name].boost = Math.min(100, (players[name].boost || 0) + 40);
-          else if (id.includes('PainKiller')) players[name].boost = Math.min(100, (players[name].boost || 0) + 60);
-          else if (id.includes('AdrenalineSyringe')) players[name].boost = 100;
+          let amt = 0;
+          let isAdr = false;
+          if (id.includes('EnergyDrink')) amt = 40;
+          else if (id.includes('PainKiller')) amt = 60;
+          else if (id.includes('AdrenalineSyringe')) { amt = 100; isAdr = true; }
+          if (amt > 0) {
+            let itemT = e.elapsedTime;
+            if (itemT === undefined && e._D && startTime) {
+              itemT = Math.max(0, (new Date(e._D).getTime() - startTime) / 1000);
+            }
+            if (!players[name].boostEvents) players[name].boostEvents = [];
+            players[name].boostEvents.push({ t: itemT || 0, amount: amt, isAdrenaline: isAdr });
+          }
         }
       }
     });
@@ -1440,7 +1450,8 @@
       state.isPlaying = true;
       state.currentTime = 0;
       state.maxDuration = match.durationSeconds || 1800;
-      state.playbackSpeed = 1;
+      state.playbackSpeed = 5;
+      setReplaySpeed(5);
       state.currentMatch = match;
       state.focusPlayerName = initialFocus;
       state.focusTeamId = parsed.focusTeamId;
@@ -1807,7 +1818,8 @@
       if (p.name === state.searchedPlayerName && state.survivalMastery && state.survivalMastery.level) {
         const tier = state.survivalMastery.tier || 1;
         lvlEl.style.display = 'inline-flex';
-        lvlEl.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /> LVL ${state.survivalMastery.level}`;
+        lvlEl.className = `survival-level-badge tier-${tier}`;
+        lvlEl.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /><span class="survival-tier-tag">T${tier}</span><span class="survival-divider"></span><span class="survival-lvl-num">LVL ${state.survivalMastery.level}</span>`;
         lvlEl.title = `Survival Mastery Tier ${tier} - Level ${state.survivalMastery.level}`;
       } else {
         lvlEl.style.display = 'none';
@@ -1845,11 +1857,30 @@
       hpBarEl.className = hp <= 25 ? 'vital-bar-fill hp danger' : (hp <= 55 ? 'vital-bar-fill hp warning' : 'vital-bar-fill hp');
     }
 
-    // Boost Bar (decays slowly over match)
-    let currentBoost = p.boost || 0;
-    if (p.deadAt && currentTime > p.deadAt) currentBoost = 0;
-    else if (currentTime > 0) {
-      currentBoost = Math.max(0, Math.round(currentBoost - (currentTime / 30)));
+    // Accurate Live Boost Calculation based on actual consumed items and decay over time
+    let currentBoost = 0;
+    if (p.jumpTime && currentTime < p.jumpTime) {
+      currentBoost = 0; // Strictly 0 before jump / landing
+    } else if (p.deadAt && currentTime > p.deadAt) {
+      currentBoost = 0; // Eliminated
+    } else if (p.boostEvents && p.boostEvents.length > 0) {
+      let b = 0;
+      let lastT = p.jumpTime || 0;
+      for (const ev of p.boostEvents) {
+        if (ev.t > currentTime) break;
+        const diff = ev.t - lastT;
+        if (diff > 0) {
+          b = Math.max(0, b - (diff / 8));
+        }
+        if (ev.isAdrenaline) b = 100;
+        else b = Math.min(100, b + ev.amount);
+        lastT = ev.t;
+      }
+      const tailDiff = currentTime - lastT;
+      if (tailDiff > 0) {
+        b = Math.max(0, b - (tailDiff / 8));
+      }
+      currentBoost = Math.round(b);
     }
     const boostValEl = document.getElementById('dossier-boost-val');
     if (boostValEl) boostValEl.textContent = `${currentBoost}%`;
@@ -2454,34 +2485,46 @@
     const killfeed = document.getElementById('replay-killfeed');
     if (killfeed) killfeed.style.display = 'none';
 
+    const rightHud = document.getElementById('replay-right-hud');
+    if (rightHud) rightHud.style.display = 'none';
+
     if (resetSidebar) {
       showMatchesSubpane();
-      if (app) app.showToast('Exited Replay mode');
+      // Ensure left sidebar is uncollapsed
+      const sb = document.getElementById('sidebar');
+      if (sb && sb.classList.contains('collapsed')) {
+        const toggleBtn = document.getElementById('toggle-sidebar-btn');
+        if (toggleBtn) toggleBtn.click();
+      }
+      if (app && app.showToast) app.showToast('Exited Replay mode');
     }
   }
 
   // SIDEBAR SUB-VIEW SWITCHING
   function showMatchesSubpane() {
     const vMatches = document.getElementById('replay-view-matches');
-    const vRoster = document.getElementById('replay-view-roster');
     if (vMatches) vMatches.style.display = 'block';
-    if (vRoster) vRoster.style.display = 'none';
+    const rightHud = document.getElementById('replay-right-hud');
+    if (rightHud) rightHud.style.display = 'none';
   }
 
   function showRosterSubpane(match) {
-    const vMatches = document.getElementById('replay-view-matches');
-    const vRoster = document.getElementById('replay-view-roster');
-    if (vMatches) vMatches.style.display = 'none';
-    if (vRoster) vRoster.style.display = 'block';
+    const rightHud = document.getElementById('replay-right-hud');
+    if (rightHud) rightHud.style.display = 'flex';
 
     const mapName = PUBG_MAP_DISPLAY_NAMES[match.mapName] || match.mapName || 'TAEGO';
-    document.getElementById('active-match-map').textContent = mapName;
-    document.getElementById('active-match-mode').textContent = (match.gameMode || 'SQUAD').toUpperCase();
-    document.getElementById('active-match-time').textContent = formatTime(match.durationSeconds);
-    document.getElementById('tracking-player-name').textContent = state.focusPlayerName;
+    const mapEl = document.getElementById('active-match-map');
+    if (mapEl) mapEl.textContent = mapName;
+    const modeEl = document.getElementById('active-match-mode');
+    if (modeEl) modeEl.textContent = (match.gameMode || 'SQUAD').toUpperCase();
+    const timeEl = document.getElementById('active-match-time');
+    if (timeEl) timeEl.textContent = formatTime(match.durationSeconds);
+    const trackNameEl = document.getElementById('tracking-player-name');
+    if (trackNameEl) trackNameEl.textContent = state.focusPlayerName;
 
     const p = state.players[state.focusPlayerName];
-    document.getElementById('tracking-player-stats').textContent = `🎯 ${p ? p.kills : 0} Kills`;
+    const trackStatsEl = document.getElementById('tracking-player-stats');
+    if (trackStatsEl) trackStatsEl.textContent = `🎯 ${p ? p.kills : 0} Kills`;
 
     renderSidebarRoster();
   }
@@ -2702,7 +2745,8 @@
         const tier = survival.tier || 1;
         if (intelLvlBadge) {
           intelLvlBadge.style.display = 'inline-flex';
-          intelLvlBadge.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /> LVL ${survival.level}`;
+          intelLvlBadge.className = `survival-level-badge tier-${tier}`;
+          intelLvlBadge.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /><span class="survival-tier-tag">T${tier}</span><span class="survival-divider"></span><span class="survival-lvl-num">LVL ${survival.level}</span>`;
           intelLvlBadge.title = `Survival Mastery Tier ${tier} - Level ${survival.level}`;
         }
       } else {
@@ -3246,7 +3290,8 @@
       const tier = state.survivalMastery.tier || 1;
       if (lvlEl) {
         lvlEl.style.display = 'inline-flex';
-        lvlEl.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /> LVL ${state.survivalMastery.level}`;
+        lvlEl.className = `survival-level-badge tier-${tier}`;
+        lvlEl.innerHTML = `<img src="${getSurvivalTierIcon(tier)}" class="survival-tier-img" alt="Tier ${tier}" /><span class="survival-tier-tag">T${tier}</span><span class="survival-divider"></span><span class="survival-lvl-num">LVL ${state.survivalMastery.level}</span>`;
         lvlEl.title = `Survival Mastery Tier ${tier} - Level ${state.survivalMastery.level}`;
       }
     } else {
@@ -3664,6 +3709,80 @@
     `;
   }
 
+  // SEARCH HISTORY SYSTEM (MAX 5 VALID PLAYERS)
+  function getSearchHistory() {
+    try {
+      return JSON.parse(localStorage.getItem('pubg_valid_players_history') || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveValidPlayerToHistory(name) {
+    if (!name || name.trim().length < 2) return;
+    const clean = name.trim();
+    try {
+      let history = getSearchHistory();
+      history = history.filter(p => p.toLowerCase() !== clean.toLowerCase());
+      history.unshift(clean);
+      if (history.length > 5) history = history.slice(0, 5);
+      localStorage.setItem('pubg_valid_players_history', JSON.stringify(history));
+      renderSearchHistoryChips();
+    } catch (e) {
+      console.warn('Failed to save search history', e);
+    }
+  }
+
+  function removePlayerFromHistory(name) {
+    try {
+      let history = getSearchHistory();
+      history = history.filter(p => p.toLowerCase() !== name.toLowerCase());
+      localStorage.setItem('pubg_valid_players_history', JSON.stringify(history));
+      renderSearchHistoryChips();
+    } catch (e) {}
+  }
+
+  function renderSearchHistoryChips() {
+    const container = document.getElementById('search-history-container');
+    const chipsEl = document.getElementById('search-history-chips');
+    if (!container || !chipsEl) return;
+
+    const history = getSearchHistory();
+    if (history.length === 0) {
+      container.style.display = 'none';
+      chipsEl.innerHTML = '';
+      return;
+    }
+
+    container.style.display = 'block';
+    chipsEl.innerHTML = history.map(name => `
+      <div class="history-chip" data-player="${name}">
+        <span>${name}</span>
+        <button class="history-chip-remove" data-remove="${name}" title="Remove from history">&times;</button>
+      </div>
+    `).join('');
+
+    chipsEl.querySelectorAll('.history-chip').forEach(chip => {
+      chip.addEventListener('click', (e) => {
+        if (e.target.classList.contains('history-chip-remove')) return;
+        const player = chip.getAttribute('data-player');
+        const input = document.getElementById('sidebar-replay-input');
+        if (input && player) {
+          input.value = player;
+          performPlayerSearch();
+        }
+      });
+    });
+
+    chipsEl.querySelectorAll('.history-chip-remove').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const player = btn.getAttribute('data-remove');
+        if (player) removePlayerFromHistory(player);
+      });
+    });
+  }
+
   // SEARCH PLAYER MATCHES
   async function performPlayerSearch() {
     const input = document.getElementById('sidebar-replay-input');
@@ -3677,7 +3796,6 @@
     }
 
     state.searchedPlayerName = name;
-    localStorage.setItem('pubg_replay_last_player', name);
     localStorage.setItem('pubg_replay_last_shard', state.selectedShard);
 
     if (statusEl) {
@@ -3690,16 +3808,24 @@
     // 1. Fetch Official Krafton Player Profile, Clan, Career Stats & Real-Time Matches in parallel
     const kraftonPromise = fetchKraftonPlayer(name, state.selectedShard).then(async (kPlayer) => {
       state.playerProfile = { id: kPlayer.id, name: kPlayer.attributes?.name, clanId: kPlayer.attributes?.clanId };
+      saveValidPlayerToHistory(kPlayer.attributes?.name || name);
 
       // Set date slider max based on account creation date if available
       if (kPlayer.attributes?.createdAt) {
         const createdDate = new Date(kPlayer.attributes.createdAt);
         if (!isNaN(createdDate.getTime())) {
+          state.playerCreatedAt = createdDate;
           const accountAgeDays = Math.max(30, Math.ceil((Date.now() - createdDate.getTime()) / (1000 * 60 * 60 * 24)));
-          const sliderEl = document.getElementById('match-date-slider');
-          if (sliderEl) sliderEl.max = accountAgeDays;
           const profSlider = document.getElementById('profile-date-slider');
-          if (profSlider) profSlider.max = accountAgeDays;
+          if (profSlider) {
+            profSlider.min = 0;
+            profSlider.max = accountAgeDays;
+            profSlider.value = 0;
+          }
+          const profLabel = document.getElementById('profile-date-slider-val');
+          if (profLabel) {
+            profLabel.textContent = `All Time (${createdDate.getFullYear()} – Present)`;
+          }
           const intelSlider = document.getElementById('intel-date-slider');
           if (intelSlider) intelSlider.max = accountAgeDays;
         }
@@ -3948,17 +4074,11 @@
         viewReplay.style.display = 'block';
       }
 
-      // Auto-focus search input and auto-search if empty
+      // Render valid player history chips (do NOT set fake default or auto-search)
+      renderSearchHistoryChips();
       const input = document.getElementById('sidebar-replay-input');
       if (input) {
-        if (!input.value) {
-          const saved = localStorage.getItem('pubg_replay_last_player') || 'XXmariyahXX';
-          input.value = saved;
-        }
-        // Auto-search if no matches are loaded yet
-        if (!state.matches || state.matches.length === 0) {
-          performPlayerSearch();
-        }
+        input.focus();
       }
     } else {
       if (tabMortarBtn) tabMortarBtn.classList.add('active');
@@ -4072,9 +4192,16 @@
       state.profileDateFilterDays = days;
       if (profDateSlider) profDateSlider.value = days;
       if (profDateSliderLabel) {
-        if (days === 0) profDateSliderLabel.textContent = 'All Time';
-        else if (days === 1) profDateSliderLabel.textContent = 'Today (24h)';
-        else profDateSliderLabel.textContent = `Last ${days} Days`;
+        if (days === 0) {
+          const year = state.playerCreatedAt ? state.playerCreatedAt.getFullYear() : '';
+          profDateSliderLabel.textContent = year ? `All Time (${year} – Present)` : 'All Time (Lifetime)';
+        } else if (days === 1) {
+          profDateSliderLabel.textContent = 'Today (24h)';
+        } else {
+          const fromDate = new Date(Date.now() - days * 86400000);
+          const monthYear = fromDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short' });
+          profDateSliderLabel.textContent = `${monthYear} – Today`;
+        }
       }
       document.querySelectorAll('.profile-date-chip').forEach(chip => {
         const cDays = parseInt(chip.getAttribute('data-pdays'), 10);
@@ -4117,49 +4244,101 @@
       });
     });
 
-    // Back to Matches button in Roster view
+    // Back to Matches button in Right HUD
     const backBtn = document.getElementById('roster-back-to-matches-btn');
     if (backBtn) {
       backBtn.addEventListener('click', () => {
-        showMatchesSubpane();
+        exitReplayMode(true);
       });
     }
 
-    // Roster Search / Filter
-    const rosterSearch = document.getElementById('roster-search-input');
-    if (rosterSearch) {
-      rosterSearch.addEventListener('input', () => {
-        renderSidebarRoster(rosterSearch.value);
+    // Close button on right HUD
+    const closeHudBtn = document.getElementById('close-right-hud-btn');
+    if (closeHudBtn) {
+      closeHudBtn.addEventListener('click', () => {
+        const rightHud = document.getElementById('replay-right-hud');
+        if (rightHud) rightHud.style.display = 'none';
       });
     }
 
-    // Replay Bar: Play / Pause
-    const playBtn = document.getElementById('replay-play-btn');
-    if (playBtn) playBtn.addEventListener('click', togglePlayPause);
-
-    // Replay Bar: Scrub slider
-    const slider = document.getElementById('replay-scrub-slider');
-    if (slider) {
-      slider.addEventListener('input', () => {
-        state.currentTime = parseFloat(slider.value);
-        renderReplayFrame(state.currentTime);
+    // Toggle button on replay controller bar
+    const toggleHudBtn = document.getElementById('toggle-right-hud-btn');
+    if (toggleHudBtn) {
+      toggleHudBtn.addEventListener('click', () => {
+        const rightHud = document.getElementById('replay-right-hud');
+        if (rightHud) {
+          rightHud.style.display = (rightHud.style.display === 'none' ? 'flex' : 'none');
+        }
       });
     }
 
-    // Replay Bar: Speed Buttons
-    document.querySelectorAll('.replay-speed-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const speed = parseFloat(btn.getAttribute('data-speed'));
-        if (speed) setReplaySpeed(speed);
-      });
+    // Browser back / mouse back button listener
+    window.addEventListener('popstate', (e) => {
+      if (state.isReplayActive) {
+        exitReplayMode(true);
+      }
     });
 
-    // Replay Bar: Route Trail Toggle
-    const trailToggle = document.getElementById('replay-toggle-trail');
-    if (trailToggle) {
-      trailToggle.addEventListener('change', () => {
+    // Modals: Settings and Field Guide
+    const openGuideBtn = document.getElementById('open-guide-btn');
+    if (openGuideBtn) {
+      openGuideBtn.addEventListener('click', () => {
+        const modal = document.getElementById('modal-guide');
+        if (modal) modal.classList.add('open');
+      });
+    }
+
+    const openGuideFromSettings = document.getElementById('open-guide-from-settings');
+    if (openGuideFromSettings) {
+      openGuideFromSettings.addEventListener('click', () => {
+        const sModal = document.getElementById('modal-settings');
+        if (sModal) sModal.classList.remove('open');
+        const modal = document.getElementById('modal-guide');
+        if (modal) modal.classList.add('open');
+      });
+    }
+
+    const openSettingsBtn = document.getElementById('open-settings-btn');
+    if (openSettingsBtn) {
+      openSettingsBtn.addEventListener('click', () => {
+        const modal = document.getElementById('modal-settings');
+        if (modal) modal.classList.add('open');
+      });
+    }
+
+    const replaySettingsBtn = document.getElementById('replay-settings-btn');
+    if (replaySettingsBtn) {
+      replaySettingsBtn.addEventListener('click', () => {
+        const modal = document.getElementById('modal-settings');
+        if (modal) modal.classList.add('open');
+      });
+    }
+
+    const openCalibFromSettings = document.getElementById('open-calibration-from-settings');
+    if (openCalibFromSettings) {
+      openCalibFromSettings.addEventListener('click', () => {
+        const sModal = document.getElementById('modal-settings');
+        if (sModal) sModal.classList.remove('open');
+        const modal = document.getElementById('modal-calibration');
+        if (modal) modal.classList.add('open');
+      });
+    }
+
+    // Settings modal toggles
+    const settingTracers = document.getElementById('setting-toggle-tracers');
+    if (settingTracers) {
+      settingTracers.addEventListener('change', () => {
+        if (!settingTracers.checked && state.tracerLayerGroup) {
+          state.tracerLayerGroup.clearLayers();
+        }
+      });
+    }
+
+    const settingTrail = document.getElementById('setting-toggle-trail');
+    if (settingTrail) {
+      settingTrail.addEventListener('change', () => {
         if (state.trailPolyline && state.replayLayerGroup) {
-          if (trailToggle.checked) {
+          if (settingTrail.checked) {
             state.replayLayerGroup.addLayer(state.trailPolyline);
           } else {
             state.replayLayerGroup.removeLayer(state.trailPolyline);
@@ -4168,69 +4347,21 @@
       });
     }
 
-    // Replay Bar: Squad Only Toggle
-    const squadToggle = document.getElementById('replay-toggle-squad-only');
-    if (squadToggle) {
-      squadToggle.addEventListener('change', () => {
+    const settingSquadOnly = document.getElementById('setting-toggle-squad-only');
+    if (settingSquadOnly) {
+      settingSquadOnly.addEventListener('change', () => {
         renderReplayFrame(state.currentTime);
       });
     }
 
-    // Replay Bar: Kills & Tracers Toggles
-    const killsToggle = document.getElementById('replay-toggle-kills');
-    if (killsToggle) {
-      killsToggle.addEventListener('change', () => {
-        renderReplayFrame(state.currentTime);
+    // Generic [data-close] modal handler
+    document.querySelectorAll('[data-close]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-close');
+        const modal = document.getElementById(targetId);
+        if (modal) modal.classList.remove('open');
       });
-    }
-
-    const tracersToggle = document.getElementById('replay-toggle-tracers');
-    if (tracersToggle) {
-      tracersToggle.addEventListener('change', () => {
-        renderReplayFrame(state.currentTime);
-      });
-    }
-
-    // Unified Theme Switcher: Replay Bar, Floating Map Button, Sidebar Button, and 'T' Shortcut
-    const updateThemeUi = () => {
-      const isNew = (state.theme === 'new');
-      const textNew = 'Icons: New (White)';
-      const textOld = 'Icons: Old (Color)';
-      const shortNew = 'Icons: New';
-      const shortOld = 'Icons: Old';
-
-      const replayLabel = document.getElementById('replay-theme-label');
-      if (replayLabel) replayLabel.textContent = isNew ? shortNew : shortOld;
-
-      const floatingLabel = document.getElementById('floating-theme-label');
-      if (floatingLabel) floatingLabel.textContent = isNew ? shortNew : shortOld;
-
-      const sidebarLabel = document.getElementById('sidebar-theme-label');
-      if (sidebarLabel) sidebarLabel.textContent = isNew ? textNew : textOld;
-    };
-
-    const toggleIconTheme = () => {
-      state.theme = (state.theme === 'new') ? 'old' : 'new';
-      localStorage.setItem('pubg_replay_theme', state.theme);
-      updateThemeUi();
-      if (state.isReplayActive) {
-        renderReplayFrame(state.currentTime);
-      }
-      if (window.PUBG_APP && window.PUBG_APP.showToast) {
-        window.PUBG_APP.showToast(`Player Icons: ${state.theme === 'new' ? 'New (Minimalist White)' : 'Old (Classic Tactical)'}`);
-      }
-    };
-
-    const themeBtn = document.getElementById('replay-theme-toggle');
-    if (themeBtn) themeBtn.addEventListener('click', toggleIconTheme);
-
-    const floatThemeBtn = document.getElementById('floating-theme-btn');
-    if (floatThemeBtn) floatThemeBtn.addEventListener('click', toggleIconTheme);
-
-    const sidebarThemeBtn = document.getElementById('sidebar-theme-toggle-btn');
-    if (sidebarThemeBtn) sidebarThemeBtn.addEventListener('click', toggleIconTheme);
-
-    updateThemeUi();
+    });
 
     // Replay Bar: Exit button
     const exitBtn = document.getElementById('replay-exit-btn');
@@ -4356,18 +4487,42 @@
         } else {
           switchSidebarTab('replay');
         }
-      } else if (e.key === 't' || e.key === 'T') {
-        toggleIconTheme();
       } else if (state.isReplayActive) {
         if (e.code === 'Space') {
           e.preventDefault();
           togglePlayPause();
         } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
           state.currentTime = Math.max(0, state.currentTime - 10);
+          const slider = document.getElementById('replay-scrub-slider');
+          if (slider) slider.value = state.currentTime;
           renderReplayFrame(state.currentTime);
         } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
           state.currentTime = Math.min(state.maxDuration, state.currentTime + 10);
+          const slider = document.getElementById('replay-scrub-slider');
+          if (slider) slider.value = state.currentTime;
           renderReplayFrame(state.currentTime);
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          const speeds = [1, 2, 5, 10, 20];
+          const idx = speeds.indexOf(state.playbackSpeed);
+          if (idx < speeds.length - 1) {
+            setReplaySpeed(speeds[idx + 1]);
+            if (window.PUBG_APP && window.PUBG_APP.showToast) {
+              window.PUBG_APP.showToast(`Speed: ${speeds[idx + 1]}x`);
+            }
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          const speeds = [1, 2, 5, 10, 20];
+          const idx = speeds.indexOf(state.playbackSpeed);
+          if (idx > 0) {
+            setReplaySpeed(speeds[idx - 1]);
+            if (window.PUBG_APP && window.PUBG_APP.showToast) {
+              window.PUBG_APP.showToast(`Speed: ${speeds[idx - 1]}x`);
+            }
+          }
         }
       }
     });

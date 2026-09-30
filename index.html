@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PUBG Tactical Mortar Computer & Interactive Map</title>
   <link rel="stylesheet" href="assets/leaflet.css">
-  <link rel="stylesheet" href="style.css?v=2.2">
+  <link rel="stylesheet" href="style.css?v=2.4">
 </head>
 <body>
   <div id="app-container">
@@ -250,20 +250,20 @@
 
           <!-- Player Input Row -->
           <div class="replay-input-group">
-            <input type="text" id="sidebar-replay-input" class="form-input" placeholder="Search player name (e.g. XXmariyahXX)..." autocomplete="off" value="XXmariyahXX">
+            <input type="text" id="sidebar-replay-input" class="form-input" placeholder="Enter PUBG player nickname..." autocomplete="off">
             <button class="btn-primary" id="sidebar-replay-search-btn" title="Search player match history">
               <span>🔍</span>
             </button>
           </div>
 
+          <!-- RECENT VALID PLAYERS HISTORY CHIPS (MAX 5) -->
+          <div id="search-history-container" class="search-history-container" style="display: none;">
+            <div class="history-label">Recent Players:</div>
+            <div id="search-history-chips" class="search-history-chips"></div>
+          </div>
+
           <div id="sidebar-replay-status" class="sidebar-replay-status">
             Search any player on Steam/Console to stream official 2D match replays.
-          </div>
-          <div class="sidebar-theme-switch-row" style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 11px; color: #94a3b8; font-weight: 600;">Player Icon Style:</span>
-            <button id="sidebar-theme-toggle-btn" class="replay-theme-btn" title="Toggle Player Icon Theme (New Minimalist White vs Old Tactical Colors)">
-              <span>🎨</span> <span id="sidebar-theme-label">Icons: New (White)</span>
-            </button>
           </div>
         </div>
 
@@ -366,17 +366,13 @@
               </div>
             </div>
 
-            <!-- Date / Recency Filter & Slider -->
+            <!-- Date / Recency Filter -->
             <div class="replay-date-filter-row">
               <div class="date-filter-chips">
                 <button class="date-filter-chip active" data-days="0">All Time</button>
                 <button class="date-filter-chip" data-days="1">Today ⏱️</button>
                 <button class="date-filter-chip" data-days="7">7 Days</button>
                 <button class="date-filter-chip" data-days="30">30 Days</button>
-              </div>
-              <div class="date-slider-wrap">
-                <span class="date-slider-label">Window: <b id="date-slider-val">All Time</b></span>
-                <input type="range" id="match-date-slider" min="0" max="60" value="0" class="date-slider-input" title="Slide to filter matches by recency (in days)">
               </div>
             </div>
           </div>
@@ -388,122 +384,6 @@
           </div>
         </div>
 
-        <!-- SUB-VIEW B: ACTIVE MATCH ROSTER & DETAILS -->
-        <div id="replay-view-roster" class="replay-subpane" style="display: none;">
-          <div class="section-block replay-roster-header-box">
-            <button id="roster-back-to-matches-btn" class="btn-primary" style="width: 100%; margin-bottom: 10px; font-size: 12px; padding: 6px 12px;">
-              <span>◀</span> Back to Matches
-            </button>
-            <div class="active-match-meta">
-              <div class="match-meta-row">
-                <span id="active-match-map" class="meta-map-badge">TAEGO</span>
-                <span id="active-match-mode" class="meta-mode-badge">SQUAD</span>
-                <span id="active-match-time" class="meta-time">28m 24s</span>
-              </div>
-              <div class="match-meta-stats">
-                <span>Spectating: <b id="tracking-player-name" style="color: #ffea00;">--</b></span>
-                <span id="tracking-player-stats" style="font-size: 11px; color: var(--text-muted);">🎯 0 Kills</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- OPERATIVE TELEMETRY DOSSIER (DEEP TELEMETRY & ANTI-CHEAT ANALYSIS) -->
-          <div id="roster-player-dossier" class="player-dossier-card" style="display: none;">
-            <div class="dossier-header">
-              <div class="dossier-avatar" id="dossier-avatar">⭐</div>
-              <div class="dossier-names">
-                <div style="display: flex; align-items: center; gap: 6px;">
-                  <div class="dossier-player-name" id="dossier-name">--</div>
-                  <span id="dossier-survival-level" class="survival-level-badge" style="display: none;"><img src="assets/tier_1.png" class="survival-tier-img" alt="Tier" /> LVL --</span>
-                </div>
-                <div class="dossier-team-tag" id="dossier-tag">Squad #--</div>
-              </div>
-              <div class="dossier-status-pill" id="dossier-status">ALIVE</div>
-            </div>
-
-            <!-- Live Vitals: HP & Boost Bars -->
-            <div class="dossier-vitals">
-              <div class="vital-row">
-                <div class="vital-label">
-                  <span>HEALTH</span>
-                  <b id="dossier-hp-val">100 / 100</b>
-                </div>
-                <div class="vital-bar-track">
-                  <div class="vital-bar-fill hp" id="dossier-hp-bar" style="width: 100%;"></div>
-                </div>
-              </div>
-              <div class="vital-row">
-                <div class="vital-label">
-                  <span>BOOST GAUGE</span>
-                  <b id="dossier-boost-val" style="color: #ffb703;">0%</b>
-                </div>
-                <div class="vital-bar-track">
-                  <div class="vital-bar-fill boost" id="dossier-boost-bar" style="width: 0%;"></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Tactical Equipment (Helmet, Armor, Backpack) -->
-            <div class="dossier-gear-grid">
-              <div class="gear-slot" id="gear-helmet">
-                <span class="gear-icon">🪖</span>
-                <div class="gear-info">
-                  <span class="gear-type">HELMET</span>
-                  <span class="gear-name" id="dossier-helmet">None</span>
-                </div>
-              </div>
-              <div class="gear-slot" id="gear-vest">
-                <span class="gear-icon">🛡️</span>
-                <div class="gear-info">
-                  <span class="gear-type">ARMOR</span>
-                  <span class="gear-name" id="dossier-vest">None</span>
-                </div>
-              </div>
-              <div class="gear-slot" id="gear-backpack">
-                <span class="gear-icon">🎒</span>
-                <div class="gear-info">
-                  <span class="gear-type">BACKPACK</span>
-                  <span class="gear-name" id="dossier-backpack">None</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Weapon Loadout -->
-            <div class="dossier-weapons-section">
-              <span class="dossier-section-title">EQUIPPED ARSENAL</span>
-              <div class="dossier-weapons-list" id="dossier-weapons-list">
-                <span class="empty-weapon-text">No equipped weapons</span>
-              </div>
-            </div>
-
-            <!-- Anti-Cheat & Combat Anomaly Heuristics -->
-            <div class="dossier-integrity" id="dossier-integrity-box">
-              <div class="integrity-badge normal" id="dossier-integrity-badge">
-                <span id="dossier-integrity-icon">🛡️</span>
-                <span id="dossier-integrity-title">NORMAL PLAYSTYLE</span>
-              </div>
-              <div class="integrity-metrics" id="dossier-integrity-metrics">
-                <span>HS Kill: <b id="dossier-hs-rate">0%</b></span>
-                <span>Longest: <b id="dossier-longest-kill">0m</b></span>
-                <span>Dmg: <b id="dossier-total-dmg">0</b></span>
-              </div>
-            </div>
-
-            <!-- Inspect Full Account Intel Button for Tracked Player -->
-            <button id="roster-view-full-intel-btn" class="classified-dossier-btn" style="margin-top: 10px;" title="View Full Classified Account Dossier for this player">
-              <span class="dossier-btn-icon">📁</span>
-              <span class="dossier-btn-text">INSPECT FULL ACCOUNT INTEL</span>
-              <span class="dossier-btn-badge">RAW DATA</span>
-            </button>
-          </div>
-
-          <!-- Roster Search & Filter -->
-          <div class="section-block" style="padding: 8px 14px;">
-            <input type="text" id="roster-search-input" class="form-input" placeholder="Filter player in roster..." style="font-size: 12px; height: 32px;">
-          </div>
-
-          <!-- Squad Roster List -->
-          <div id="sidebar-roster-list" class="sidebar-roster-list"></div>
         </div>
       </div>
       <!-- END #replay-sidebar-view -->
@@ -511,19 +391,19 @@
 
     <!-- MAIN MAP VIEWPORT -->
     <main id="map-viewport">
-      <!-- FLOATING QUICK CONTROLS -->
+      <!-- CLEAN PRO FLOATING QUICK CONTROLS -->
       <div class="map-floating-controls">
         <button class="map-floating-btn" id="toggle-sidebar-btn" title="Toggle Sidebar HUD (Shortcut: H)">
-          <span id="sidebar-toggle-icon">◀</span> <span id="sidebar-toggle-text">Hide HUD</span>
+          <span id="sidebar-toggle-icon">◀</span> <span id="sidebar-toggle-text">HUD</span>
         </button>
         <button class="map-floating-btn" id="full-map-view-btn" title="Reset to Full Map View (Shortcut: M)">
-          <span>🗺️</span> Full Map (M)
+          <span>🗺️</span> Full Map
         </button>
-        <button class="map-floating-btn" id="floating-replay-btn" title="2D Match Replays & Player Tracker (Shortcut: R)">
-          <span>🎬</span> Replay (R)
+        <button class="map-floating-btn" id="open-guide-btn" title="Tactical Field Guide & Map Legend">
+          <span>📖</span> Field Guide
         </button>
-        <button class="map-floating-btn" id="floating-theme-btn" title="Switch Player Icon Theme (New White vs Old Colors) - Shortcut: T">
-          <span>🎨</span> <span id="floating-theme-label">Icons: New</span>
+        <button class="map-floating-btn" id="open-settings-btn" title="Tactical Map & Replay Settings">
+          <span>⚙️</span> Settings
         </button>
       </div>
 
@@ -536,7 +416,7 @@
       <!-- REPLAY KILLFEED TICKER -->
       <div id="replay-killfeed" class="replay-killfeed" style="display: none;"></div>
 
-      <!-- REPLAY TIMELINE CONTROLLER BAR (pubg.sh Layout) -->
+      <!-- REPLAY TIMELINE CONTROLLER BAR (BOTTOM PUBG.SH LAYOUT) -->
       <div id="replay-controller-bar" class="replay-controller-bar" style="display: none;">
         <div class="replay-meta-left">
           <div id="replay-match-date" class="replay-match-date">Match Replay</div>
@@ -556,26 +436,17 @@
         <div class="replay-controls-right">
           <button id="replay-play-btn" class="replay-play-btn" title="Play / Pause (Space)">▶</button>
           <div class="replay-speed-selector">
-            <button class="replay-speed-btn active" data-speed="1">1x</button>
+            <button class="replay-speed-btn" data-speed="1">1x</button>
             <button class="replay-speed-btn" data-speed="2">2x</button>
-            <button class="replay-speed-btn" data-speed="5">5x</button>
+            <button class="replay-speed-btn active" data-speed="5">5x</button>
             <button class="replay-speed-btn" data-speed="10">10x</button>
             <button class="replay-speed-btn" data-speed="20">20x</button>
           </div>
-          <label class="replay-toggle-pill" title="Show only spectated player & squad (pubg.sh mode)">
-            <input type="checkbox" id="replay-toggle-squad-only">
-            <span>Squad</span>
-          </label>
-          <label class="replay-toggle-pill" title="Toggle bullet tracers">
-            <input type="checkbox" id="replay-toggle-tracers" checked>
-            <span>Tracers</span>
-          </label>
-          <label class="replay-toggle-pill" title="Auto-center camera on spectated player">
-            <input type="checkbox" id="replay-toggle-follow">
-            <span>Follow</span>
-          </label>
-          <button id="replay-theme-toggle" class="replay-theme-btn" title="Toggle Theme: New Minimalist vs Classic Neon (Shortcut: T)">
-            <span>🎨</span> <span id="replay-theme-label">Theme: New</span>
+          <button class="replay-hud-btn" id="toggle-right-hud-btn" title="Toggle Spectator Roster & Dossier (Right Side)">
+            <span>📋</span> Roster
+          </button>
+          <button class="replay-hud-btn" id="replay-settings-btn" title="Replay Display Settings">
+            <span>⚙️</span>
           </button>
           <button id="replay-exit-btn" class="replay-exit-btn" title="Exit Replay Mode">✕ Exit</button>
         </div>
@@ -598,6 +469,131 @@
         <span>ZOOM: <b id="hud-zoom-val">100%</b></span>
       </div>
     </main>
+
+    <!-- RIGHT SIDE SPECTATOR & DOSSIER HUD -->
+    <aside id="replay-right-hud" class="replay-right-hud" style="display: none;">
+      <div class="right-hud-header">
+        <button id="roster-back-to-matches-btn" class="hud-back-btn" title="Back to Matches List">
+          <span>◀</span> Back to Matches
+        </button>
+        <button id="close-right-hud-btn" class="hud-close-btn" title="Close Panel">✕</button>
+      </div>
+
+      <div class="right-hud-content">
+        <!-- Active Match Header Meta -->
+        <div class="section-block replay-roster-header-box" style="margin: 8px 12px 6px 12px;">
+          <div class="active-match-meta">
+            <div class="match-meta-row">
+              <span id="active-match-map" class="meta-map-badge">TAEGO</span>
+              <span id="active-match-mode" class="meta-mode-badge">SQUAD</span>
+              <span id="active-match-time" class="meta-time">28m 24s</span>
+            </div>
+            <div class="match-meta-stats" style="margin-top: 6px;">
+              <span>Spectating: <b id="tracking-player-name" style="color: #ffea00;">--</b></span>
+              <span id="tracking-player-stats" style="font-size: 11px; color: var(--text-muted);">🎯 0 Kills</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- OPERATIVE TELEMETRY DOSSIER (DEEP TELEMETRY & ANTI-CHEAT ANALYSIS) -->
+        <div id="roster-player-dossier" class="player-dossier-card" style="display: none;">
+          <div class="dossier-header">
+            <div class="dossier-avatar" id="dossier-avatar">⭐</div>
+            <div class="dossier-names">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <div class="dossier-player-name" id="dossier-name">--</div>
+                <span id="dossier-survival-level" class="survival-level-badge" style="display: none;"><img src="assets/tier_1.png" class="survival-tier-img" alt="Tier" /> LVL --</span>
+              </div>
+              <div class="dossier-team-tag" id="dossier-tag">Squad #--</div>
+            </div>
+            <div class="dossier-status-pill" id="dossier-status">ALIVE</div>
+          </div>
+
+          <!-- Live Vitals: HP & Boost Bars -->
+          <div class="dossier-vitals">
+            <div class="vital-row">
+              <div class="vital-label">
+                <span>HEALTH</span>
+                <b id="dossier-hp-val">100 / 100</b>
+              </div>
+              <div class="vital-bar-track">
+                <div class="vital-bar-fill hp" id="dossier-hp-bar" style="width: 100%;"></div>
+              </div>
+            </div>
+            <div class="vital-row">
+              <div class="vital-label">
+                <span>BOOST GAUGE</span>
+                <b id="dossier-boost-val" style="color: #ffb703;">0%</b>
+              </div>
+              <div class="vital-bar-track">
+                <div class="vital-bar-fill boost" id="dossier-boost-bar" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tactical Equipment (Helmet, Armor, Backpack) -->
+          <div class="dossier-gear-grid">
+            <div class="gear-slot" id="gear-helmet">
+              <span class="gear-icon">🪖</span>
+              <div class="gear-info">
+                <span class="gear-type">HELMET</span>
+                <span class="gear-name" id="dossier-helmet">None</span>
+              </div>
+            </div>
+            <div class="gear-slot" id="gear-vest">
+              <span class="gear-icon">🛡️</span>
+              <div class="gear-info">
+                <span class="gear-type">ARMOR</span>
+                <span class="gear-name" id="dossier-vest">None</span>
+              </div>
+            </div>
+            <div class="gear-slot" id="gear-backpack">
+              <span class="gear-icon">🎒</span>
+              <div class="gear-info">
+                <span class="gear-type">BACKPACK</span>
+                <span class="gear-name" id="dossier-backpack">None</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weapon Loadout -->
+          <div class="dossier-weapons-section">
+            <span class="dossier-section-title">EQUIPPED ARSENAL</span>
+            <div class="dossier-weapons-list" id="dossier-weapons-list">
+              <span class="empty-weapon-text">No equipped weapons</span>
+            </div>
+          </div>
+
+          <!-- Anti-Cheat & Combat Anomaly Heuristics -->
+          <div class="dossier-integrity" id="dossier-integrity-box">
+            <div class="integrity-badge normal" id="dossier-integrity-badge">
+              <span id="dossier-integrity-icon">🛡️</span>
+              <span id="dossier-integrity-title">NORMAL PLAYSTYLE</span>
+            </div>
+            <div class="integrity-metrics" id="dossier-integrity-metrics">
+              <span>HS Kill: <b id="dossier-hs-rate">0%</b></span>
+              <span>Longest: <b id="dossier-longest-kill">0m</b></span>
+              <span>Dmg: <b id="dossier-total-dmg">0</b></span>
+            </div>
+          </div>
+
+          <!-- Inspect Full Account Intel Button for Tracked Player -->
+          <button id="roster-view-full-intel-btn" class="classified-dossier-btn" style="margin-top: 10px;" title="View Full Classified Account Dossier for this player">
+            <span class="dossier-btn-icon">📁</span>
+            <span class="dossier-btn-text">INSPECT FULL ACCOUNT INTEL</span>
+            <span class="dossier-btn-badge">RAW DATA</span>
+          </button>
+        </div>
+
+        <!-- Roster Search & Filter -->
+        <div class="section-block" style="padding: 8px 12px; margin: 4px 12px;">
+          <input type="text" id="roster-search-input" class="form-input" placeholder="Filter player in roster..." style="font-size: 12px; height: 32px;">
+        </div>
+
+        <!-- Squad Roster List -->
+        <div id="sidebar-roster-list" class="sidebar-roster-list" style="padding: 0 12px 20px 12px;"></div>
+      </div>
+    </aside>
   </div>
 
   <!-- CALIBRATION MODAL -->
@@ -1197,13 +1193,204 @@
     </div>
   </div>
 
+  <!-- SETTINGS MODAL -->
+  <div class="modal-overlay" id="modal-settings">
+    <div class="modal-box" style="max-width: 480px;">
+      <div class="modal-header">
+        <div class="modal-title"><span>⚙️</span> Replay & Tactical Map Settings</div>
+        <button class="modal-close-btn" data-close="modal-settings">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="settings-group">
+          <div class="settings-group-title">2D REPLAY VISUALIZATION</div>
+          <label class="settings-toggle-row">
+            <div class="settings-toggle-info">
+              <span class="settings-toggle-name">Bullet Tracers</span>
+              <span class="settings-toggle-desc">Show cyan bullet vectors between shooter and target</span>
+            </div>
+            <label class="custom-switch">
+              <input type="checkbox" id="setting-toggle-tracers" checked>
+              <span class="switch-slider"></span>
+            </label>
+          </label>
+
+          <label class="settings-toggle-row">
+            <div class="settings-toggle-info">
+              <span class="settings-toggle-name">Movement Route Trails</span>
+              <span class="settings-toggle-desc">Draw traversed route polylines behind spectated player</span>
+            </div>
+            <label class="custom-switch">
+              <input type="checkbox" id="setting-toggle-trail" checked>
+              <span class="switch-slider"></span>
+            </label>
+          </label>
+
+          <label class="settings-toggle-row">
+            <div class="settings-toggle-info">
+              <span class="settings-toggle-name">Squad Only Focus</span>
+              <span class="settings-toggle-desc">Hide distant enemy markers; show only spectated player and team</span>
+            </div>
+            <label class="custom-switch">
+              <input type="checkbox" id="setting-toggle-squad-only">
+              <span class="switch-slider"></span>
+            </label>
+          </label>
+
+          <label class="settings-toggle-row">
+            <div class="settings-toggle-info">
+              <span class="settings-toggle-name">Auto-Follow Camera</span>
+              <span class="settings-toggle-desc">Smoothly center the map on the spectated player as they move</span>
+            </div>
+            <label class="custom-switch">
+              <input type="checkbox" id="setting-toggle-follow">
+              <span class="switch-slider"></span>
+            </label>
+          </label>
+        </div>
+
+        <div class="settings-group" style="margin-top: 14px;">
+          <div class="settings-group-title">CALIBRATION & DOCS</div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-primary" id="open-calibration-from-settings" style="flex: 1; font-size: 11px;">
+              <span>🎯</span> Mortar Calibration
+            </button>
+            <button class="btn-primary" id="open-guide-from-settings" style="flex: 1; font-size: 11px;">
+              <span>📖</span> Field Guide
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" data-close="modal-settings">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIELD GUIDE & REPLAY LEGEND MODAL -->
+  <div class="modal-overlay" id="modal-guide">
+    <div class="modal-box" style="max-width: 600px; max-height: 85vh; overflow-y: auto;">
+      <div class="modal-header">
+        <div class="modal-title"><span>📖</span> Tactical Field Guide & Replay Legend</div>
+        <button class="modal-close-btn" data-close="modal-guide">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="guide-section">
+          <div class="guide-section-title">Player Marker Colors & Status</div>
+          <div class="guide-grid">
+            <div class="guide-item">
+              <span class="guide-dot dot-purple"></span>
+              <div>
+                <b>Spectated Player (Purple)</b>
+                <p>The operative currently focused and tracked by your camera.</p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-dot dot-green"></span>
+              <div>
+                <b>Squadmates (Green)</b>
+                <p>Allies in the spectated player's squad.</p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-dot dot-white"></span>
+              <div>
+                <b>Enemies & Dynamic Health Ring (White/Grey)</b>
+                <p>Opponents. The outer ring dynamically shows their real-time remaining HP (Green = High HP, Yellow = Injured, Red = Critical).</p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-dot dot-yellow"></span>
+              <div>
+                <b>Knocked Down / DBNO (Yellow Pulse)</b>
+                <p>Pulsing yellow beacon indicating a player is downed and crawling.</p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-dot dot-red"></span>
+              <div>
+                <b>Eliminated / Death Crater (Red)</b>
+                <p>Red crosshair showing exact coordinates where the player died.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-section" style="margin-top: 14px;">
+          <div class="guide-section-title">How to Spot Bots vs Real Players</div>
+          <div class="guide-callout bot-callout">
+            <span class="callout-icon">🤖</span>
+            <div>
+              <b>Automated Bot Identification:</b>
+              <p>In official Krafton PUBG telemetry, bots are spawned by the server with account IDs starting with <code>ai.</code>. Whenever a player is an official bot, the dossier highlights a <b>BOT</b> badge, and their movement paths exhibit rigid algorithmic waypoints.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-section" style="margin-top: 14px;">
+          <div class="guide-section-title">Zones, Drops & Ballistics</div>
+          <div class="guide-grid">
+            <div class="guide-item">
+              <span class="guide-icon">⚪</span>
+              <div>
+                <b>Safe Zone (White Circle)</b>
+                <p>Next boundary where players take no environment damage.</p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-icon">🔵</span>
+              <div>
+                <b>Blue Zone</b>
+                <p>The electric constriction field dealing continuous damage outside.</p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-icon">🔴</span>
+              <div>
+                <b>Red Zone</b>
+                <p>Artillery bombardment hazard area with random explosions.</p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-icon">📦</span>
+              <div>
+                <b>Care Package (Airdrop)</b>
+                <p>Crate dropped from cargo aircraft containing Level 3 armor and crate weapons.</p>
+              </div>
+            </div>
+            <div class="guide-item">
+              <span class="guide-icon">⚡</span>
+              <div>
+                <b>Bullet Tracers (Cyan Vectors)</b>
+                <p>Live ballistic vectors indicating high-caliber rounds and sniper shots fired in real time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-section" style="margin-top: 14px;">
+          <div class="guide-section-title">Keyboard & Playback Controls</div>
+          <div class="guide-shortcuts-table">
+            <div class="shortcut-row"><kbd>Space</kbd><span>Play / Pause 2D Replay</span></div>
+            <div class="shortcut-row"><kbd>←</kbd> / <kbd>→</kbd><span>Jump 10 Seconds Backward / Forward</span></div>
+            <div class="shortcut-row"><kbd>↑</kbd> / <kbd>↓</kbd><span>Speed Up / Speed Down (Default: 5x)</span></div>
+            <div class="shortcut-row"><kbd>H</kbd><span>Toggle HUD Sidebars</span></div>
+            <div class="shortcut-row"><kbd>M</kbd><span>Reset Map to Full View</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" data-close="modal-guide">Got It</button>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATIONS CONTAINER -->
   <div id="toast-container"></div>
 
   <!-- SCRIPTS -->
   <script src="assets/leaflet.js"></script>
   <script src="data/markers_data.js"></script>
-  <script src="app.js?v=2.2"></script>
-  <script src="replay.js?v=2.2"></script>
+  <script src="app.js?v=2.4"></script>
+  <script src="replay.js?v=2.4"></script>
 </body>
 </html>
