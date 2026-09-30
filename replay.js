@@ -1590,6 +1590,17 @@
 
       // Setup state
       state.isReplayActive = true;
+      document.body.classList.add('replay-active');
+      if (window.innerWidth <= 768) {
+        const sidebarEl = document.getElementById('sidebar');
+        if (sidebarEl) sidebarEl.classList.add('collapsed');
+        const mobileBackdrop = document.getElementById('sidebar-mobile-backdrop');
+        if (mobileBackdrop) mobileBackdrop.classList.remove('active');
+        const toggleText = document.getElementById('sidebar-toggle-text');
+        if (toggleText) toggleText.textContent = 'HUD';
+        const toggleIcon = document.getElementById('sidebar-toggle-icon');
+        if (toggleIcon) toggleIcon.textContent = '▶';
+      }
       state.isPlaying = true;
       state.currentTime = 0;
       state.maxDuration = match.durationSeconds || 1800;
@@ -2600,6 +2611,7 @@
   // EXIT REPLAY MODE
   function exitReplayMode(resetSidebar = true) {
     state.isReplayActive = false;
+    document.body.classList.remove('replay-active');
     state.isPlaying = false;
     if (state.animationFrameId) {
       cancelAnimationFrame(state.animationFrameId);

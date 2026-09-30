@@ -13,7 +13,7 @@
     })();
   </script>
   <link rel="stylesheet" href="assets/leaflet.css">
-  <link rel="stylesheet" href="style.css?v=2.6">
+  <link rel="stylesheet" href="style.css?v=2.7">
 </head>
 <body>
   <div id="app-container">
@@ -26,7 +26,10 @@
             <div class="radar-dot"></div>
             <span>PUBG MORTAR HUD</span>
           </div>
-          <span class="version-badge">v2.6 TAC</span>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="version-badge">v2.7 MOB</span>
+            <button id="mobile-sidebar-close-btn" class="mobile-sidebar-close-btn" title="Close HUD">✕</button>
+          </div>
         </div>
         <div class="tagline">Dual-Monitor Ballistics & Map Intelligence</div>
       </div>
@@ -394,6 +397,9 @@
       </div>
       <!-- END #replay-sidebar-view -->
     </aside>
+
+    <!-- MOBILE BACKDROP OVERLAY -->
+    <div id="sidebar-mobile-backdrop" class="sidebar-mobile-backdrop"></div>
 
     <!-- MAIN MAP VIEWPORT -->
     <main id="map-viewport">
@@ -1447,7 +1453,7 @@
   <!-- SCRIPTS -->
   <script src="assets/leaflet.js"></script>
   <script src="data/markers_data.js"></script>
-  <script src="app.js?v=2.6"></script>
-  <script src="replay.js?v=2.6"></script>
+  <script src="app.js?v=2.7"></script>
+  <script src="replay.js?v=2.7"></script>
 </body>
 </html>

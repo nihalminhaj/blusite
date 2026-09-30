@@ -1353,6 +1353,17 @@
         if (PUBG_MAPS[mapKey]) {
           loadMap(PUBG_MAPS[mapKey]);
         }
+        if (window.innerWidth <= 768) {
+          const sidebarEl = document.getElementById('sidebar');
+          if (sidebarEl) sidebarEl.classList.add('collapsed');
+          const mobileBackdrop = document.getElementById('sidebar-mobile-backdrop');
+          if (mobileBackdrop) mobileBackdrop.classList.remove('active');
+          const toggleText = document.getElementById('sidebar-toggle-text');
+          if (toggleText) toggleText.textContent = 'HUD';
+          const toggleIcon = document.getElementById('sidebar-toggle-icon');
+          if (toggleIcon) toggleIcon.textContent = '▶';
+          setTimeout(() => fitMapToScreen(true), 280);
+        }
       });
     });
 
@@ -1514,22 +1525,61 @@
       });
     }
 
-    // Toggle Sidebar HUD Button
+    // Toggle Sidebar HUD Button & Mobile Off-Canvas Drawer
     const toggleSidebarBtn = document.getElementById('toggle-sidebar-btn');
     const sidebarEl = document.getElementById('sidebar');
     const toggleText = document.getElementById('sidebar-toggle-text');
     const toggleIcon = document.getElementById('sidebar-toggle-icon');
+    const mobileBackdrop = document.getElementById('sidebar-mobile-backdrop');
+    const mobileCloseBtn = document.getElementById('mobile-sidebar-close-btn');
+
+    const updateMobileBackdropState = () => {
+      if (mobileBackdrop && sidebarEl) {
+        const isOpen = !sidebarEl.classList.contains('collapsed');
+        mobileBackdrop.classList.toggle('active', isOpen && window.innerWidth <= 768);
+      }
+    };
+
+    // On mobile devices, start with sidebar collapsed so the tactical map is immediately visible
+    if (window.innerWidth <= 768 && sidebarEl) {
+      sidebarEl.classList.add('collapsed');
+      if (toggleText) toggleText.textContent = 'HUD';
+      if (toggleIcon) toggleIcon.textContent = '▶';
+    }
+
     if (toggleSidebarBtn && sidebarEl) {
       toggleSidebarBtn.addEventListener('click', () => {
         sidebarEl.classList.toggle('collapsed');
         const isCollapsed = sidebarEl.classList.contains('collapsed');
         if (toggleText) toggleText.textContent = isCollapsed ? 'Show HUD' : 'Hide HUD';
         if (toggleIcon) toggleIcon.textContent = isCollapsed ? '▶' : '◀';
+        updateMobileBackdropState();
+        setTimeout(() => fitMapToScreen(true), 280);
+      });
+    }
+
+    if (mobileBackdrop && sidebarEl) {
+      mobileBackdrop.addEventListener('click', () => {
+        sidebarEl.classList.add('collapsed');
+        if (toggleText) toggleText.textContent = 'HUD';
+        if (toggleIcon) toggleIcon.textContent = '▶';
+        updateMobileBackdropState();
+        setTimeout(() => fitMapToScreen(true), 280);
+      });
+    }
+
+    if (mobileCloseBtn && sidebarEl) {
+      mobileCloseBtn.addEventListener('click', () => {
+        sidebarEl.classList.add('collapsed');
+        if (toggleText) toggleText.textContent = 'HUD';
+        if (toggleIcon) toggleIcon.textContent = '▶';
+        updateMobileBackdropState();
         setTimeout(() => fitMapToScreen(true), 280);
       });
     }
 
     window.addEventListener('resize', () => {
+      updateMobileBackdropState();
       fitMapToScreen(false);
     });
 

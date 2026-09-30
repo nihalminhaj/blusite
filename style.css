@@ -4827,3 +4827,430 @@ kbd {
 [data-theme="plain-dark"] .profile-career-title {
   color: #f0f6fc !important;
 }
+
+/* ==========================================================================
+   MOBILE & TOUCH RESPONSIVE SUITE (@media rules & touch ergonomics)
+   ========================================================================== */
+
+/* Universal Touch Ergonomics & Elimination of 300ms mobile tap delay */
+button, .btn-primary, .map-btn, .map-floating-btn, .replay-hud-btn, .replay-play-btn, 
+.replay-speed-btn, .modal-close-btn, .hud-back-btn, .hud-close-btn, .sidebar-tab-btn,
+.mobile-sidebar-close-btn, .intel-mode-tab, .intel-date-chip, .intel-category-pill {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile Sidebar Backdrop */
+.sidebar-mobile-backdrop {
+  display: none;
+}
+
+/* Mobile Close Button in Sidebar Header */
+.mobile-sidebar-close-btn {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: all 0.15s ease;
+}
+
+.mobile-sidebar-close-btn:hover, .mobile-sidebar-close-btn:active {
+  background: rgba(255, 59, 92, 0.25);
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+[data-theme="plain-light"] .mobile-sidebar-close-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+}
+
+/* Tablet & Intermediate Screens (<= 1024px) */
+@media (max-width: 1024px) {
+  #sidebar {
+    width: 330px;
+    min-width: 330px;
+  }
+  #sidebar.collapsed {
+    margin-left: -330px;
+  }
+  .replay-right-hud {
+    width: 330px;
+  }
+}
+
+/* Mobile Devices & Phones (<= 768px) */
+@media (max-width: 768px) {
+  html, body {
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  #app-container {
+    width: 100vw;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    position: relative;
+    display: block;
+  }
+
+  /* Map Viewport takes 100% full screen */
+  #map-viewport {
+    width: 100vw !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  #leaflet-map {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Off-canvas Left Sidebar Drawer */
+  #sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: min(340px, 86vw) !important;
+    min-width: unset !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    z-index: 2500 !important;
+    margin-left: 0 !important;
+    transform: translateX(0);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease !important;
+    box-shadow: 6px 0 28px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  #sidebar.collapsed {
+    transform: translateX(-100%) !important;
+    margin-left: 0 !important;
+    box-shadow: none !important;
+    pointer-events: none !important;
+  }
+
+  /* Show Mobile Close Button inside Sidebar Header */
+  .mobile-sidebar-close-btn {
+    display: inline-flex;
+  }
+
+  /* Backdrop Overlay when Sidebar is open */
+  .sidebar-mobile-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 2400;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .sidebar-mobile-backdrop.active,
+  #sidebar:not(.collapsed) ~ .sidebar-mobile-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Map Quick Floating Controls at Top */
+  .map-floating-controls {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .map-floating-controls::-webkit-scrollbar {
+    display: none;
+  }
+
+  .map-floating-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  /* Alive Badge on Mobile */
+  .replay-alive-hud {
+    top: 48px;
+    left: 8px;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .replay-alive-hud .alive-num {
+    font-size: 18px;
+  }
+
+  .replay-alive-hud .alive-text {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+  }
+
+  /* Right Spectator & Dossier HUD on Mobile */
+  .replay-right-hud {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: min(350px, 92vw) !important;
+    max-width: 100vw !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    z-index: 2600 !important;
+    box-shadow: -6px 0 28px rgba(0, 0, 0, 0.8) !important;
+    animation: slideInRightMobile 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  @keyframes slideInRightMobile {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+
+  /* Bottom Replay Timeline Controller Bar on Mobile */
+  .replay-controller-bar {
+    padding: 8px 10px !important;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)) !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 6px !important;
+    background: rgba(18, 22, 32, 0.98) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .replay-meta-left {
+    display: none !important;
+  }
+
+  .replay-timeline-center {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .replay-playhead-readout {
+    font-size: 12px !important;
+    min-width: 46px !important;
+    text-align: center !important;
+    font-weight: 700 !important;
+  }
+
+  .replay-slider-track-wrap {
+    flex: 1 !important;
+    height: 32px !important;
+  }
+
+  .replay-slider {
+    height: 8px !important;
+  }
+
+  .replay-slider::-webkit-slider-thumb {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .replay-controls-right {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 4px !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    padding: 2px 0 !important;
+  }
+
+  .replay-controls-right::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .replay-play-btn {
+    width: 36px !important;
+    height: 34px !important;
+    font-size: 15px !important;
+    flex-shrink: 0 !important;
+    border-radius: 6px !important;
+  }
+
+  .replay-speed-selector {
+    gap: 2px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .replay-speed-btn {
+    padding: 3px 5px !important;
+    font-size: 10px !important;
+    min-width: 24px !important;
+    height: 30px !important;
+    border-radius: 4px !important;
+  }
+
+  .replay-hud-btn {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+    height: 32px !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 6px !important;
+  }
+
+  .replay-exit-btn {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+    height: 32px !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 6px !important;
+  }
+
+  /* Coordinate Status Bar on Mobile */
+  .hud-coords-bar {
+    bottom: 6px !important;
+    right: 6px !important;
+    padding: 3px 8px !important;
+    font-size: 9px !important;
+    gap: 4px !important;
+    background: rgba(11, 14, 20, 0.9) !important;
+  }
+
+  body.replay-active .hud-coords-bar {
+    display: none !important;
+  }
+
+  /* Modals on Mobile */
+  .modal-overlay {
+    padding: 8px !important;
+    align-items: center !important;
+  }
+
+  .modal-box {
+    width: 100% !important;
+    max-width: 96vw !important;
+    max-height: 90vh !important;
+    max-height: 90dvh !important;
+    border-radius: 10px !important;
+  }
+
+  .modal-box-intel {
+    width: 100% !important;
+    max-width: 96vw !important;
+    max-height: 92vh !important;
+    max-height: 92dvh !important;
+  }
+
+  .intel-modal-header {
+    padding: 10px 14px !important;
+  }
+
+  .intel-modal-title {
+    font-size: 13px !important;
+  }
+
+  .intel-stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .intel-mode-tabs {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .intel-mode-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .intel-filter-chips {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .intel-filter-chips::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .theme-options-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* Mortar Selector & Ballistics on Mobile */
+  .map-selector-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .telemetry-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .range-labels {
+    font-size: 10px !important;
+  }
+}
+
+/* Very Small Mobile Screens (<= 480px) */
+@media (max-width: 480px) {
+  .brand-title {
+    font-size: 13px !important;
+  }
+
+  .sidebar-tab-btn {
+    font-size: 11px !important;
+    padding: 8px 10px !important;
+  }
+
+  .map-selector-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .replay-speed-btn[data-speed="20"] {
+    display: none !important;
+  }
+
+  .dossier-gear-row {
+    gap: 4px !important;
+  }
+
+  .gear-card {
+    padding: 6px 4px !important;
+  }
+
+  .gear-name {
+    font-size: 10px !important;
+  }
+}
