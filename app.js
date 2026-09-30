@@ -212,20 +212,75 @@
     });
   }
 
+  // --- SITE THEME SYSTEM ---
+  function initSiteTheme() {
+    const savedTheme = localStorage.getItem('pubg_site_theme') || 'tactical';
+    applySiteTheme(savedTheme);
+
+    // Wire up radio inputs and card clicks in Settings modal
+    document.querySelectorAll('.theme-card-option').forEach(card => {
+      card.addEventListener('click', () => {
+        const themeVal = card.getAttribute('data-theme-val');
+        if (themeVal) {
+          applySiteTheme(themeVal);
+        }
+      });
+    });
+
+    document.querySelectorAll('input[name="site-theme-radio"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (radio.checked) {
+          applySiteTheme(radio.value);
+        }
+      });
+    });
+  }
+
+  function applySiteTheme(themeName) {
+    if (!['tactical', 'plain-light', 'plain-dark'].includes(themeName)) {
+      themeName = 'tactical';
+    }
+    document.documentElement.setAttribute('data-theme', themeName);
+    localStorage.setItem('pubg_site_theme', themeName);
+
+    // Update active class on cards
+    document.querySelectorAll('.theme-card-option').forEach(card => {
+      const val = card.getAttribute('data-theme-val');
+      const isSelected = (val === themeName);
+      card.classList.toggle('active', isSelected);
+      const radio = card.querySelector('input[type="radio"]');
+      if (radio) radio.checked = isSelected;
+    });
+
+    // Invalidate Leaflet map size and update viewport
+    if (leafletMap) {
+      setTimeout(() => {
+        leafletMap.invalidateSize();
+        fitMapToScreen(false);
+      }, 60);
+    }
+  }
+
   // --- INITIALIZATION ---
   function init() {
     initLeaflet();
+    initSiteTheme();
     loadMap(PUBG_MAPS.deston);
     loadMarkers();
     setupEventListeners();
     updateCalibrationIndicator();
+
+    // Multi-pass layout settlement to eliminate blank map rendering
+    requestAnimationFrame(() => fitMapToScreen(false));
+    setTimeout(() => fitMapToScreen(false), 100);
+    setTimeout(() => fitMapToScreen(false), 350);
   }
 
   // --- LEAFLET SETUP ---
   function initLeaflet() {
     leafletMap = L.map('leaflet-map', {
       crs: L.CRS.Simple,
-      minZoom: -3.5,
+      minZoom: -5.0,
       maxZoom: 4.5,
       zoomSnap: 0.1,
       zoomDelta: 0.2,
@@ -234,6 +289,17 @@
     });
 
     L.control.zoom({ position: 'topright' }).addTo(leafletMap);
+
+    // Attach ResizeObserver to container to guarantee map never goes blank on layout shifts
+    if (window.ResizeObserver) {
+      const ro = new ResizeObserver(() => {
+        if (leafletMap) {
+          leafletMap.invalidateSize();
+        }
+      });
+      const vp = document.getElementById('map-viewport');
+      if (vp) ro.observe(vp);
+    }
 
     // Initialize layer groups for POIs (default off)
     const toggleMap = {
@@ -261,14 +327,15 @@
 
   // Calculate the exact zoom level where the map fills the screen snugly
   function calculateFitZoom() {
-    if (!leafletMap || !currentMap) return -3.0;
+    if (!leafletMap || !currentMap) return -3.5;
     const size = leafletMap.getSize();
-    if (!size || size.x <= 0 || size.y <= 0) return -3.0;
-    // Fit the square map into the viewport dimensions with clean padding
-    const minDim = Math.min(size.x, size.y);
-    const targetScale = (minDim - 16) / currentMap.sizeMeters;
-    // Round to 1 decimal place
-    return Math.floor(Math.log2(targetScale) * 10) / 10;
+    // Fallback if DOM layout hasn't completed
+    const width = (size && size.x > 50) ? size.x : Math.max(300, window.innerWidth - 380);
+    const height = (size && size.y > 50) ? size.y : Math.max(300, window.innerHeight);
+    const minDim = Math.min(width, height);
+    const targetScale = (minDim - 24) / currentMap.sizeMeters;
+    const zoom = Math.floor(Math.log2(targetScale) * 10) / 10;
+    return Math.max(-5.0, Math.min(2.0, zoom));
   }
 
   function fitMapToScreen(animate = false) {
@@ -276,8 +343,8 @@
     leafletMap.invalidateSize();
     const fitZoom = calculateFitZoom();
     
-    // LOCK minZoom to the exact screen-fit size so the user CANNOT zoom out into empty space
-    leafletMap.setMinZoom(fitZoom);
+    // Set minZoom comfortably below fitZoom so user has full fluid control
+    leafletMap.setMinZoom(Math.min(-4.0, fitZoom - 0.5));
     
     const center = [currentMap.sizeMeters / 2, currentMap.sizeMeters / 2];
     leafletMap.setView(center, fitZoom, { animate: animate });
@@ -304,15 +371,22 @@
       bounds: bounds
     }).addTo(leafletMap);
 
-    // Prevent dragging the map away into outer space
-    const margin = mapConfig.sizeMeters * 0.12;
+    imageOverlay.on('error', () => {
+      console.warn('Map image failed to load:', imgUrl);
+    });
+
+    // Generous outer bounds so panoramic screens don't get clamped
+    const margin = mapConfig.sizeMeters * 0.45;
     leafletMap.setMaxBounds([
       [-margin, -margin],
       [mapConfig.sizeMeters + margin, mapConfig.sizeMeters + margin]
     ]);
 
     // Fit whole map snugly into screen
-    setTimeout(() => fitMapToScreen(false), 50);
+    fitMapToScreen(false);
+    requestAnimationFrame(() => fitMapToScreen(false));
+    setTimeout(() => fitMapToScreen(false), 60);
+    setTimeout(() => fitMapToScreen(false), 250);
 
     // Update UI headers
     document.getElementById('map-size-label').textContent = `${(mapConfig.sizeMeters / 1000)}x${(mapConfig.sizeMeters / 1000)} KM`;
@@ -1493,6 +1567,8 @@
     getMap: () => currentMap,
     getLeafletMap: () => leafletMap,
     getMaps: () => PUBG_MAPS,
+    fitMapToScreen: fitMapToScreen,
+    applySiteTheme: applySiteTheme,
     loadMap: (config) => {
       document.querySelectorAll('.map-btn').forEach(b => {
         b.classList.toggle('active', b.getAttribute('data-map') === config.id);
@@ -1502,6 +1578,13 @@
     clearMeasurement: clearMeasurement,
     showToast: showToast
   };
+
+  window.addEventListener('load', () => {
+    if (leafletMap) {
+      leafletMap.invalidateSize();
+      fitMapToScreen(false);
+    }
+  });
 
   // Launch app when DOM is ready
   if (document.readyState === 'loading') {

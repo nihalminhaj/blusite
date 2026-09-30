@@ -4,8 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PUBG Tactical Mortar Computer & Interactive Map</title>
+  <script>
+    (function() {
+      try {
+        var t = localStorage.getItem('pubg_site_theme') || 'tactical';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch(e) {}
+    })();
+  </script>
   <link rel="stylesheet" href="assets/leaflet.css">
-  <link rel="stylesheet" href="style.css?v=2.4">
+  <link rel="stylesheet" href="style.css?v=2.5">
 </head>
 <body>
   <div id="app-container">
@@ -1201,6 +1209,57 @@
         <button class="modal-close-btn" data-close="modal-settings">&times;</button>
       </div>
       <div class="modal-body">
+        <!-- INTERFACE THEME SELECTION -->
+        <div class="settings-group" style="margin-bottom: 16px;">
+          <div class="settings-group-title">INTERFACE THEME</div>
+          <div class="theme-selector-grid">
+            <label class="theme-card-option" data-theme-val="tactical">
+              <input type="radio" name="site-theme-radio" value="tactical" class="theme-radio-input">
+              <div class="theme-card-preview theme-preview-tactical">
+                <div class="preview-header"></div>
+                <div class="preview-body">
+                  <div class="preview-box"></div>
+                  <div class="preview-box"></div>
+                </div>
+              </div>
+              <div class="theme-card-label">
+                <span class="theme-name">Cyber Tactical</span>
+                <span class="theme-desc">Neon cyber HUD with glassmorphism</span>
+              </div>
+            </label>
+
+            <label class="theme-card-option" data-theme-val="plain-light">
+              <input type="radio" name="site-theme-radio" value="plain-light" class="theme-radio-input">
+              <div class="theme-card-preview theme-preview-light">
+                <div class="preview-header"></div>
+                <div class="preview-body">
+                  <div class="preview-box"></div>
+                  <div class="preview-box"></div>
+                </div>
+              </div>
+              <div class="theme-card-label">
+                <span class="theme-name">Plain White</span>
+                <span class="theme-desc">Basic, minimal website (no modern vibe)</span>
+              </div>
+            </label>
+
+            <label class="theme-card-option" data-theme-val="plain-dark">
+              <input type="radio" name="site-theme-radio" value="plain-dark" class="theme-radio-input">
+              <div class="theme-card-preview theme-preview-dark">
+                <div class="preview-header"></div>
+                <div class="preview-body">
+                  <div class="preview-box"></div>
+                  <div class="preview-box"></div>
+                </div>
+              </div>
+              <div class="theme-card-label">
+                <span class="theme-name">Minimal Dark</span>
+                <span class="theme-desc">Clean flat dark mode without neon</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
         <div class="settings-group">
           <div class="settings-group-title">2D REPLAY VISUALIZATION</div>
           <label class="settings-toggle-row">
@@ -1390,7 +1449,7 @@
   <!-- SCRIPTS -->
   <script src="assets/leaflet.js"></script>
   <script src="data/markers_data.js"></script>
-  <script src="app.js?v=2.4"></script>
-  <script src="replay.js?v=2.4"></script>
+  <script src="app.js?v=2.5"></script>
+  <script src="replay.js?v=2.5"></script>
 </body>
 </html>

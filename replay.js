@@ -17,7 +17,24 @@
     'Chimera_Main': 'karakin',
     'Summerland_Main': 'karakin',
     'Heaven_Main': 'paramo',
-    'Paramo': 'paramo'
+    'Paramo': 'paramo',
+    'deston': 'deston',
+    'erangel': 'erangel',
+    'taego': 'taego',
+    'miramar': 'miramar',
+    'rondo': 'rondo',
+    'vikendi': 'vikendi',
+    'sanhok': 'sanhok',
+    'karakin': 'karakin',
+    'paramo': 'paramo',
+    'Deston': 'deston',
+    'Erangel': 'erangel',
+    'Taego': 'taego',
+    'Miramar': 'miramar',
+    'Rondo': 'rondo',
+    'Vikendi': 'vikendi',
+    'Sanhok': 'sanhok',
+    'Karakin': 'karakin'
   };
 
   const PUBG_MAP_DISPLAY_NAMES = {
@@ -31,7 +48,16 @@
     'Neon_Main': 'Rondo',
     'Chimera_Main': 'Karakin',
     'Summerland_Main': 'Karakin',
-    'Heaven_Main': 'Paramo'
+    'Heaven_Main': 'Paramo',
+    'deston': 'Deston',
+    'erangel': 'Erangel',
+    'taego': 'Taego',
+    'miramar': 'Miramar',
+    'rondo': 'Rondo',
+    'vikendi': 'Vikendi',
+    'sanhok': 'Sanhok',
+    'karakin': 'Karakin',
+    'paramo': 'Paramo'
   };
 
   // Friendly PUBG Weapon Name Lookup
@@ -2496,6 +2522,12 @@
         const toggleBtn = document.getElementById('toggle-sidebar-btn');
         if (toggleBtn) toggleBtn.click();
       }
+      if (window.PUBG_APP && window.PUBG_APP.getLeafletMap()) {
+        setTimeout(() => {
+          window.PUBG_APP.getLeafletMap().invalidateSize();
+          if (window.PUBG_APP.fitMapToScreen) window.PUBG_APP.fitMapToScreen(false);
+        }, 50);
+      }
       if (app && app.showToast) app.showToast('Exited Replay mode');
     }
   }
@@ -2506,11 +2538,22 @@
     if (vMatches) vMatches.style.display = 'block';
     const rightHud = document.getElementById('replay-right-hud');
     if (rightHud) rightHud.style.display = 'none';
+    if (window.PUBG_APP && window.PUBG_APP.getLeafletMap()) {
+      setTimeout(() => {
+        window.PUBG_APP.getLeafletMap().invalidateSize();
+        if (window.PUBG_APP.fitMapToScreen) window.PUBG_APP.fitMapToScreen(false);
+      }, 50);
+    }
   }
 
   function showRosterSubpane(match) {
     const rightHud = document.getElementById('replay-right-hud');
     if (rightHud) rightHud.style.display = 'flex';
+    if (window.PUBG_APP && window.PUBG_APP.getLeafletMap()) {
+      setTimeout(() => {
+        window.PUBG_APP.getLeafletMap().invalidateSize();
+      }, 50);
+    }
 
     const mapName = PUBG_MAP_DISPLAY_NAMES[match.mapName] || match.mapName || 'TAEGO';
     const mapEl = document.getElementById('active-match-map');
