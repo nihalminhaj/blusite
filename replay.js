@@ -431,8 +431,7 @@
   // Get authentic PUBG Tier Badge Icon for Tiers 1 through 5
   function getSurvivalTierIcon(tier = 1) {
     const t = Math.max(1, Math.min(5, parseInt(tier, 10) || 1));
-    if (t === 2) return 'assets/tier_2.png';
-    return `assets/tier_${t}.svg`;
+    return `assets/tier_${t}.png`;
   }
 
   // Fetch Official Match Details (including direct CDN Telemetry asset URL)
